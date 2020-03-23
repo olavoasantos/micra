@@ -10,6 +10,7 @@ module.exports = {
       'BASE',
       'CONFIG',
       'CORE',
+      'DOT-ENV',
       'KERNEL',
       'MULTI-ENV',
       'SERVICE-PROVIDER',
