@@ -1,8 +1,8 @@
 import { Config } from './Config';
-import { Environment, StaticEnvironment } from './Environment';
-import { Kernel, StaticKernel } from './Kernel';
-import { ServiceContainer, StaticServiceContainer } from './ServiceContainer';
-import { ServiceProvider, StaticServiceProvider } from './ServiceProvider';
+import { Environment } from './Environment';
+import { Kernel } from './Kernel';
+import { ServiceContainer } from './ServiceContainer';
+import { ServiceProvider } from './ServiceProvider';
 import { Static } from './types';
 
 export interface Application {

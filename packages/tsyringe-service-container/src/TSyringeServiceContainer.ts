@@ -26,7 +26,10 @@ export class TSyringeServiceContainer implements ServiceContainer {
     return this;
   }
 
-  factory<T = any>(namespace: InjectionToken<T>, value: (dependencyContainer: DependencyContainer) => T) {
+  factory<T = any>(
+    namespace: InjectionToken<T>,
+    value: (dependencyContainer: DependencyContainer) => T,
+  ) {
     this.container.register<T>(namespace, { useFactory: value });
 
     return this;

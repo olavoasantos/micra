@@ -4,7 +4,7 @@ export class MultiEnv implements Environment {
   sources: Environment[] = [];
 
   addSources(...envs: StaticEnvironment[]) {
-    envs.forEach(env => this.sources.push(new env()));
+    envs.forEach((env) => this.sources.push(new env()));
   }
 
   async init() {
@@ -14,7 +14,7 @@ export class MultiEnv implements Environment {
   }
 
   has(key: string) {
-    return this.sources.some(env => env.has(key));
+    return this.sources.some((env) => env.has(key));
   }
 
   get(key: string) {

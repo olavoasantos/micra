@@ -14,9 +14,12 @@ export class Config implements ConfigContract {
     if (main) {
       this.definitions.set(
         main,
-        parts.reduce((partial, subKey) => ({
-          [subKey]: partial,
-        }), { [namespace]: value }),
+        parts.reduce(
+          (partial, subKey) => ({
+            [subKey]: partial,
+          }),
+          { [namespace]: value },
+        ),
       );
     } else {
       this.definitions.set(namespace, value);

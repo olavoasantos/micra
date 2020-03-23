@@ -15,15 +15,26 @@ import { MultiEnv } from '@micra/multi-env';
 
 export class Application implements ApplicationContract {
   static get global() {
-    if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.document !== 'undefined'
+    ) {
       return window;
     }
 
-    if (typeof process !== 'undefined' && process.versions != null && process.versions.node != null) {
+    if (
+      typeof process !== 'undefined' &&
+      process.versions != null &&
+      process.versions.node != null
+    ) {
       return global;
     }
 
-    if (typeof self === 'object' && self.constructor && self.constructor.name === 'DedicatedWorkerGlobalScope') {
+    if (
+      typeof self === 'object' &&
+      self.constructor &&
+      self.constructor.name === 'DedicatedWorkerGlobalScope'
+    ) {
       return self;
     }
 
@@ -65,7 +76,7 @@ export class Application implements ApplicationContract {
     if (!this.container) {
       throw new Error(
         `Service container not defined. ` +
-        `Try registering a container by using registerContainer before registering your kernel.`,
+          `Try registering a container by using registerContainer before registering your kernel.`,
       );
     }
     this.kernel = new kernel(this.container);
@@ -77,10 +88,14 @@ export class Application implements ApplicationContract {
     if (!this.container) {
       throw new Error(
         `Service container not defined. ` +
-        `Try registering a container by using registerContainer before registering your providers.`,
+          `Try registering a container by using registerContainer before registering your providers.`,
       );
     }
-    providers.forEach(provider => this.serviceProviders.push(new provider(this.container as ServiceContainer)))
+    providers.forEach((provider) =>
+      this.serviceProviders.push(
+        new provider(this.container as ServiceContainer),
+      ),
+    );
 
     return this;
   }
@@ -100,24 +115,24 @@ export class Application implements ApplicationContract {
     if (!this.container) {
       throw new Error(
         `Service container not defined. ` +
-        `Try registering a container by using registerContainer before starting the application.`,
+          `Try registering a container by using registerContainer before starting the application.`,
       );
     }
 
     if (!this.kernel) {
       throw new Error(
         `Kernel not defined. ` +
-        `Try registering a kernel by using registerKernel before starting the application.`,
+          `Try registering a kernel by using registerKernel before starting the application.`,
       );
     }
 
-    this.serviceProviders.forEach(provider => {
+    this.serviceProviders.forEach((provider) => {
       if (provider.register) {
         provider.register();
       }
     });
 
-    this.serviceProviders.forEach(provider => {
+    this.serviceProviders.forEach((provider) => {
       if (provider.boot) {
         provider.boot();
       }
