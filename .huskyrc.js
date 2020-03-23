@@ -7,6 +7,8 @@ module.exports = {
       'yarn bootstrap',
       'yarn format',
       'yarn lint',
+    ),
+    'pre-push': tasks(
       'yarn test',
     ),
   },

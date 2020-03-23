@@ -10,13 +10,10 @@
     "examples/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap && yarn build:packages",
-    "build:dev": "lerna run build:dev --stream",
-    "build:prod": "lerna run build:prod --stream",
-    "build:packages": "yarn run:scoped packages build",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream --parallel",
     "format": "lerna run format --stream --parallel",
     "lint": "lerna run lint --parallel --stream",
-    "make": "node scripts/make.js",
     "run:scoped": "node scripts/scopedCommand.js",
     "start": "lerna run start --parallel --stream",
     "test": "lerna run test --parallel --stream"
