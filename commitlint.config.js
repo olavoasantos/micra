@@ -10,6 +10,7 @@ module.exports = {
       'BASE',
       'CORE',
       'KERNEL',
+      'SERVICE-PROVIDER',
     ]],
     'type-case': [2, 'always', 'upper-case'],
     'type-empty': [2, 'never'],
