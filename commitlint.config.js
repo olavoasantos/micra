@@ -11,6 +11,7 @@ module.exports = {
       'CONFIG',
       'CORE',
       'KERNEL',
+      'MULTI-ENV',
       'SERVICE-PROVIDER',
       'TSYRINGE-SERVICE-CONTAINER',
     ]],
