@@ -8,6 +8,7 @@ module.exports = {
     'scope-case': [2, 'always', 'upper-case'],
     'scope-enum': [2, 'always', [
       'BASE',
+      'CONFIG',
       'CORE',
       'KERNEL',
       'SERVICE-PROVIDER',
