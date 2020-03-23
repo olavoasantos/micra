@@ -10,6 +10,7 @@ module.exports = {
       'BASE',
       'CORE',
       'KERNEL',
+      'TSYRINGE-SERVICE-CONTAINER',
       'SERVICE-PROVIDER',
     ]],
     'type-case': [2, 'always', 'upper-case'],
