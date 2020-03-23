@@ -15,16 +15,16 @@
     "watch": "nodemon"
   },
   "devDependencies": {
-    "@types/node": "^13.9.2",
+    "@types/node": "^13.9.3",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
-    "prettier": "^2.0.0",
+    "prettier": "^2.0.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.7.0",
+    "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {
