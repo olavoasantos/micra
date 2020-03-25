@@ -5,7 +5,11 @@ export class DotEnv implements Environment {
   protected definitions: Record<string, any> = {};
 
   async init() {
-    this.definitions = dotenv.config().parsed || {};
+    this.definitions = Object.assign(
+      this.definitions,
+      { NODE_ENV: process.env.NODE_ENV },
+      dotenv.config().parsed || {},
+    );
   }
 
   has(key: string) {
