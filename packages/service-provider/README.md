@@ -1,7 +1,5 @@
 # @micra/service-provider
 
-Node.js package.
-
 ## Installation
 
 ```sh

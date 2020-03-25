@@ -1,7 +1,5 @@
 # @micra/kernel
 
-Node.js package.
-
 ## Installation
 
 ```sh

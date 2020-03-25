@@ -1,7 +1,5 @@
 # @micra/tsyringe-service-container
 
-Node.js package.
-
 ## Installation
 
 ```sh

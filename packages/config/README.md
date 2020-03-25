@@ -1,9 +1,7 @@
-# @micra/cli-input
-
-Node.js package.
+# @micra/config
 
 ## Installation
 
 ```sh
-yarn add @micra/cli-input
+yarn add @micra/config
 ```
