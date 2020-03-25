@@ -41,10 +41,10 @@ export class Application implements ApplicationContract {
     return {};
   }
 
-  env: Environment;
   config: ConfigContract;
-  kernel?: Kernel;
   container?: ServiceContainer;
+  env: Environment;
+  kernel?: Kernel;
   serviceProviders: ServiceProvider[] = [];
 
   constructor() {
