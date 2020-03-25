@@ -9,6 +9,7 @@ module.exports = {
     'scope-enum': [2, 'always', [
       'APPLICATION',
       'BASE',
+      'BASE-EXAMPLE',
       'CONFIG',
       'CORE',
       'DOT-ENV',
