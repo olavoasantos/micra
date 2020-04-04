@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "name": "@material-ui/core",
+    "alias": "MaterialUI",
+    "src": "https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js",
+    "dependencies": [
+      "React",
+      "ReactDOM",
+      "styled"
+    ]
+  }
+]
