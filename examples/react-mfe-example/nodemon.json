@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": ".ts",
   "ignore": [".test.ts"],
-  "exec": "yarn build && NODE_ENV=development node build"
+  "exec": "yarn build && yarn serve"
 }
