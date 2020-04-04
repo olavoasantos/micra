@@ -3,6 +3,8 @@ export * from './Config';
 export * from './Environment';
 export * from './Kernel';
 export * from './ModuleManager';
+export * from './Route';
+export * from './Router';
 export * from './ServiceContainer';
 export * from './ServiceProvider';
 export * from './types';
