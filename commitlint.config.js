@@ -17,6 +17,7 @@ module.exports = {
       'MULTI-ENV',
       'REACT-DOM-KERNEL',
       'REACT-MFE-EXAMPLE',
+      'REACT-ROUTER-WEB-ROUTER',
       'SERVICE-PROVIDER',
       'TSYRINGE-SERVICE-CONTAINER',
     ]],
