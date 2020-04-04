@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@micra/core": "^0.0.1",
-    "@micra/kernel": "^0.0.1",
     "tslib": "^1.11.1"
   }
 }
