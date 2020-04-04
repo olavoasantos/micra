@@ -10,7 +10,7 @@ export class BrowserModuleManager implements ModuleManager {
 
     this.modules[definition.name] = definition as ModuleDefinition;
     if (definition.modules) {
-      definition.modules.forEach(subModule => {
+      definition.modules.forEach((subModule) => {
         this.define(subModule.name, subModule);
       });
     }
@@ -68,7 +68,7 @@ export class BrowserModuleManager implements ModuleManager {
 
     return await Promise.allSettled(
       [this.loadExternal(definition)].concat(
-        (definition.dependencies || []).map(dep => this.load(dep)),
+        (definition.dependencies || []).map((dep) => this.load(dep)),
       ),
     );
   }
