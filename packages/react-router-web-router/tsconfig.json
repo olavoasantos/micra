@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "esnext"
+      "dom"
     ],
     "declaration": true,
     "removeComments": true,
@@ -16,6 +16,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
+    "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "outDir": "build",
     "declarationDir": "@types",

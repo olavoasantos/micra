@@ -41,6 +41,10 @@ export class Application implements ApplicationContract {
     return {};
   }
 
+  get global() {
+    return Application.global;
+  }
+
   config: ConfigContract;
   container?: ServiceContainer;
   env: Environment;

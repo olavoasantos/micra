@@ -1,7 +1,7 @@
-# @micra/react-router-web-router
+# @micra/react-dom-kernel
 
 ## Installation
 
 ```sh
-yarn add @micra/react-router-web-router
+yarn add @micra/react-dom-kernel
 ```
