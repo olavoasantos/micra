@@ -1,6 +1,6 @@
 import { Kernel } from '@micra/kernel';
 
-export class HTTPKernel extends Kernel {
+export class GenericKernel extends Kernel {
   boot() {
     //
   }

@@ -1,8 +1,8 @@
 import app from '@micra/application';
-import { HTTPKernel } from 'app/kernel';
+import { GenericKernel } from 'app/kernel';
 
 /** Define your kernel */
-app.registerKernel(HTTPKernel);
+app.registerKernel(GenericKernel);
 
 /** Define your service providers */
 app.registerProviders();
