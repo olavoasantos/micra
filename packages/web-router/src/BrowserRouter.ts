@@ -1,6 +1,5 @@
 import { Router, Route, RouteMiddleware } from '@micra/core';
 import { BrowserRoute } from './BrowserRoute';
-import { RouteDefinition } from './types';
 
 export class BrowserRouter implements Router {
   protected list: Route[] = [];
@@ -25,7 +24,7 @@ export class BrowserRouter implements Router {
     return this.list;
   }
 
-  view(definition: RouteDefinition) {
+  view(definition: Record<string, any>) {
     const route = new BrowserRoute(definition);
 
     this.list.push(route);

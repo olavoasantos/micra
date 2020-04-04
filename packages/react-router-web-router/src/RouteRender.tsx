@@ -1,8 +1,7 @@
 import { RouteContext } from '@micra/core';
+import { BrowserRouter, BrowserRoute } from '@micra/web-router';
 import React, { lazy, Suspense } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { BrowserRoute } from './BrowserRoute';
-import { BrowserRouter } from './BrowserRouter';
 
 export const RouteRender = (route: BrowserRoute) => (props: RouteComponentProps) => {
   const context: RouteContext = { ...props, route };

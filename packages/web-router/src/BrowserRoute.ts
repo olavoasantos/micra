@@ -1,16 +1,15 @@
 import { Route, RouteMiddleware, RouteContext } from '@micra/core';
-import { RouteDefinition, ReactComponent } from './types';
 
-export class BrowserRoute implements Route {
+export class BrowserRoute<T = any> implements Route {
   path: string;
   exact: boolean;
   dependencies: string[];
   middlewares: RouteMiddleware[];
-  loading: ReactComponent;
+  loading: T;
   render: (
     context: RouteContext,
   ) => Promise<{
-    default: ReactComponent;
+    default: T;
   }>;
 
   constructor({
@@ -20,7 +19,7 @@ export class BrowserRoute implements Route {
     dependencies,
     loading,
     middlewares,
-  }: RouteDefinition) {
+  }: Record<string, any>) {
     this.path = path;
     this.render = render;
     this.exact = exact || false;

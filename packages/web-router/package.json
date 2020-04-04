@@ -1,5 +1,5 @@
 {
-  "name": "@micra/react-router-web-router",
+  "name": "@micra/web-router",
   "version": "0.0.1",
   "license": "MIT",
   "main": "build/index.js",
@@ -31,14 +31,8 @@
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
   },
-  "peerDependencies": {
-    "history": "^4.10.1",
-    "react-router-dom": "^5.1.2",
-    "react": "^16.12.0"
-  },
   "dependencies": {
     "@micra/core": "^0.0.1",
-    "@micra/web-router": "^0.0.1",
     "tslib": "^1.11.1"
   }
 }
