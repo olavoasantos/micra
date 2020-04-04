@@ -10,6 +10,7 @@ module.exports = {
       'APPLICATION',
       'BASE-EXAMPLE',
       'BASE',
+      'BROWSER-MODULE-MANAGER',
       'CONFIG',
       'CORE',
       'DOT-ENV',
