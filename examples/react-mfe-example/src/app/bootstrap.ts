@@ -1,8 +1,8 @@
 import app from '@micra/application';
-import { ReactKernel } from 'app/kernel';
+import { ReactDomKernel } from '@micra/react-dom-kernel';
 
 /** Define your kernel */
-app.registerKernel(ReactKernel);
+app.registerKernel(ReactDomKernel);
 
 /** Define your service providers */
 app.registerProviders();
