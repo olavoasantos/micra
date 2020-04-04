@@ -15,6 +15,7 @@ module.exports = {
       'DOT-ENV',
       'KERNEL',
       'MULTI-ENV',
+      'REACT-DOM-KERNEL',
       'REACT-MFE-EXAMPLE',
       'SERVICE-PROVIDER',
       'TSYRINGE-SERVICE-CONTAINER',
