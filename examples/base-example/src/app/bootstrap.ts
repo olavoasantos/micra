@@ -1,13 +1,10 @@
 import app from '@micra/application';
-import { Kernel } from '@micra/kernel';
+import { HTTPKernel } from 'app/kernel';
 
 /** Define your kernel */
-app.registerKernel(Kernel);
+app.registerKernel(HTTPKernel);
 
 /** Define your service providers */
-app
-  .registerProviders
-  //
-  ();
+app.registerProviders();
 
 export { app };
