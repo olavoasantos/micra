@@ -1,8 +1,7 @@
-import { loadModules } from 'app/module-manager/middlewares/loadModules';
+import { RouteDefinition } from '@micra/react-router-web-router';
 
-export const HomePageRoute = {
+export const HomePageRoute: RouteDefinition = {
   path: '/',
   render: () => import('pages/Home'),
-  middlewares: [loadModules],
   dependencies: ['@material-ui/core'],
 };

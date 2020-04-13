@@ -4,10 +4,12 @@ import { RouterProvider } from 'app/router/RouterProvider';
 
 export class App extends PureComponent {
   render() {
+    const routes = use<BrowserRouter>('Router').routes();
+
     return (
       <StrictMode>
         <RouterProvider>
-          <RouterView routes={use<BrowserRouter>('Router').routes()} />
+          <RouterView routes={routes} />
         </RouterProvider>
       </StrictMode>
     );
