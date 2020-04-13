@@ -26,6 +26,7 @@ export class BrowserRouter implements Router {
 
   view(definition: Record<string, any>) {
     const route = new BrowserRoute(definition);
+    route.globalMiddlewares = this.globalMiddlewares;
 
     this.list.push(route);
     this.map.set(route.path, route);

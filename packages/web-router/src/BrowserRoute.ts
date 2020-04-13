@@ -4,13 +4,21 @@ export class BrowserRoute<T = any> implements Route {
   path: string;
   exact: boolean;
   dependencies: string[];
-  middlewares: RouteMiddleware[];
+  routeMiddlewares: RouteMiddleware[];
+  globalMiddlewares: RouteMiddleware[] = [];
   loading: T;
   render: (
     context: RouteContext,
   ) => Promise<{
     default: T;
   }>;
+
+  get middlewares() {
+    return [
+      ...this.globalMiddlewares,
+      ...this.routeMiddlewares,
+    ];
+  }
 
   constructor({
     path,
@@ -24,8 +32,8 @@ export class BrowserRoute<T = any> implements Route {
     this.render = render;
     this.exact = exact || false;
     this.loading = loading || (() => null);
-    this.middlewares = middlewares || [];
     this.dependencies = dependencies || [];
+    this.routeMiddlewares = middlewares || [];
   }
 
   middleware(...middlewares: RouteMiddleware[]) {
