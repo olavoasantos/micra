@@ -14,10 +14,7 @@ export class BrowserRoute<T = any> implements Route {
   }>;
 
   get middlewares() {
-    return [
-      ...this.globalMiddlewares,
-      ...this.routeMiddlewares,
-    ];
+    return [...this.globalMiddlewares, ...this.routeMiddlewares];
   }
 
   constructor({
