@@ -30,6 +30,7 @@ module.exports = {
       'always',
       [
         'CI',
+        'DEPENDENCIES',
         'DOCS',
         'FEAT',
         'FIX',
