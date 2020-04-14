@@ -3,6 +3,7 @@ export * from './after';
 export * from './afterOrEqual';
 export * from './alpha';
 export * from './before';
+export * from './beforeOrEqual';
 export * from './email';
 export * from './isArray';
 export * from './isString';
