@@ -32,7 +32,6 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@micra/core": "^0.0.1",
     "@micra/validator": "^0.0.1",
     "tslib": "^1.11.1"
   }
