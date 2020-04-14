@@ -21,6 +21,7 @@ module.exports = {
       'REACT-ROUTER-WEB-ROUTER',
       'SERVICE-PROVIDER',
       'TSYRINGE-SERVICE-CONTAINER',
+      'VALIDATION-RULES',
       'VALIDATOR',
       'WEB-ROUTER',
     ]],
