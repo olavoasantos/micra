@@ -1,3 +1,4 @@
+export * from './accepted';
 export * from './email';
 export * from './isString';
 export * from './oneOf';
