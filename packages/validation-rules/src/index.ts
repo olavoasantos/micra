@@ -1,6 +1,7 @@
 export * from './accepted';
 export * from './after';
 export * from './afterOrEqual';
+export * from './alpha';
 export * from './email';
 export * from './isString';
 export * from './isValidDate';
