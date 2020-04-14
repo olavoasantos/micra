@@ -1,5 +1,5 @@
 import { ValidationContext } from '@micra/validator';
-import {required} from '../required';
+import { required } from '../required';
 
 export const requiredIf = (field: string, value: any) => ({
   check(context: ValidationContext) {
