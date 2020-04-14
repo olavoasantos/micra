@@ -2,6 +2,7 @@ export * from './accepted';
 export * from './after';
 export * from './afterOrEqual';
 export * from './alpha';
+export * from './before';
 export * from './email';
 export * from './isArray';
 export * from './isString';
