@@ -5,10 +5,12 @@ describe('optional rule', () => {
   /** @test */
   it('should return the rules array if field exists', () => {
     const DEFAULT_VALUE = 'DEFAULT VALUE';
-    const rules = [{
-      check: () => true,
-      message: () => 'invalid',
-    }];
+    const rules = [
+      {
+        check: () => true,
+        message: () => 'invalid',
+      },
+    ];
     const optionalRules = optional(rules, DEFAULT_VALUE);
     const context = mockContext({
       field: 'optionalField',
@@ -25,10 +27,12 @@ describe('optional rule', () => {
   /** @test */
   it('should return set the default value to the dto if no value is set', () => {
     const DEFAULT_VALUE = 'DEFAULT VALUE';
-    const rules = [{
-      check: () => true,
-      message: () => 'invalid',
-    }];
+    const rules = [
+      {
+        check: () => true,
+        message: () => 'invalid',
+      },
+    ];
     const optionalRules = optional(rules, DEFAULT_VALUE);
     const context = mockContext({
       field: 'optionalField',
@@ -46,10 +50,12 @@ describe('optional rule', () => {
   /** @test */
   it('should return an empty array if field does not exist', () => {
     const DEFAULT_VALUE = 'DEFAULT VALUE';
-    const rules = [{
-      check: () => true,
-      message: () => 'invalid',
-    }];
+    const rules = [
+      {
+        check: () => true,
+        message: () => 'invalid',
+      },
+    ];
     const optionalRules = optional(rules, DEFAULT_VALUE);
     const context = mockContext({
       field: 'optionalField',
