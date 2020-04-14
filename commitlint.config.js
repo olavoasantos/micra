@@ -21,6 +21,7 @@ module.exports = {
       'REACT-ROUTER-WEB-ROUTER',
       'SERVICE-PROVIDER',
       'TSYRINGE-SERVICE-CONTAINER',
+      'VALIDATOR',
       'WEB-ROUTER',
     ]],
     'type-case': [2, 'always', 'upper-case'],
