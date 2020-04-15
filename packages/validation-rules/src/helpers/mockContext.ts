@@ -6,9 +6,13 @@ export const mockContext = (overrides: Partial<ValidationContext>) =>
       fieldName: null,
     },
     field: 'fieldName',
-    value: null,
+    value: overrides.data
+      ? overrides.field
+        ? overrides.data[overrides.field]
+        : overrides.data.fieldName
+      : null,
     dto: {},
-    fields: ['fieldName'],
+    fields: overrides.data ? Object.keys(overrides.data) : ['fieldName'],
     errors: new ValidationError(overrides.fields || ['fieldName']),
     ...overrides,
   } as ValidationContext);
