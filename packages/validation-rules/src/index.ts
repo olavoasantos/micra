@@ -10,6 +10,7 @@ export * from './email';
 export * from './inRange';
 export * from './inRangeIncluding';
 export * from './isArray';
+export * from './isBoolean';
 export * from './isString';
 export * from './isValidDate';
 export * from './lengthBetween';
