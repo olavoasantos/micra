@@ -13,6 +13,7 @@ export * from './digits';
 export * from './digitsBetween';
 export * from './digitsBetweenOrEqual';
 export * from './email';
+export * from './greaterThan';
 export * from './inRange';
 export * from './inRangeIncluding';
 export * from './isArray';
