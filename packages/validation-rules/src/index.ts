@@ -15,6 +15,7 @@ export * from './digitsBetweenOrEqual';
 export * from './email';
 export * from './greaterThan';
 export * from './greaterThanOrEqual';
+export * from './inArray';
 export * from './inRange';
 export * from './inRangeIncluding';
 export * from './isArray';
