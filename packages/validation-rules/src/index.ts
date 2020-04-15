@@ -10,6 +10,8 @@ export * from './confirmed';
 export * from './dateFormat';
 export * from './differentThan';
 export * from './digits';
+export * from './digitsBetween';
+export * from './digitsBetweenOrEqual';
 export * from './email';
 export * from './inRange';
 export * from './inRangeIncluding';
