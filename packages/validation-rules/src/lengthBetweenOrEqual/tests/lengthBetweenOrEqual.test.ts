@@ -3,7 +3,7 @@ import { mockContext } from '../../helpers/mockContext';
 
 describe('lengthBetweenOrEqual rule', () => {
   /** @test */
-  it('should return true when a number is within a given range', () => {
+  it('should return true when the length is within a given range', () => {
     expect(
       lengthBetweenOrEqual(2, 5).check(mockContext({ value: 'abc' })),
     ).toBeTruthy();
@@ -13,7 +13,7 @@ describe('lengthBetweenOrEqual rule', () => {
   });
 
   /** @test */
-  it('should return true when a date is equal to the specified limits', () => {
+  it('should return true when the length is equal to the specified limits', () => {
     expect(
       lengthBetweenOrEqual(2, 5).check(mockContext({ value: 'ab' })),
     ).toBeTruthy();
