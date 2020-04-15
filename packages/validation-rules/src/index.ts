@@ -6,6 +6,7 @@ export * from './before';
 export * from './beforeOrEqual';
 export * from './betweenDates';
 export * from './betweenOrEqualDates';
+export * from './confirmed';
 export * from './email';
 export * from './inRange';
 export * from './inRangeIncluding';
