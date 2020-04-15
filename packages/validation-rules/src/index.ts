@@ -26,3 +26,4 @@ export * from './optional';
 export * from './required';
 export * from './requiredIf';
 export * from './requiredUnless';
+export * from './unique';
