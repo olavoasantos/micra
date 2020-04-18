@@ -1,6 +1,10 @@
 {
   "name": "micra",
   "license": "MIT",
+  "author": {
+    "name": "Olavo Amorim Santos",
+    "email": "olavo.a.santos@gmail.com"
+  },
   "private": true,
   "publishConfig": {
     "access": "restricted"

@@ -2,6 +2,10 @@
   "name": "@micra/core",
   "version": "0.0.1",
   "license": "MIT",
+  "author": {
+    "name": "Olavo Amorim Santos",
+    "email": "olavo.a.santos@gmail.com"
+  },
   "main": "build/index.js",
   "types": "@types/index.d.ts",
   "files": [
