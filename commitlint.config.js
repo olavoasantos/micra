@@ -14,6 +14,7 @@ module.exports = {
       'CONFIG',
       'CORE',
       'DOT-ENV',
+      'EVENTS',
       'KERNEL',
       'MULTI-ENV',
       'REACT-DOM-KERNEL',
