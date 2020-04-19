@@ -11,6 +11,7 @@ module.exports = {
       'BASE-EXAMPLE',
       'BASE',
       'BROWSER-MODULE-MANAGER',
+      'BROWSER-STORE',
       'CONFIG',
       'CORE',
       'DOT-ENV',
