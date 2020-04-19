@@ -1,7 +1,4 @@
-import {
-  ServiceProvider as ServiceProviderContract,
-  ServiceContainer,
-} from '@micra/core';
+import { ServiceProvider as ServiceProviderContract, ServiceContainer } from '@micra/core';
 
 export class ServiceProvider implements ServiceProviderContract {
   container: ServiceContainer;

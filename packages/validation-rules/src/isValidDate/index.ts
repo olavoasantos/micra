@@ -11,11 +11,7 @@ export const isValidDate = () => ({
     }
 
     const date = new Date(value);
-    return (
-      !isNaN(date.getFullYear()) &&
-      !isNaN(date.getMonth()) &&
-      !isNaN(date.getDate())
-    );
+    return !isNaN(date.getFullYear()) && !isNaN(date.getMonth()) && !isNaN(date.getDate());
   },
   message: () => `validation.isValidDate`,
 });

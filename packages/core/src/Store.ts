@@ -1,6 +1,6 @@
 import { EventListener } from './Event';
 
-export interface Store<T = Record<string | number, any>> {
+export interface Store<T = any> {
   state: T;
   connect(listener: EventListener<T>): () => void;
 }

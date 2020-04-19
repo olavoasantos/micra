@@ -26,7 +26,7 @@ module.exports = {
         paths: [join(__dirname, 'src')],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       },
-    }
+    },
   },
   overrides: [
     {
@@ -38,6 +38,7 @@ module.exports = {
     },
   ],
   rules: {
+    'react/no-access-state-in-setstate': 'off',
     'no-restricted-syntax': 'off',
     'no-await-in-loop': 'off',
     'function-paren-newline': 'off',

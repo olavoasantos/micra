@@ -43,8 +43,6 @@ describe('accepted rule', () => {
   it('should fail using a string other than "yes" and "on"', () => {
     expect(accepted().check(mockContext({ value: 'no' }))).toBeFalsy();
     expect(accepted().check(mockContext({ value: 'off' }))).toBeFalsy();
-    expect(
-      accepted().check(mockContext({ value: 'A RANDOM STRING' })),
-    ).toBeFalsy();
+    expect(accepted().check(mockContext({ value: 'A RANDOM STRING' }))).toBeFalsy();
   });
 });

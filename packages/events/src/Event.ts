@@ -10,9 +10,7 @@ export class Event<T = any> implements EventInterface<T> {
   }
 
   unregister(listener: EventListener<T>): void {
-    this.listeners = this.listeners.filter(
-      (currentListener) => currentListener !== listener,
-    );
+    this.listeners = this.listeners.filter((currentListener) => currentListener !== listener);
   }
 
   register(listener: EventListener<T>): () => void {

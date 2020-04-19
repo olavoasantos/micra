@@ -4,9 +4,7 @@ import { mockContext } from '../../helpers/mockContext';
 describe('isString rule', () => {
   /** @test */
   it('should return true if the value is a string', () => {
-    expect(
-      isString().check(mockContext({ value: 'some string' })),
-    ).toBeTruthy();
+    expect(isString().check(mockContext({ value: 'some string' }))).toBeTruthy();
   });
 
   /** @test */

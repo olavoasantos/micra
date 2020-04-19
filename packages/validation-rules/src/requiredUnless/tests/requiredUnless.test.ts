@@ -13,9 +13,7 @@ describe('requiredUnless rule', () => {
       },
       value: 'some string',
     });
-    expect(
-      requiredUnless('anotherField', 'expected value').check(context),
-    ).toBeTruthy();
+    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeTruthy();
   });
 
   /** @test */
@@ -28,9 +26,7 @@ describe('requiredUnless rule', () => {
       },
       value: undefined,
     });
-    expect(
-      requiredUnless('anotherField', 'expected value').check(context),
-    ).toBeTruthy();
+    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeTruthy();
   });
 
   /** @test */
@@ -43,8 +39,6 @@ describe('requiredUnless rule', () => {
       },
       value: undefined,
     });
-    expect(
-      requiredUnless('anotherField', 'expected value').check(context),
-    ).toBeFalsy();
+    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeFalsy();
   });
 });

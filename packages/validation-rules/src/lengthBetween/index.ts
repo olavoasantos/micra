@@ -14,9 +14,7 @@ export const lengthBetween = (min: string | number, max: string | number) => ({
       return false;
     }
 
-    return initial < end
-      ? num > initial && num < end
-      : num < initial && num > end;
+    return initial < end ? num > initial && num < end : num < initial && num > end;
   },
   message: () => `validation.lengthBetween`,
 });

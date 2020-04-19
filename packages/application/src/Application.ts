@@ -15,10 +15,7 @@ import { MultiEnv } from '@micra/multi-env';
 
 export class Application implements ApplicationContract {
   static get global() {
-    if (
-      typeof window !== 'undefined' &&
-      typeof window.document !== 'undefined'
-    ) {
+    if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
       return window;
     }
 
@@ -96,9 +93,7 @@ export class Application implements ApplicationContract {
       );
     }
     providers.forEach((provider) =>
-      this.serviceProviders.push(
-        new provider(this.container as ServiceContainer),
-      ),
+      this.serviceProviders.push(new provider(this.container as ServiceContainer)),
     );
 
     return this;

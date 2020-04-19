@@ -13,9 +13,7 @@ describe('requiredIf rule', () => {
       },
       value: 'some string',
     });
-    expect(
-      requiredIf('anotherField', 'expected value').check(context),
-    ).toBeTruthy();
+    expect(requiredIf('anotherField', 'expected value').check(context)).toBeTruthy();
   });
 
   /** @test */
@@ -28,9 +26,7 @@ describe('requiredIf rule', () => {
       },
       value: undefined,
     });
-    expect(
-      requiredIf('anotherField', 'expected value').check(context),
-    ).toBeTruthy();
+    expect(requiredIf('anotherField', 'expected value').check(context)).toBeTruthy();
   });
 
   /** @test */
@@ -43,8 +39,6 @@ describe('requiredIf rule', () => {
       },
       value: undefined,
     });
-    expect(
-      requiredIf('anotherField', 'expected value').check(context),
-    ).toBeFalsy();
+    expect(requiredIf('anotherField', 'expected value').check(context)).toBeFalsy();
   });
 });

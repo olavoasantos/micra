@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
-  "ext": ".ts",
+  "ext": ".ts, .tsx",
   "ignore": [".test.ts"],
   "exec": "yarn build && yarn serve"
 }

@@ -28,15 +28,10 @@ export const validate = <T = Record<string, any>>(
 
     const rules = Array.isArray(validation[field])
       ? (validation[field] as ValidationRule<T>[])
-      : ((validation[field] as ValidationRuleGenerator<T>)(
-          context,
-        ) as ValidationRule<T>[]);
+      : ((validation[field] as ValidationRuleGenerator<T>)(context) as ValidationRule<T>[]);
 
     rules.forEach((rule) => {
-      if (
-        (!rule.shouldRun || rule.shouldRun(context)) &&
-        !rule.check(context)
-      ) {
+      if ((!rule.shouldRun || rule.shouldRun(context)) && !rule.check(context)) {
         errors.push(field, rule.message(context));
       }
     });

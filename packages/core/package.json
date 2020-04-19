@@ -15,7 +15,7 @@
   "scripts": {
     "build": "yarn rimraf ./build && yarn rimraf ./@types && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*.ts\" --cache --fix",
+    "lint": "eslint \"src/**/*.ts\" --cache",
     "watch": "nodemon"
   },
   "devDependencies": {

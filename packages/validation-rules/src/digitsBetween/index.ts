@@ -14,9 +14,7 @@ export const digitsBetween = (min: string | number, max: string | number) => ({
     const end = Number(max);
     const initial = Number(min);
 
-    return initial < end
-      ? num > initial && num < end
-      : num < initial && num > end;
+    return initial < end ? num > initial && num < end : num < initial && num > end;
   },
   message: () => `validation.digitsBetween`,
 });

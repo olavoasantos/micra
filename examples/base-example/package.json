@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn rimraf ./build && tsc && chmod +x build/index.js",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*.ts\" --cache --fix",
+    "lint": "eslint \"src/**/*.ts\" --cache",
     "serve": "NODE_ENV=production node ./build/index.js",
     "start": "nodemon",
     "test": "jest -i -c jest.config.js"

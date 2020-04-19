@@ -1,7 +1,4 @@
-import {
-  EventDispatcher as EventDispatcherInterface,
-  EventListener,
-} from '@micra/core';
+import { EventDispatcher as EventDispatcherInterface, EventListener } from '@micra/core';
 import { Event } from './Event';
 
 export class EventDispatcher implements EventDispatcherInterface {
@@ -22,10 +19,7 @@ export class EventDispatcher implements EventDispatcherInterface {
     return this.events[event] ?? this.createEvent(event);
   }
 
-  on<T = any>(
-    event: keyof this['events'],
-    listener: EventListener<T>,
-  ): () => void {
+  on<T = any>(event: keyof this['events'], listener: EventListener<T>): () => void {
     return this.find(event as string).register(listener);
   }
 

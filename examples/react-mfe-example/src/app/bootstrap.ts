@@ -3,6 +3,7 @@ import { ReactDomKernel } from '@micra/react-dom-kernel';
 import { ModuleManagerServiceProvider } from 'app/module-manager';
 import { RouterServiceProvider } from 'app/router';
 import { ApplicationServiceProvider } from 'app/application';
+import { EventsServiceProvider } from 'app/events';
 
 /** Define your kernel */
 app.registerKernel(ReactDomKernel);
@@ -11,6 +12,7 @@ app.registerKernel(ReactDomKernel);
 app.registerProviders(
   ModuleManagerServiceProvider,
   RouterServiceProvider,
+  EventsServiceProvider,
   ApplicationServiceProvider,
 );
 

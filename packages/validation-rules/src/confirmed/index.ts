@@ -6,10 +6,7 @@ export const confirmed = (fieldName?: string) => ({
       return value === data[fieldName];
     }
 
-    return (
-      data[`${field}Confirmation`] === value ||
-      data[`${field}_confirmation`] === value
-    );
+    return data[`${field}Confirmation`] === value || data[`${field}_confirmation`] === value;
   },
   message: () => `validation.confirmed`,
 });
