@@ -30,9 +30,7 @@ export class ValidationError<T = Record<string, any>> extends Error {
   }
 
   hasAny() {
-    return Object.keys(this.errors).some((inputField) =>
-      this.has(inputField as keyof T),
-    );
+    return Object.keys(this.errors).some((inputField) => this.has(inputField as keyof T));
   }
 
   push(field: keyof T, message: string) {

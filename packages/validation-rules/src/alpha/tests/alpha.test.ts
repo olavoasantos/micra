@@ -10,9 +10,7 @@ describe('alpha rule', () => {
 
   /** @test */
   it('should return true when a string is composed by alpha and spaces characters and receives the argument space', () => {
-    expect(
-      alpha('space').check(mockContext({ value: 'abc EFG' })),
-    ).toBeTruthy();
+    expect(alpha('space').check(mockContext({ value: 'abc EFG' }))).toBeTruthy();
   });
 
   /** @test */
@@ -33,9 +31,7 @@ describe('alpha rule', () => {
 
   /** @test */
   it('should return true when a string is composed by combo of extensions', () => {
-    expect(
-      alpha('space', 'num').check(mockContext({ value: 'abc 123' })),
-    ).toBeTruthy();
+    expect(alpha('space', 'num').check(mockContext({ value: 'abc 123' }))).toBeTruthy();
   });
 
   /** @test */

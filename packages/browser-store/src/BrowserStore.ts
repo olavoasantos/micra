@@ -1,10 +1,8 @@
 import { Store, EventListener } from '@micra/core';
 import { Event } from '@micra/events';
 
-export abstract class BrowserStore<T = Record<string | number, any>>
-  implements Store<T> {
+export abstract class BrowserStore<T = any> implements Store<T> {
   protected abstract initialState: T;
-
   protected $state?: T;
   protected listeners: Event<T> = new Event(name);
 

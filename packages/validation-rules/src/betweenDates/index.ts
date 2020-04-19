@@ -1,18 +1,13 @@
 import { ValidationContext } from '@micra/validator';
 
-export const betweenDates = (
-  initial: Date | string | number,
-  end: Date | string | number,
-) => ({
+export const betweenDates = (initial: Date | string | number, end: Date | string | number) => ({
   check({ value }: ValidationContext) {
     const date = new Date(value);
     const endDate = new Date(end);
     const initialDate = new Date(initial);
 
     if (initialDate.toString() === endDate.toString()) {
-      throw new Error(
-        `betweenDates: initial and end dates should be different`,
-      );
+      throw new Error(`betweenDates: initial and end dates should be different`);
     }
 
     return initialDate < endDate

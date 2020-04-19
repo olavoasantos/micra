@@ -4,9 +4,7 @@ import { mockContext } from '../../helpers/mockContext';
 describe('required rule', () => {
   /** @test */
   it('should return true if the value is set', () => {
-    expect(
-      required().check(mockContext({ value: 'some string' })),
-    ).toBeTruthy();
+    expect(required().check(mockContext({ value: 'some string' }))).toBeTruthy();
     expect(required().check(mockContext({ value: 123 }))).toBeTruthy();
     expect(required().check(mockContext({ value: 0 }))).toBeTruthy();
     expect(required().check(mockContext({ value: {} }))).toBeTruthy();

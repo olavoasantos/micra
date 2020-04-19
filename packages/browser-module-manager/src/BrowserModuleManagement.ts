@@ -40,8 +40,7 @@ export class BrowserModuleManager implements ModuleManager {
 
   async loadExternal(definition: ModuleDefinition) {
     return new Promise((resolve, reject) => {
-      if ((window as any)[definition.name])
-        return resolve((window as any)[definition.name]);
+      if ((window as any)[definition.name]) return resolve((window as any)[definition.name]);
       if (this.loadedModules.includes(definition.name)) return resolve();
 
       this.loadedModules.push(definition.name);

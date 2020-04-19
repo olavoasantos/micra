@@ -17,14 +17,7 @@ export class BrowserRoute<T = any> implements Route {
     return [...this.globalMiddlewares, ...this.routeMiddlewares];
   }
 
-  constructor({
-    path,
-    render,
-    exact,
-    dependencies,
-    loading,
-    middlewares,
-  }: Record<string, any>) {
+  constructor({ path, render, exact, dependencies, loading, middlewares }: Record<string, any>) {
     this.path = path;
     this.render = render;
     this.exact = exact || false;

@@ -9,9 +9,7 @@ export const inRange = (min: string | number, max: string | number) => ({
     const num = Number(value);
     const end = Number(max);
     const initial = Number(min);
-    return initial < end
-      ? num > initial && num < end
-      : num < initial && num > end;
+    return initial < end ? num > initial && num < end : num < initial && num > end;
   },
   message: () => `validation.inRange`,
 });

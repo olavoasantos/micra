@@ -5,9 +5,8 @@ export const unique = (options?: string[]) => ({
     for (const item of value) {
       if (options) {
         if (
-          value.filter((data: any) =>
-            options.some((field) => data[field] === item[field]),
-          ).length > 1
+          value.filter((data: any) => options.some((field) => data[field] === item[field])).length >
+          1
         ) {
           return false;
         }

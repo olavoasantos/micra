@@ -16,8 +16,6 @@ describe('digitsBetween rule', () => {
   /** @test */
   it('should return false if a number has a digit count outside a given range', () => {
     expect(digitsBetween(2, 4).check(mockContext({ value: 1 }))).toBeFalsy();
-    expect(
-      digitsBetween(2, 4).check(mockContext({ value: 12345 })),
-    ).toBeFalsy();
+    expect(digitsBetween(2, 4).check(mockContext({ value: 12345 }))).toBeFalsy();
   });
 });

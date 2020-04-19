@@ -10,9 +10,7 @@ export const betweenOrEqualDates = (
     const initialDate = new Date(initial);
 
     if (initialDate.toString() === endDate.toString()) {
-      throw new Error(
-        `betweenOrEqualDates: initial and end dates should be different`,
-      );
+      throw new Error(`betweenOrEqualDates: initial and end dates should be different`);
     }
 
     return initialDate < endDate
