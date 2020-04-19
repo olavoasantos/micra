@@ -10,4 +10,5 @@ export * from './Route';
 export * from './Router';
 export * from './ServiceContainer';
 export * from './ServiceProvider';
+export * from './Store';
 export * from './types';
