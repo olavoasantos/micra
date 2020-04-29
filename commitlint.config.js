@@ -16,6 +16,7 @@ module.exports = {
       'CORE',
       'DOT-ENV',
       'EVENTS',
+      'IN-MEMORY-STORAGE',
       'KERNEL',
       'MULTI-ENV',
       'REACT-DOM-KERNEL',
