@@ -10,6 +10,7 @@ module.exports = {
     jest: true,
   },
   parserOptions: {
+    parser: 'babel-eslint',
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
@@ -38,6 +39,7 @@ module.exports = {
     },
   ],
   rules: {
+    'no-unused-expressions': 'off',
     'react/no-access-state-in-setstate': 'off',
     'no-restricted-syntax': 'off',
     'no-await-in-loop': 'off',

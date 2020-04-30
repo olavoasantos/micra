@@ -1,19 +1,19 @@
-import { Storage as StorageInterface } from '@micra/core';
+import { Storage } from '@micra/core';
 import { InMemoryStorage } from '@micra/in-memory-storage';
-import { Storage } from '@micra/storage-wrapper';
+import { StorageWrapper } from '@micra/storage-wrapper';
 
 export type DRIVERS = 'memory' | 'session' | 'persistent';
 
-export class BrowserStorage implements StorageInterface {
-  public memory: Storage;
-  public session: Storage;
-  public persistent: Storage;
+export class BrowserStorage implements Storage {
+  public memory: StorageWrapper;
+  public session: StorageWrapper;
+  public persistent: StorageWrapper;
   protected drivers: DRIVERS[] = ['memory', 'session', 'persistent'];
 
   constructor() {
-    this.session = new Storage(sessionStorage);
-    this.persistent = new Storage(localStorage);
-    this.memory = new Storage(new InMemoryStorage());
+    this.session = new StorageWrapper(sessionStorage);
+    this.persistent = new StorageWrapper(localStorage);
+    this.memory = new StorageWrapper(new InMemoryStorage());
   }
 
   public async get(key: string, driver?: DRIVERS): Promise<string | null> {
