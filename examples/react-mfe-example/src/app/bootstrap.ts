@@ -4,6 +4,8 @@ import { ModuleManagerServiceProvider } from 'app/module-manager';
 import { RouterServiceProvider } from 'app/router';
 import { ApplicationServiceProvider } from 'app/application';
 import { EventsServiceProvider } from 'app/events';
+import { CookieServiceProvider } from 'app/cookie';
+import { StorageServiceProvider } from 'app/storage';
 
 /** Define your kernel */
 app.registerKernel(ReactDomKernel);
@@ -13,6 +15,8 @@ app.registerProviders(
   ModuleManagerServiceProvider,
   RouterServiceProvider,
   EventsServiceProvider,
+  CookieServiceProvider,
+  StorageServiceProvider,
   ApplicationServiceProvider,
 );
 
