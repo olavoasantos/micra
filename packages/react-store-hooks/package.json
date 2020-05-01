@@ -36,7 +36,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@micra/browser-store": "^0.0.1",
+    "@micra/browser-store": "^0.0.2",
     "react": "^16.13.1",
     "tslib": "^1.11.1"
   }
