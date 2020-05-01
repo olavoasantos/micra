@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { ServiceProvider } from '@micra/service-provider';
 import { BrowserCookie } from '@micra/browser-cookie';
 
