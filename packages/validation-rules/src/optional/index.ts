@@ -3,9 +3,9 @@ import { ValidationRule, ValidationContext } from '@micra/validator';
 export const optional = (rules: ValidationRule[] = [], fallback?: any) => ({
   dto,
   field,
-  fields,
+  data,
 }: ValidationContext) => {
-  if (fields.includes(field)) {
+  if (Object.keys(data).includes(field)) {
     return rules;
   }
 
