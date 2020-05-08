@@ -3,7 +3,9 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "dom"
+      "DOM",
+      "ES5",
+      "ES6",
     ],
     "declaration": true,
     "removeComments": true,

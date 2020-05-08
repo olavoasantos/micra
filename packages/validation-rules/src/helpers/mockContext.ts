@@ -8,7 +8,7 @@ export const mockContext = (overrides: Partial<ValidationContext>) =>
     field: 'fieldName',
     value: overrides.data
       ? overrides.field
-        ? overrides.data[overrides.field]
+        ? overrides.data[overrides.field as string]
         : overrides.data.fieldName
       : null,
     dto: {},
