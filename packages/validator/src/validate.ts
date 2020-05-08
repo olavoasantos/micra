@@ -32,7 +32,7 @@ export const validate = <T = Record<string, any>>(
 
     rules.forEach((rule) => {
       if ((!rule.shouldRun || rule.shouldRun(context)) && !rule.check(context)) {
-        errors.push(field, rule.message(context));
+        errors.set(field, rule.message(context));
       }
     });
   });

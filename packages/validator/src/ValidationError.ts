@@ -1,7 +1,7 @@
-export class ValidationError<T = Record<string, any>> extends Error {
+export class ValidationError<T = any> extends Error {
   public status = 422;
-  protected fields: (keyof T)[];
-  protected errors: Record<keyof T, string[]>;
+  public fields: (keyof T)[];
+  public errors: Record<keyof T, string[]>;
   get message() {
     return JSON.stringify(
       this.fields.reduce((message, field: keyof T) => {
@@ -33,7 +33,7 @@ export class ValidationError<T = Record<string, any>> extends Error {
     return Object.keys(this.errors).some((inputField) => this.has(inputField as keyof T));
   }
 
-  push(field: keyof T, message: string) {
+  set(field: keyof T, message: string) {
     if (this.errors[field]) {
       this.errors[field].push(message);
     }

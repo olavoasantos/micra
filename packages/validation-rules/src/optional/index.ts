@@ -5,12 +5,12 @@ export const optional = (rules: ValidationRule[] = [], fallback?: any) => ({
   field,
   data,
 }: ValidationContext) => {
-  if (Object.keys(data).includes(field)) {
+  if (Object.keys(data).includes(field as string)) {
     return rules;
   }
 
   if (fallback) {
-    dto[field] = fallback;
+    dto[field as string] = fallback;
   }
 
   return [];
