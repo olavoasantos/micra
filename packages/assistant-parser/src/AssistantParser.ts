@@ -16,7 +16,7 @@ export class AssistantParser implements CLIParser {
       }
 
       if (!this.command) {
-        return this.command = arg;
+        return (this.command = arg);
       }
 
       this.addArgument(new AssistantArgument(index - 1, arg));

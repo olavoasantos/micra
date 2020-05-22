@@ -3,7 +3,7 @@ import { CLIOption, CLIOptionSchema } from '@micra/core';
 export class AssistantOption implements CLIOption {
   raw: string;
   value: any;
-  name: string = '';
+  name = '';
   alias?: string;
   description?: string;
 
@@ -11,7 +11,7 @@ export class AssistantOption implements CLIOption {
     return argument.startsWith('--') || argument.startsWith('-');
   }
 
-  constructor(raw: string = '') {
+  constructor(raw = '') {
     this.raw = raw;
 
     if (raw) {

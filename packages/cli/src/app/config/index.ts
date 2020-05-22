@@ -9,10 +9,7 @@ config<string[]>('app.config', []).forEach((path) => {
     Object.entries(require(path)).forEach(([key, value]) => {
       const appConfig = use<Config>('config');
 
-      appConfig.set(
-        key,
-        appConfig.has(key) ? merge(appConfig.get(key), value) : value,
-      );
+      appConfig.set(key, appConfig.has(key) ? merge(appConfig.get(key), value) : value);
     });
   }
 });

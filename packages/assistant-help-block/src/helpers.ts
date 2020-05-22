@@ -11,7 +11,7 @@ export const getMaxLength = (
   }, -1);
 };
 
-export const breakParagraph = (value: string, pad: number = 0) => {
+export const breakParagraph = (value: string, pad = 0) => {
   if (value.length < 1) return '';
 
   const maxLength = process.stdout.columns - pad - 2;
