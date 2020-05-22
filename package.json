@@ -16,7 +16,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
-    "publish-packages": "lerna run publish-packages --stream",
+    "publish-packages": "lerna run publish-package --stream",
     "format": "lerna run format --stream --parallel",
     "lint": "lerna run lint --parallel --stream",
     "run:scoped": "node scripts/scopedCommand.js",
