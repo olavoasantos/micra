@@ -9,4 +9,4 @@ export type CLICommand = {
   arguments?: CLIArgumentSchema[];
   options?: CLIOptionSchema[];
   middlewares?: RouteMiddleware[];
-}
+};

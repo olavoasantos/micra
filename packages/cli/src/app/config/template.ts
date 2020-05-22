@@ -5,5 +5,5 @@ use<Config>('config').set('template', {
   micra: {
     config: pathToTemplate('micra/config.mustache'),
     cmd: pathToTemplate('micra/command.mustache'),
-  }
+  },
 });

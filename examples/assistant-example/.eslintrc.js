@@ -18,6 +18,7 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
+    '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'import/order': 'warn',
     'import/first': 'warn',

@@ -20,6 +20,6 @@ export class RouterServiceProvider extends ServiceProvider {
       ...config<RouteMiddleware[]>('middlewares', []),
     );
 
-    config<CLICommand[]>('commands', []).forEach(command => router.define(command));
+    config<CLICommand[]>('commands', []).forEach((command) => router.define(command));
   }
 }

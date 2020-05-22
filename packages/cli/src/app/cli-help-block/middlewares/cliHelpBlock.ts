@@ -9,9 +9,7 @@ export const cliHelpBlock = async ({ logger, route, parser, helpBlock, exit, rou
 
     helpBlock.printSection(
       'Usage:',
-      [config('app.command', 'micra'), '[command] [arguments] [options]']
-        .filter(Boolean)
-        .join(' '),
+      [config('app.command', 'micra'), '[command] [arguments] [options]'].filter(Boolean).join(' '),
     );
 
     helpBlock.printList(

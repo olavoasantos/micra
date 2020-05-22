@@ -61,11 +61,13 @@ export class AssistantCore {
     });
 
     route?.options.forEach((option) => {
-      if (this.parser.hasOption(option.name) || (option.alias && this.parser.hasOption(option.alias))) {
-        const opt = (
+      if (
+        this.parser.hasOption(option.name) ||
+        (option.alias && this.parser.hasOption(option.alias))
+      ) {
+        const opt =
           this.parser.getOption(option.name) ||
-          (option.alias && this.parser.getOption(option.alias))
-        );
+          (option.alias && this.parser.getOption(option.alias));
 
         if (opt) opt?.hydrate(option);
       } else {
@@ -73,7 +75,7 @@ export class AssistantCore {
       }
     });
 
-    console.log(this.parser)
+    console.log(this.parser);
 
     for (const middleware of route?.middlewares ?? []) {
       await middleware(context);

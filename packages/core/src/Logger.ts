@@ -1,4 +1,4 @@
-export interface BaseLogger<C = Record<string, any>, E extends object = Record<string, any>> {
+export interface BaseLogger<C = Record<string, any>, E = Record<string, any>> {
   config: C;
   create(namespace: string, options?: Partial<C>): Logger<C, E>;
   error(message: any, ...args: any[]): void;
@@ -8,4 +8,4 @@ export interface BaseLogger<C = Record<string, any>, E extends object = Record<s
   trace(message: any, ...args: any[]): void;
 }
 
-export type Logger<C = Record<string, any>, E extends object = Record<string, any>> = BaseLogger<C, E> & E;
+export type Logger<C = Record<string, any>, E = Record<string, any>> = BaseLogger<C, E> & E;

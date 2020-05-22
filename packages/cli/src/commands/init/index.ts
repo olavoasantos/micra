@@ -10,7 +10,8 @@ export const init: CLICommand = {
   arguments: [
     {
       name: 'path',
-      description: 'Path relative to the command working directory where the file should be created. Defaults to CWD.',
+      description:
+        'Path relative to the command working directory where the file should be created. Defaults to CWD.',
       default: './',
     },
   ],
@@ -28,7 +29,7 @@ export const init: CLICommand = {
       default: false,
     },
   ],
-  async handler({ parser, createFile, cwd }: Context) {
+  async handler({ parser, createFile }: Context) {
     const PATH = parser.getArgument(0)?.value;
     const NAME = parser.getOption('name')?.value;
     const FORCE = parser.getOption('force')?.value;
@@ -36,9 +37,11 @@ export const init: CLICommand = {
 
     try {
       createFile(join(PATH, NAME), TEMPLATE, FORCE);
-    } catch(e) {
+    } catch (e) {
       if (e.message.endsWith('already exists.')) {
-        throw new Error(`${e.message} Please choose a different name, path or use the --force flag to overwrite the existing file.`)
+        throw new Error(
+          `${e.message} Please choose a different name, path or use the --force flag to overwrite the existing file.`,
+        );
       }
 
       throw e;

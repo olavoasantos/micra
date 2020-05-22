@@ -1,7 +1,7 @@
 import { join, basename, dirname } from 'path';
 import { CLICommand } from '@micra/cli-router';
-import { Context } from 'app/context/types';
 import { TemplateEngine } from '@micra/core';
+import { Context } from 'app/context/types';
 import { listTemplates } from 'commands/gen/middlewares/listTemplates';
 
 export const gen: CLICommand = {
@@ -15,7 +15,8 @@ export const gen: CLICommand = {
     },
     {
       name: 'path',
-      description: 'Path relative to the command working directory where the file should be created. Defaults to CWD.',
+      description:
+        'Path relative to the command working directory where the file should be created. Defaults to CWD.',
       default: './',
     },
   ],
@@ -46,8 +47,14 @@ export const gen: CLICommand = {
       const TEMPLATE_REFERENCE = parser.getArgument(0)?.value;
       const TEMPLATE = template(TEMPLATE_REFERENCE);
       const FORCE = parser.getOption('force')?.value;
-      const OPTIONS = parser.options.map((option) => option.name ? ({ name: option.name, value: option.value }) : undefined).filter(Boolean);
-      const ARGUMENTS = parser.arguments.map((argument) => argument.name ? ({ name: argument.name, value: argument.value }) : undefined).filter(Boolean);
+      const OPTIONS = parser.options
+        .map((option) => (option.name ? { name: option.name, value: option.value } : undefined))
+        .filter(Boolean);
+      const ARGUMENTS = parser.arguments
+        .map((argument) =>
+          argument.name ? { name: argument.name, value: argument.value } : undefined,
+        )
+        .filter(Boolean);
       const NAME = variationsOf(parser.getOption('name')?.value ?? nameFromPath(PATH));
 
       const CONTENT = use<TemplateEngine>('TemplateEngine').render(TEMPLATE, {
@@ -60,14 +67,12 @@ export const gen: CLICommand = {
         FILE_NAME,
       });
 
-      createFile(
-        FULL_PATH,
-        CONTENT,
-        FORCE,
-      );
-    } catch(e) {
+      createFile(FULL_PATH, CONTENT, FORCE);
+    } catch (e) {
       if (e.message.endsWith('already exists.')) {
-        throw new Error(`${e.message} Please choose a different name, path or use the --force flag to overwrite the existing file.`)
+        throw new Error(
+          `${e.message} Please choose a different name, path or use the --force flag to overwrite the existing file.`,
+        );
       }
 
       throw e;

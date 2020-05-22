@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { confirmed } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 

@@ -7,7 +7,7 @@ export class ChalkLogger implements Logger<any, ChalkLoggerExtension> {
   public chalk: Chalk = chalk;
   protected namespace: string;
 
-  constructor(config: any, namespace: string = '') {
+  constructor(config: any, namespace = '') {
     this.config = config || {};
     this.namespace = namespace;
   }
