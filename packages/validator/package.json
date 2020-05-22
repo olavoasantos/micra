@@ -16,6 +16,7 @@
     "build": "yarn rimraf ./build && yarn rimraf ./@types && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --cache",
+    "publish-package": "npm publish --access public",
     "test": "jest --config jest.config.js",
     "watch": "nodemon"
   },

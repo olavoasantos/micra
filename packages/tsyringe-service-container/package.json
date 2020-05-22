@@ -16,6 +16,7 @@
     "build": "yarn rimraf ./build && yarn rimraf ./@types && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --cache",
+    "publish-package": "npm publish --access public",
     "test": "jest --config jest.config.js",
     "watch": "nodemon"
   },
@@ -36,7 +37,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@micra/core": "^0.0.3",
+    "@micra/core": "^0.0.4",
     "tslib": "^1.11.2",
     "tsyringe": "^4.2.0"
   },
