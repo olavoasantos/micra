@@ -1,6 +1,6 @@
 export type RouteContext = Record<string, any>;
 
-export type RouteMiddleware = (context: RouteContext) => Promise<void>;
+export type RouteMiddleware<T = any> = (context: T) => Promise<void>;
 
 export interface Route {
   path: string;
