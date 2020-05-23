@@ -1,6 +1,6 @@
 {
   "name": "@micra/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Olavo Amorim Santos<olavo.a.santos@gmail.com>",
   "license": "MIT",
   "bin": {
