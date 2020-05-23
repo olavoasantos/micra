@@ -2593,6 +2593,16 @@
     prop-types "^15.7.2"
     react-is "^16.8.0"
 
+"@micra/assistant-core@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@micra/assistant-core/-/assistant-core-0.0.2.tgz#a5113b1879c3590802998dd4b99f1576f4d51618"
+  integrity sha512-AIxo0IIpqwpYlWqd671u/EdQpZwG2yPJntaxIrWyCZGuLuDyew1oO8DX6Wt5D+F6uBQuUuf0bIeOIhyFB1ANlg==
+  dependencies:
+    "@micra/assistant-parser" "^0.0.1"
+    "@micra/cli-router" "^0.0.1"
+    "@micra/core" "^0.0.4"
+    tslib "^2.0.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
