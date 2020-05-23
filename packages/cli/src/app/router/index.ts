@@ -1,8 +1,8 @@
 import { RouteMiddleware } from '@micra/core';
-import { CLIRouter, CLICommand } from '@micra/cli-router';
 import { ServiceProvider } from '@micra/service-provider';
-import { commandHelpBlock } from 'app/cli-help-block/middlewares/commandHelpBlock';
-import { cliHelpBlock } from 'app/cli-help-block/middlewares/cliHelpBlock';
+import { CLIRouter, CLICommand } from '@micra/cli-router';
+import { cliHelpBlock } from '../cli-help-block/middlewares/cliHelpBlock';
+import { commandHelpBlock } from '../cli-help-block/middlewares/commandHelpBlock';
 
 export class RouterServiceProvider extends ServiceProvider {
   register() {

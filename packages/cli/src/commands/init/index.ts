@@ -1,8 +1,8 @@
 import { join } from 'path';
 import { readFileSync } from 'fs';
 import { CLICommand } from '@micra/cli-router';
-import { Context } from 'app/context/types';
-import { CONFIG_TEMPLATE_PATH } from 'commands/init/constants';
+import { Context } from '../../app/context/types';
+import { CONFIG_TEMPLATE_PATH } from './constants';
 
 export const init: CLICommand = {
   command: 'init',

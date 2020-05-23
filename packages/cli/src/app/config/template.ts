@@ -1,5 +1,5 @@
 import { Config } from '@micra/config';
-import { pathToTemplate } from 'domains/template/helpers/pathToTemplate';
+import { pathToTemplate } from '../../domains/template/helpers/pathToTemplate';
 
 use<Config>('config').set('template', {
   micra: {

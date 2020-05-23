@@ -1,5 +1,5 @@
-import { Context } from 'app/context/types';
-import { flatten } from 'helpers/flatten';
+import { flatten } from '../../../helpers/flatten';
+import { Context } from '../../../app/context/types';
 
 export const listTemplates = async ({ parser, logger, exit }: Context) => {
   if (parser.getOption('list')?.value === true) {

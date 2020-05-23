@@ -1,5 +1,5 @@
 import { ServiceProvider } from '@micra/service-provider';
-import { CLICore } from 'app/cli-core/CLICore';
+import { CLICore } from './CLICore';
 
 export class CLICoreServiceProvider extends ServiceProvider {
   register() {

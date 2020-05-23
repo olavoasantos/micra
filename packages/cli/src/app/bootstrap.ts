@@ -1,13 +1,13 @@
-import 'app/config';
+import './config';
 import app from '@micra/application';
-import { GenericKernel } from 'app/kernel';
-import { CLIHelpBlockServiceProvider } from 'app/cli-help-block';
-import { CLIParserServiceProvider } from 'app/cli-parser';
-import { ContextServiceProvider } from 'app/context';
-import { LoggerServiceProvider } from 'app/logger';
-import { RouterServiceProvider } from 'app/router';
-import { CLICoreServiceProvider } from 'app/cli-core';
-import { TemplateEngineServiceProvider } from 'app/template-engine';
+import { GenericKernel } from './kernel';
+import { CLIHelpBlockServiceProvider } from './cli-help-block';
+import { CLIParserServiceProvider } from './cli-parser';
+import { ContextServiceProvider } from './context';
+import { LoggerServiceProvider } from './logger';
+import { RouterServiceProvider } from './router';
+import { CLICoreServiceProvider } from './cli-core';
+import { TemplateEngineServiceProvider } from './template-engine';
 
 /** Define your kernel */
 app.registerKernel(GenericKernel);

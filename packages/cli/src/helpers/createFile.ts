@@ -1,7 +1,7 @@
 import { join, dirname } from 'path';
 import { existsSync, writeFileSync } from 'fs';
 import { Logger } from '@micra/core';
-import { makeSurePathExists } from 'helpers/makeSurePathExists';
+import { makeSurePathExists } from './makeSurePathExists';
 
 export const createFile = (path: string, content: any, force = false) => {
   const logger = use<Logger>('Logger');
