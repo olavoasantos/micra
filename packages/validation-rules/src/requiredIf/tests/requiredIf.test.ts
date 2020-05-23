@@ -2,7 +2,6 @@ import { requiredIf } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 
 describe('requiredIf rule', () => {
-  /** @test */
   it('should return true if the anotherField matches and the is value is set', () => {
     const context = mockContext({
       field: 'field',
@@ -13,10 +12,11 @@ describe('requiredIf rule', () => {
       },
       value: 'some string',
     });
-    expect(requiredIf('anotherField', 'expected value').check(context)).toBeTruthy();
+    expect(
+      requiredIf({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeTruthy();
   });
 
-  /** @test */
   it('should return true if the anotherField does not match', () => {
     const context = mockContext({
       field: 'field',
@@ -26,10 +26,11 @@ describe('requiredIf rule', () => {
       },
       value: undefined,
     });
-    expect(requiredIf('anotherField', 'expected value').check(context)).toBeTruthy();
+    expect(
+      requiredIf({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the anotherField does matches and field is not set', () => {
     const context = mockContext({
       field: 'field',
@@ -39,6 +40,8 @@ describe('requiredIf rule', () => {
       },
       value: undefined,
     });
-    expect(requiredIf('anotherField', 'expected value').check(context)).toBeFalsy();
+    expect(
+      requiredIf({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeFalsy();
   });
 });

@@ -2,7 +2,6 @@ import { differentThan } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 
 describe('differentThan rule', () => {
-  /** @test */
   it('should return true if the value is different than the value of another field', () => {
     const context = mockContext({
       field: 'field',
@@ -11,10 +10,9 @@ describe('differentThan rule', () => {
         anotherField: 'another value',
       },
     });
-    expect(differentThan('anotherField').check(context)).toBeTruthy();
+    expect(differentThan({ field: 'anotherField' }).check(context)).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the value is not different than the value of another field', () => {
     const context = mockContext({
       field: 'field',
@@ -23,6 +21,6 @@ describe('differentThan rule', () => {
         anotherField: 'same value',
       },
     });
-    expect(differentThan('anotherField').check(context)).toBeFalsy();
+    expect(differentThan({ field: 'anotherField' }).check(context)).toBeFalsy();
   });
 });

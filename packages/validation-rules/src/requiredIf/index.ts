@@ -1,7 +1,17 @@
 import { ValidationContext } from '@micra/validator';
 import { required } from '../required';
 
-export const requiredIf = (field: string, value: any) => ({
+export interface RequiredIfOptions {
+  message?: string;
+  field: string;
+  value: any;
+}
+
+export const requiredIf = ({
+  field,
+  value,
+  message = `validation.requiredIf`,
+}: RequiredIfOptions) => ({
   check(context: ValidationContext) {
     if (context.data[field] === value) {
       return required().check(context);
@@ -9,5 +19,5 @@ export const requiredIf = (field: string, value: any) => ({
 
     return true;
   },
-  message: () => `validation.requiredIf`,
+  message: () => message,
 });

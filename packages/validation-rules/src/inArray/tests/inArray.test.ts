@@ -2,7 +2,6 @@ import { inArray } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 
 describe('inArray rule', () => {
-  /** @test */
   it('should return true if the value is included in another field', () => {
     const context = mockContext({
       field: 'color',
@@ -11,10 +10,9 @@ describe('inArray rule', () => {
         colors: ['#ff0000', '#00ff00', '#0000ff'],
       },
     });
-    expect(inArray('colors').check(context)).toBeTruthy();
+    expect(inArray({ field: 'colors' }).check(context)).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the value is not included in another field', () => {
     const context = mockContext({
       field: 'color',
@@ -23,6 +21,6 @@ describe('inArray rule', () => {
         colors: ['#ff0000', '#00ff00', '#0000ff'],
       },
     });
-    expect(inArray('colors').check(context)).toBeFalsy();
+    expect(inArray({ field: 'colors' }).check(context)).toBeFalsy();
   });
 });

@@ -1,20 +1,32 @@
 import { ValidationContext } from '@micra/validator';
 
-export const lengthBetweenOrEqual = (min: string | number, max: string | number) => ({
-  check({ value }: ValidationContext) {
-    if (min === max) {
-      throw new Error(`lengthBetweenOrEqual: min and max should be different`);
-    }
+export interface LengthBetweenOrEqualOptions {
+  message?: string;
+  min: string | number;
+  max: string | number;
+}
 
-    const num = value.length;
-    const end = Number(max);
-    const initial = Number(min);
+export const lengthBetweenOrEqual = ({
+  min,
+  max,
+  message = `validation.lengthBetweenOrEqual`,
+}: LengthBetweenOrEqualOptions) => {
+  if (min === max) {
+    throw new Error(`lengthBetweenOrEqual: min and max should be different`);
+  }
 
-    if (!num) {
-      return false;
-    }
+  return {
+    check({ value }: ValidationContext) {
+      const num = value.length;
+      const end = Number(max);
+      const initial = Number(min);
 
-    return initial < end ? num >= initial && num <= end : num <= initial && num >= end;
-  },
-  message: () => `validation.lengthBetweenOrEqual`,
-});
+      if (!num) {
+        return false;
+      }
+
+      return initial < end ? num >= initial && num <= end : num <= initial && num >= end;
+    },
+    message: () => message,
+  };
+};

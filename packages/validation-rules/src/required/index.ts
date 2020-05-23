@@ -1,6 +1,10 @@
 import { ValidationContext } from '@micra/validator';
 
-export const required = () => ({
+export interface RequiredOptions {
+  message?: string;
+}
+
+export const required = ({ message = `validation.required` }: RequiredOptions = {}) => ({
   check({ value }: ValidationContext) {
     if (typeof value === 'string') {
       return value.replace(/\s+/g, '').trim() !== '';
@@ -8,5 +12,5 @@ export const required = () => ({
 
     return value != null;
   },
-  message: () => `validation.required`,
+  message: () => message,
 });

@@ -24,6 +24,8 @@ export * from './isString';
 export * from './isValidDate';
 export * from './lengthBetween';
 export * from './lengthBetweenOrEqual';
+export * from './max';
+export * from './min';
 export * from './oneOf';
 export * from './optional';
 export * from './required';

@@ -1,6 +1,14 @@
 import { ValidationContext } from '@micra/validator';
 
-export const confirmed = (fieldName?: string) => ({
+export interface ConfirmedOptions {
+  message?: string;
+  against?: string;
+}
+
+export const confirmed = ({
+  against: fieldName,
+  message = `validation.confirmed`,
+}: ConfirmedOptions = {}) => ({
   check({ field, data, value }: ValidationContext) {
     if (fieldName) {
       return value === data[fieldName];
@@ -11,5 +19,5 @@ export const confirmed = (fieldName?: string) => ({
       data[`${field as string}_confirmation`] === value
     );
   },
-  message: () => `validation.confirmed`,
+  message: () => message,
 });

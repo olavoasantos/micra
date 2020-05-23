@@ -1,8 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const greaterThanOrEqual = (min: string | number) => ({
+export interface GreaterThanOrEqualOptions {
+  message?: string;
+  min: string | number;
+}
+
+export const greaterThanOrEqual = ({
+  min,
+  message = `validation.greaterThanOrEqual`,
+}: GreaterThanOrEqualOptions) => ({
   check({ value }: ValidationContext) {
     return Number(value) >= Number(min);
   },
-  message: () => `validation.greaterThanOrEqual`,
+  message: () => message,
 });

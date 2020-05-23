@@ -1,8 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const beforeOrEqual = (date: Date | string | number) => ({
+export interface BeforeOrEqualOptions {
+  message?: string;
+  date: Date | string | number;
+}
+
+export const beforeOrEqual = ({
+  date,
+  message = `validation.beforeOrEqual`,
+}: BeforeOrEqualOptions) => ({
   check({ value }: ValidationContext) {
     return new Date(value) <= new Date(date);
   },
-  message: () => `validation.beforeOrEqual`,
+  message: () => message,
 });
