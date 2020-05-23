@@ -59,6 +59,7 @@ module.exports = {
         'STYLE',
         'TEST',
         'TODO',
+        'VERSION',
       ],
     ],
   },
