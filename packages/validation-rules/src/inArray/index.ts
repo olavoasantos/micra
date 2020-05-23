@@ -1,11 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const inArray = (field: string) => ({
+export interface InArrayOptions {
+  message?: string;
+  field: string;
+}
+
+export const inArray = ({ field, message = `validation.inArray` }: InArrayOptions) => ({
   check({ data, value }: ValidationContext) {
     return (
       Object.prototype.toString.call(data[field]) === '[object Array]' &&
       data[field].includes(value)
     );
   },
-  message: () => `validation.inArray`,
+  message: () => message,
 });

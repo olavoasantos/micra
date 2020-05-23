@@ -2,7 +2,6 @@ import { unique } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 
 describe('unique rule', () => {
-  /** @test */
   it('should return true if the array only contains objects with a unique key values', () => {
     const context = mockContext({
       field: 'field',
@@ -14,10 +13,9 @@ describe('unique rule', () => {
       },
     });
 
-    expect(unique(['id']).check(context)).toBeTruthy();
+    expect(unique({ keys: ['id'] }).check(context)).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the array contains objects with a duplicate key values', () => {
     const context = mockContext({
       field: 'field',
@@ -30,10 +28,9 @@ describe('unique rule', () => {
       },
     });
 
-    expect(unique(['name']).check(context)).toBeFalsy();
+    expect(unique({ keys: ['name'] }).check(context)).toBeFalsy();
   });
 
-  /** @test */
   it('should return true if the array only contains unique values', () => {
     const context = mockContext({
       field: 'field',
@@ -44,7 +41,6 @@ describe('unique rule', () => {
     expect(unique().check(context)).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the array contains duplicate values', () => {
     const context = mockContext({
       field: 'field',

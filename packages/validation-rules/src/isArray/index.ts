@@ -1,8 +1,12 @@
 import { ValidationContext } from '@micra/validator';
 
-export const isArray = () => ({
+export interface IsArrayOptions {
+  message?: string;
+}
+
+export const isArray = ({ message = `validation.isArray` }: IsArrayOptions = {}) => ({
   check({ value }: ValidationContext) {
     return Object.prototype.toString.call(value) === '[object Array]';
   },
-  message: () => `validation.isArray`,
+  message: () => message,
 });

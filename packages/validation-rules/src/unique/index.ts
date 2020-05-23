@@ -1,12 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const unique = (options?: string[]) => ({
+export interface UniqueOptions {
+  message?: string;
+  keys?: string[];
+}
+
+export const unique = ({ keys, message = `validation.unique` }: UniqueOptions = {}) => ({
   check({ value }: ValidationContext) {
     for (const item of value) {
-      if (options) {
+      if (keys) {
         if (
-          value.filter((data: any) => options.some((field) => data[field] === item[field])).length >
-          1
+          value.filter((data: any) => keys.some((field) => data[field] === item[field])).length > 1
         ) {
           return false;
         }
@@ -19,5 +23,5 @@ export const unique = (options?: string[]) => ({
 
     return true;
   },
-  message: () => `validation.unique`,
+  message: () => message,
 });

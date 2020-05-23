@@ -2,7 +2,6 @@ import { requiredUnless } from '../index';
 import { mockContext } from '../../helpers/mockContext';
 
 describe('requiredUnless rule', () => {
-  /** @test */
   it('should return true if the anotherField does not match and the is value is set', () => {
     const context = mockContext({
       field: 'field',
@@ -13,10 +12,11 @@ describe('requiredUnless rule', () => {
       },
       value: 'some string',
     });
-    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeTruthy();
+    expect(
+      requiredUnless({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeTruthy();
   });
 
-  /** @test */
   it('should return true if the anotherField matches the expected value', () => {
     const context = mockContext({
       field: 'field',
@@ -26,10 +26,11 @@ describe('requiredUnless rule', () => {
       },
       value: undefined,
     });
-    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeTruthy();
+    expect(
+      requiredUnless({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeTruthy();
   });
 
-  /** @test */
   it('should return false if the anotherField does not match and field is not set', () => {
     const context = mockContext({
       field: 'field',
@@ -39,6 +40,8 @@ describe('requiredUnless rule', () => {
       },
       value: undefined,
     });
-    expect(requiredUnless('anotherField', 'expected value').check(context)).toBeFalsy();
+    expect(
+      requiredUnless({ field: 'anotherField', value: 'expected value' }).check(context),
+    ).toBeFalsy();
   });
 });

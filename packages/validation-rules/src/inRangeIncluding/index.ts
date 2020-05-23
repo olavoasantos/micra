@@ -1,6 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const inRangeIncluding = (min: string | number, max: string | number) => ({
+export interface InRangeIncludingOptions {
+  message?: string;
+  min: string | number;
+  max: string | number;
+}
+
+export const inRangeIncluding = ({
+  min,
+  max,
+  message = `validation.inRangeIncluding`,
+}: InRangeIncludingOptions) => ({
   check({ value }: ValidationContext) {
     if (min === max) {
       throw new Error(`inRangeIncluding: min and max should be different`);
@@ -11,5 +21,5 @@ export const inRangeIncluding = (min: string | number, max: string | number) => 
     const initial = Number(min);
     return initial < end ? num >= initial && num <= end : num <= initial && num >= end;
   },
-  message: () => `validation.inRangeIncluding`,
+  message: () => message,
 });

@@ -1,6 +1,16 @@
 import { ValidationContext } from '@micra/validator';
 
-export const digitsBetween = (min: string | number, max: string | number) => ({
+export interface DigitsBetweenOptions {
+  message?: string;
+  min: string | number;
+  max: string | number;
+}
+
+export const digitsBetween = ({
+  min,
+  max,
+  message = `validation.digitsBetween`,
+}: DigitsBetweenOptions) => ({
   check({ value }: ValidationContext) {
     if (min === max) {
       throw new Error(`digitsBetween: min and max should be different`);
@@ -16,5 +26,5 @@ export const digitsBetween = (min: string | number, max: string | number) => ({
 
     return initial < end ? num > initial && num < end : num < initial && num > end;
   },
-  message: () => `validation.digitsBetween`,
+  message: () => message,
 });

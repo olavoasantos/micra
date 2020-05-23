@@ -1,8 +1,13 @@
 import { ValidationContext } from '@micra/validator';
 
-export const digits = (count: number) => ({
+export interface DigitsOptions {
+  message?: string;
+  length: number;
+}
+
+export const digits = ({ length, message = `validation.digits` }: DigitsOptions) => ({
   check({ value }: ValidationContext) {
-    return !isNaN(value) && String(value).length === count;
+    return !isNaN(value) && String(value).length === length;
   },
-  message: () => `validation.digits`,
+  message: () => message,
 });

@@ -1,24 +1,31 @@
 import { ValidationContext } from '@micra/validator';
 
-export const alpha = (...ext: ('num' | 'dash' | 'space')[]) => ({
-  check({ value }: ValidationContext) {
-    const pattern = ext.reduce((rgx: string, extension) => {
-      if (extension === 'num') {
-        return rgx + '0-9';
-      }
+export interface AlphaOptions {
+  message?: string;
+  ext?: ('alpha' | 'num' | 'dash' | 'space')[];
+}
 
-      if (extension === 'dash') {
-        return rgx + '_\\-';
-      }
+export const alpha = ({ ext = [], message = `validation.alpha` }: AlphaOptions = {}) => {
+  const pattern = ext.reduce((rgx: string, extension) => {
+    if (extension === 'num') {
+      return rgx + '0-9';
+    }
 
-      if (extension === 'space') {
-        return rgx + '\\s';
-      }
+    if (extension === 'dash') {
+      return rgx + '_\\-';
+    }
 
-      return rgx;
-    }, 'a-zA-Z');
+    if (extension === 'space') {
+      return rgx + '\\s';
+    }
 
-    return new RegExp(`^[${pattern}]+$`).test(value);
-  },
-  message: () => `validation.alpha`,
-});
+    return rgx;
+  }, 'a-zA-Z');
+
+  return {
+    check({ value }: ValidationContext) {
+      return new RegExp(`^[${pattern}]+$`).test(value);
+    },
+    message: () => message,
+  };
+};
