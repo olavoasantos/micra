@@ -75,8 +75,6 @@ export class AssistantCore {
       }
     });
 
-    console.log(this.parser);
-
     for (const middleware of route?.middlewares ?? []) {
       await middleware(context);
     }
