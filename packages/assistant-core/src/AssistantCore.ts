@@ -33,10 +33,7 @@ export class AssistantCore {
   }
 
   async run() {
-    this.helpBlock.printHeader(
-      this.config.get('app.name') ?? '',
-      this.config.get('app.version') ?? '',
-    );
+    this.logger.log('' /* Breathing room from the first line */);
 
     const route = this.router.find(this.parser.command ?? '');
 
