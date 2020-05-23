@@ -5,15 +5,14 @@ import { makeSurePathExists } from './makeSurePathExists';
 
 export const createFile = (path: string, content: any, force = false) => {
   const logger = use<Logger>('Logger');
-  const PATH = join(process.cwd(), dirname(path));
-  const FULL_PATH = join(process.cwd(), path);
+  const PATH = dirname(path);
 
-  if (!existsSync(FULL_PATH) || force) {
+  if (!existsSync(path) || force) {
     makeSurePathExists(PATH);
 
-    writeFileSync(FULL_PATH, content, 'utf-8');
+    writeFileSync(path, content, 'utf-8');
 
-    return logger.info('File created in:', FULL_PATH);
+    return logger.info('File created in:', path);
   }
 
   throw new Error(`File "${path}" already exists.`);
