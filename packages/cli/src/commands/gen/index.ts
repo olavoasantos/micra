@@ -38,10 +38,10 @@ export const gen: CLICommand = {
       description: 'Lists all available templates',
     },
   ],
-  async handler({ parser, nameFromPath, variationsOf, template, createFile }: Context) {
+  async handler({ parser, nameFromPath, variationsOf, template, createFile, cwd }: Context) {
     try {
       const PATH = parser.getArgument(1)?.value;
-      const FULL_PATH = join(process.cwd(), PATH);
+      const FULL_PATH = cwd(PATH);
       const DIR_NAME = dirname(PATH);
       const FILE_NAME = basename(PATH);
       const TEMPLATE_REFERENCE = parser.getArgument(0)?.value;

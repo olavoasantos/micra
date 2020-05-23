@@ -1,4 +1,3 @@
-import { join } from 'path';
 import { readFileSync } from 'fs';
 import { CLICommand } from '@micra/cli-router';
 import { Context } from '../../app/context/types';
@@ -29,14 +28,14 @@ export const init: CLICommand = {
       default: false,
     },
   ],
-  async handler({ parser, createFile }: Context) {
+  async handler({ parser, createFile, cwd }: Context) {
     const PATH = parser.getArgument(0)?.value;
     const NAME = parser.getOption('name')?.value;
     const FORCE = parser.getOption('force')?.value;
     const TEMPLATE = readFileSync(CONFIG_TEMPLATE_PATH, 'utf-8');
 
     try {
-      createFile(join(PATH, NAME), TEMPLATE, FORCE);
+      createFile(cwd(PATH, NAME), TEMPLATE, FORCE);
     } catch (e) {
       if (e.message.endsWith('already exists.')) {
         throw new Error(
