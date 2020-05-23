@@ -10,7 +10,7 @@ export class RouterServiceProvider extends ServiceProvider {
   }
 
   boot() {
-    require('commands');
+    require('../../commands');
 
     const router = use<CLIRouter>('Router');
 
