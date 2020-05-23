@@ -1,7 +1,6 @@
 import { DefaultContext } from '@micra/assistant-core';
 import { LoDashStatic } from 'lodash';
 import pluralize from 'pluralize';
-import { exit } from 'helpers/exit';
 import { createFile } from '../../helpers/createFile';
 import { capitalize } from '../../helpers/capitalize';
 import { nameFromPath } from '../../helpers/nameFromPath';
@@ -10,6 +9,7 @@ import { makeSurePathExists } from '../../helpers/makeSurePathExists';
 import { template } from '../../domains/template/helpers/template';
 import { pathToTemplate } from '../../domains/template/helpers/pathToTemplate';
 import { cwd } from '../../helpers/cwd';
+import { exit } from '../../helpers/exit';
 
 export interface Context extends DefaultContext {
   cwd: typeof cwd;
