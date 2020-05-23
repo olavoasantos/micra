@@ -25,9 +25,7 @@ describe('alpha rule', () => {
   });
 
   it('should return true when a string is composed by combo of extensions', () => {
-    expect(
-      alpha({ ext: ['space', 'num'] }).check(mockContext({ value: 'abc 123' })),
-    ).toBeTruthy();
+    expect(alpha({ ext: ['space', 'num'] }).check(mockContext({ value: 'abc 123' }))).toBeTruthy();
   });
 
   it('should return false when a string is composed by alpha characters with spaces', () => {
