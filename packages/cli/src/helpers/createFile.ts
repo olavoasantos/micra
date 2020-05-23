@@ -1,4 +1,4 @@
-import { join, dirname } from 'path';
+import { dirname } from 'path';
 import { existsSync, writeFileSync } from 'fs';
 import { Logger } from '@micra/core';
 import { makeSurePathExists } from './makeSurePathExists';

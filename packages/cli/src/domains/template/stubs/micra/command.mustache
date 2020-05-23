@@ -1,7 +1,8 @@
-import { CLICommand } from '@micra/cli-router';
-import { Context } from '../..app/context/types';
+{{^JS}}import { CLICommand } from '@micra/cli-router';
+import { Context } from '@micra/cli/@types/app/context/types';
 
-export const {{ NAME.CAMEL }}: CLICommand = {
+{{/JS}}
+{{#JS}}exports.{{ NAME.CAMEL }} = { {{/JS}}{{^JS}}export const {{ NAME.CAMEL }}: CLICommand = { {{/JS}}
   command: '{{ NAME.RAW }}',
   description: '',
   middlewares: [
@@ -13,7 +14,7 @@ export const {{ NAME.CAMEL }}: CLICommand = {
   options: [
     //
   ],
-  async handler(ctx: Context) {
+  {{#JS}}async handler(ctx) { {{/JS}}{{^JS}}async handler(ctx: Context) { {{/JS}}
     //
   },
 };

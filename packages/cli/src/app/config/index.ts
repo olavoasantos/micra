@@ -1,4 +1,5 @@
 import './app';
+import './paths';
 import './template';
 import { existsSync } from 'fs';
 import { Config } from '@micra/core';

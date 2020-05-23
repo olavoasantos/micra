@@ -2,10 +2,7 @@ import { Context } from '../../context/types';
 
 export const commandHelpBlock = async ({ logger, route, parser, helpBlock, exit }: Context) => {
   if ((parser.hasOption('help') || parser.hasOption('h')) && route) {
-    helpBlock.printHeader(
-      config('app.name', 'micra'),
-      config('app.version'),
-    );
+    helpBlock.printHeader(config('app.name', 'micra'), config('app.version'));
 
     if (route.routeDescription) {
       helpBlock.printSection('Description:', route.routeDescription);
