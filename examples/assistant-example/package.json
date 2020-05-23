@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@micra/application": "^0.0.2",
-    "@micra/assistant-core": "^0.0.2",
+    "@micra/assistant-core": "^0.0.4",
     "@micra/assistant-help-block": "^0.0.1",
     "@micra/assistant-parser": "^0.0.1",
     "@micra/chalk-logger": "^0.0.1",
