@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import pluralize from 'pluralize';
-import { capitalize } from 'helpers/capitalize';
+import { capitalize } from './capitalize';
 
 export const variationsOf = (word: string) => {
   const plural = pluralize.plural(word);

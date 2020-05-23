@@ -1,5 +1,5 @@
-import 'app/config/app';
-import 'app/config/template';
+import './app';
+import './template';
 import { existsSync } from 'fs';
 import { Config } from '@micra/core';
 import merge from 'lodash/merge';

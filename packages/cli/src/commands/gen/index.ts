@@ -1,8 +1,8 @@
 import { join, basename, dirname } from 'path';
 import { CLICommand } from '@micra/cli-router';
 import { TemplateEngine } from '@micra/core';
-import { Context } from 'app/context/types';
-import { listTemplates } from 'commands/gen/middlewares/listTemplates';
+import { Context } from '../../app/context/types';
+import { listTemplates } from './middlewares/listTemplates';
 
 export const gen: CLICommand = {
   command: 'gen',

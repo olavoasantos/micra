@@ -1,5 +1,5 @@
 import { ServiceProvider } from '@micra/service-provider';
-import { CLIHelpBlock } from 'app/cli-help-block/CLIHelpBlock';
+import { CLIHelpBlock } from './CLIHelpBlock';
 
 export class CLIHelpBlockServiceProvider extends ServiceProvider {
   register() {

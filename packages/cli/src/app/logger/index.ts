@@ -1,5 +1,5 @@
 import { ServiceProvider } from '@micra/service-provider';
-import { Logger } from 'app/logger/Logger';
+import { Logger } from './Logger';
 
 export class LoggerServiceProvider extends ServiceProvider {
   register() {

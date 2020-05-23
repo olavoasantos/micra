@@ -1,4 +1,4 @@
-import { Context } from 'app/context/types';
+import { Context } from '../../context/types';
 
 export const commandHelpBlock = async ({ logger, route, parser, helpBlock, exit }: Context) => {
   if ((parser.hasOption('help') || parser.hasOption('h')) && route) {
