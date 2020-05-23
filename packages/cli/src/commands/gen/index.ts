@@ -1,4 +1,4 @@
-import { join, basename, dirname } from 'path';
+import { basename, dirname } from 'path';
 import { CLICommand } from '@micra/cli-router';
 import { TemplateEngine } from '@micra/core';
 import { Context } from '../../app/context/types';
@@ -33,12 +33,26 @@ export const gen: CLICommand = {
       default: false,
     },
     {
+      name: 'js',
+      description: 'Create a JS file.',
+      default: false,
+    },
+    {
       name: 'list',
       alias: 'l',
       description: 'Lists all available templates',
     },
   ],
-  async handler({ parser, nameFromPath, variationsOf, template, createFile, cwd }: Context) {
+  async handler({
+    createFile,
+    cwd,
+    nameFromPath,
+    parser,
+    relativePath,
+    template,
+    variationsOf,
+    defaultVariables,
+  }: Context) {
     try {
       const PATH = parser.getArgument(1)?.value;
       const FULL_PATH = cwd(PATH);
@@ -47,6 +61,7 @@ export const gen: CLICommand = {
       const TEMPLATE_REFERENCE = parser.getArgument(0)?.value;
       const TEMPLATE = template(TEMPLATE_REFERENCE);
       const FORCE = parser.getOption('force')?.value;
+      const JS = parser.getOption('js')?.value;
       const OPTIONS = parser.options
         .map((option) => (option.name ? { name: option.name, value: option.value } : undefined))
         .filter(Boolean);
@@ -57,15 +72,20 @@ export const gen: CLICommand = {
         .filter(Boolean);
       const NAME = variationsOf(parser.getOption('name')?.value ?? nameFromPath(PATH));
 
-      const CONTENT = use<TemplateEngine>('TemplateEngine').render(TEMPLATE, {
-        NAME,
-        PATH,
-        OPTIONS,
-        ARGUMENTS,
-        FULL_PATH,
-        DIR_NAME,
-        FILE_NAME,
-      });
+      const CONTENT = use<TemplateEngine>('TemplateEngine').render(
+        TEMPLATE,
+        defaultVariables({
+          NAME,
+          PATH,
+          OPTIONS,
+          ARGUMENTS,
+          FULL_PATH,
+          DIR_NAME,
+          FILE_NAME,
+          JS,
+          relativePath: relativePath(DIR_NAME),
+        }),
+      );
 
       createFile(FULL_PATH, CONTENT, FORCE);
     } catch (e) {

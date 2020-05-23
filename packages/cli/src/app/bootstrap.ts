@@ -21,6 +21,7 @@ app.registerProviders(
   RouterServiceProvider,
   CLICoreServiceProvider,
   TemplateEngineServiceProvider,
+  ...config('providers', []),
 );
 
 export { app };

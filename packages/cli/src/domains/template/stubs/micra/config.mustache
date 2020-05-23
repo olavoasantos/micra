@@ -1,9 +1,13 @@
+const { join } = require('path');
+
 module.exports = {
   app: {
     // name: string;
     // version: string;
     // description: string;
-    // config: string[];
+    config: [
+      // absolute path to config file
+    ],
   },
   providers: [
     // ServiceProviders
@@ -14,4 +18,11 @@ module.exports = {
   middlewares: [
     // RouteMiddleware
   ],
+  template: {
+    // [alias: string]: 'absolute/path/to/template.mustache',
+  },
+  paths: {
+    root: join(process.cwd(), 'src'),
+    // [alias: string]: 'absolute/path',
+  },
 };
