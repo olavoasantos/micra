@@ -1,7 +1,13 @@
 import { Context } from '../../context/types';
+import { CLIHelpBlockListItem } from '@micra/core';
 
 export const cliHelpBlock = async ({ logger, route, parser, helpBlock, exit, router }: Context) => {
   if (parser.hasOption('help') || (parser.hasOption('h') && !route)) {
+    helpBlock.printHeader(
+      config('app.name', 'micra'),
+      config('app.version'),
+    );
+
     if (config('app.description')) {
       helpBlock.printSection('Description:', config('app.description'));
       logger.log('');
@@ -20,7 +26,12 @@ export const cliHelpBlock = async ({ logger, route, parser, helpBlock, exit, rou
       })),
     );
 
-    helpBlock.printList('\nOptions:', config('app.defaultOptions'));
+    helpBlock.printList('\nOptions:', config<CLIHelpBlockListItem[]>('app.defaultOptions', []).concat([
+      {
+        title: `--version, -v`,
+        description: 'Display CLI version',
+      },
+    ]));
 
     exit();
   }
