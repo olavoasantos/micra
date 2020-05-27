@@ -19,7 +19,7 @@ export const init: CLICommand = {
       name: 'name',
       alias: 'n',
       description: 'Name of the file',
-      default: '.assistantrc.js',
+      default: '.micrarc.js',
     },
     {
       name: 'force',
