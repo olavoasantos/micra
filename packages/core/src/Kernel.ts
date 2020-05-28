@@ -4,7 +4,7 @@ import { Static } from './types';
 export interface Kernel {
   container: ServiceContainer;
   boot(): void;
-  run(): void;
+  run(): any;
 }
 
 export type StaticKernel = Static<Kernel, [ServiceContainer]>;

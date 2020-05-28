@@ -13,7 +13,7 @@ export interface Application {
   serviceProviders: ServiceProvider[];
   bootstrap(): void;
   start(): void;
-  run(): void;
+  run(): any;
 }
 
 export type StaticApplication = Static<Application> & {
