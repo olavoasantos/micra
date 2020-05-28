@@ -11,7 +11,7 @@ export class Kernel implements KernelContract {
     //
   }
 
-  run() {
+  run(): any {
     //
   }
 }
