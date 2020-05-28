@@ -102,11 +102,11 @@ export class Application implements ApplicationContract {
   bootstrap() {
     // Initialize config
     Application.global.config = (key: string, fallback?: any) => {
-      return this.config.get(key) || fallback;
+      return this.config.get(key) ?? fallback;
     };
     // Initialize env
     Application.global.env = (key: string, fallback?: any) => {
-      return this.env.get(key) || fallback;
+      return this.env.get(key) ?? fallback;
     };
   }
 
@@ -142,6 +142,6 @@ export class Application implements ApplicationContract {
 
   run() {
     this.start();
-    this.kernel?.run();
+    return this.kernel?.run();
   }
 }
