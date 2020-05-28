@@ -1,6 +1,6 @@
 {
   "name": "@micra/kernel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": {
     "name": "Olavo Amorim Santos",
@@ -37,7 +37,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@micra/core": "^0.0.4",
+    "@micra/core": "^0.0.5",
     "tslib": "^2.0.0"
   }
 }
