@@ -47,6 +47,7 @@ export class Application implements ApplicationContract {
   env: Environment;
   kernel?: Kernel;
   serviceProviders: ServiceProvider[] = [];
+  hasStarted = false;
 
   constructor() {
     this.env = new MultiEnv();
@@ -111,6 +112,8 @@ export class Application implements ApplicationContract {
   }
 
   start() {
+    if (this.hasStarted) return;
+
     if (!this.container) {
       throw new Error(
         `Service container not defined. ` +
@@ -138,6 +141,8 @@ export class Application implements ApplicationContract {
     });
 
     this.kernel?.boot();
+
+    this.hasStarted = true;
   }
 
   run() {
