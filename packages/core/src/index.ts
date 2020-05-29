@@ -3,6 +3,7 @@ export * from './CLIHelpBlock';
 export * from './CLIParser';
 export * from './Config';
 export * from './Cookie';
+export * from './GraphQLContainer';
 export * from './Environment';
 export * from './Event';
 export * from './EventDispatcher';
