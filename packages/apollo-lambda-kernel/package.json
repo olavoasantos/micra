@@ -1,0 +1,50 @@
+{
+  "name": "@micra/apollo-lambda-kernel",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Olavo Amorim Santos",
+    "email": "olavo.a.santos@gmail.com"
+  },
+  "main": "build/index.js",
+  "types": "@types/index.d.ts",
+  "files": [
+    "build/**/*",
+    "@types/**/*"
+  ],
+  "scripts": {
+    "build": "yarn rimraf ./build && yarn rimraf ./@types && tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\" --cache --fix",
+    "publish-package": "npm publish --access public",
+    "test": "jest --config jest.config.js",
+    "watch": "nodemon"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.0.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "@apollo/federation": "^0.16.2",
+    "@micra/core": "^0.0.6",
+    "@micra/kernel": "^0.0.3",
+    "apollo-server-core": "^2.14.1",
+    "apollo-server-lambda": "^2.14.1",
+    "aws-lambda": "^1.0.6",
+    "deepmerge": "^4.2.2",
+    "graphql": "^15.0.0",
+    "tslib": "^2.0.0"
+  }
+}

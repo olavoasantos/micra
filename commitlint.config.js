@@ -7,6 +7,8 @@ module.exports = {
     'scope-empty': [2, 'never'],
     'scope-case': [2, 'always', 'upper-case'],
     'scope-enum': [2, 'always', [
+      'APOLLO-GRAPHQL-CONTAINER',
+      'APOLLO-LAMBDA-KERNEL',
       'APPLICATION',
       'ASSISTANT-CORE',
       'ASSISTANT-EXAMPLE',
