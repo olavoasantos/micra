@@ -37,6 +37,7 @@ module.exports = {
       'REACT-STORE-HOOKS',
       'SERVICE-PROVIDER',
       'STORAGE-WRAPPER',
+      'TEST-UTILS',
       'TSYRINGE-SERVICE-CONTAINER',
       'VALIDATION-RULES',
       'VALIDATOR',
