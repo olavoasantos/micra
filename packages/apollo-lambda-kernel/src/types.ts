@@ -1,3 +1,4 @@
+import { ServiceContainer } from '@micra/core';
 import { APIGatewayEvent, APIGatewayEventRequestContext } from 'aws-lambda';
 
 export type MakeContext<Args extends Array<any> = [DefaultContext], C = any> = (
@@ -10,6 +11,7 @@ export interface ContextRequest {
 }
 
 export interface DefaultContext {
+  container: ServiceContainer;
   event: APIGatewayEvent;
   context: APIGatewayEventRequestContext;
 }

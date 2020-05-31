@@ -2,7 +2,6 @@ import deepmerge from 'deepmerge';
 import { Kernel } from '@micra/kernel';
 import { GraphQLContainer } from '@micra/core';
 import { ApolloServer } from 'apollo-server-lambda';
-import { buildFederatedSchema } from '@apollo/federation';
 import { ContextRequest } from './types';
 
 export class ApolloLambdaKernel extends Kernel {
@@ -23,11 +22,7 @@ export class ApolloLambdaKernel extends Kernel {
     graphql.config.context = async (request: ContextRequest) => {
       const container = this.container.clone().value('Request', request);
 
-      const context: Record<string, any> = { request };
-
-      if (container.has('domains/services') && container.has('domains/data-sources')) {
-        context.services = container.use('domains/services')(container.use('domains/data-sources'));
-      }
+      const context: Record<string, any> = { request, container };
 
       if (container.has('MakeContext')) {
         const customContext = await container.use('MakeContext')(context);
@@ -38,10 +33,8 @@ export class ApolloLambdaKernel extends Kernel {
       return context;
     };
 
-    graphql.config.schema = buildFederatedSchema({
-      typeDefs: graphql.schema,
-      resolvers: graphql.resolvers,
-    });
+    graphql.config.typeDefs = graphql.schema;
+    graphql.config.resolvers = graphql.resolvers;
 
     return new ApolloServer(graphql.config).createHandler();
   }

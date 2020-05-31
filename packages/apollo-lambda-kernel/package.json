@@ -1,6 +1,6 @@
 {
   "name": "@micra/apollo-lambda-kernel",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "license": "MIT",
   "author": {
     "name": "Olavo Amorim Santos",
@@ -37,7 +37,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@apollo/federation": "^0.16.2",
     "@micra/core": "^0.0.6",
     "@micra/kernel": "^0.0.3",
     "apollo-server-core": "^2.14.1",
