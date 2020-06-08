@@ -75,8 +75,12 @@ export const APIGatewayProxyEventFactory = factory<APIGatewayProxyEvent>(
       Host: `${apiId}.execute-api.${region}.amazonaws.com`,
       'User-Agent': userAgent,
       Via: `1.1 ${fake.random.alphaNumeric(32)}.cloudfront.net (CloudFront)`,
-      'X-Amz-Cf-Id': `-${fake.random.alphaNumeric(45)}_${fake.random.alphaNumeric(7)}==`,
-      'X-Amzn-Trace-Id': `Root=${fake.random.number(9)}-${fake.random.alphaNumeric(8)}-${fake.random.alphaNumeric(24)}`,
+      'X-Amz-Cf-Id': `-${fake.random.alphaNumeric(
+        45,
+      )}_${fake.random.alphaNumeric(7)}==`,
+      'X-Amzn-Trace-Id': `Root=${fake.random.number(
+        9,
+      )}-${fake.random.alphaNumeric(8)}-${fake.random.alphaNumeric(24)}`,
       'X-Forwarded-For': `${ip}, ${fake.internet.ip}`,
       'X-Forwarded-Port': '443',
       'X-Forwarded-Proto': 'https',
