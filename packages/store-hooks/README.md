@@ -84,11 +84,11 @@ window.$stores = initStores({
 
 ```html
 <script>
-	import { state, mutator } from "@micra/store-hooks";
+  import { state, mutator } from "@micra/store-hooks";
 
-	const counter = state(0);
-	const increment = mutator(counter, count => count + 1);
-	const decrement = mutator(counter, count => count + 1);
+  const counter = state(0);
+  const increment = mutator(counter, count => count + 1);
+  const decrement = mutator(counter, count => count + 1);
 </script>
 
 <h1>Count is {$counter || counter.value}</h1>
