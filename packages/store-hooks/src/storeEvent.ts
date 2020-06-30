@@ -75,7 +75,7 @@ const storeEvent = <T = undefined>(state?: T): StoreEvent<T> => {
   };
 
   const fireLifecycle: StoreEvent<T>['fireLifecycle'] = (event: string, ...payload: any[]) => {
-    setImmediate(() => lifecycle.get(event)?.forEach((l) => l(...payload)));
+    Promise.resolve().then(() => lifecycle.get(event)?.forEach((l) => l(...payload)));
   };
 
   return {
