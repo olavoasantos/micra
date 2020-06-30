@@ -7,6 +7,7 @@ module.exports = {
     'scope-empty': [2, 'never'],
     'scope-case': [2, 'always', 'upper-case'],
     'scope-enum': [2, 'always', [
+      'ALPINE-STORE-HOOKS',
       'APOLLO-GRAPHQL-CONTAINER',
       'APOLLO-LAMBDA-KERNEL',
       'APPLICATION',
@@ -37,6 +38,8 @@ module.exports = {
       'REACT-STORE-HOOKS',
       'SERVICE-PROVIDER',
       'STORAGE-WRAPPER',
+      'STORE-HOOKS',
+      'STORE-HOOKS-DEVTOOLS',
       'TEST-UTILS',
       'TSYRINGE-SERVICE-CONTAINER',
       'VALIDATION-RULES',
