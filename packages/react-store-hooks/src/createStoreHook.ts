@@ -1,13 +1,7 @@
-import { useEffect, useState, useMemo } from 'react';
-import { Store } from '@micra/core';
+import { ValueState, Compare } from '@micra/store-hooks';
+import { useStore } from './useStore';
 
-export const createStoreHook = function <S extends Store<any> = any>(store: S) {
-  return <T = S['state']>(selector: (state: S['state']) => T = (s) => s): [T, S] => {
-    const [state, setState] = useState(store.state);
-    const computedState = useMemo(() => selector(state), [selector, state]);
-
-    useEffect(() => store.connect(setState), [store]);
-
-    return [computedState, store];
-  };
-};
+export const createStoreHook = <T = any>(store: ValueState<T>) => <U = T>(
+  selector: (state: T) => U = () => store.value as any,
+  compare: Compare<U, U> = (prev, curr) => prev !== curr,
+) => useStore<T, U>(store, selector, compare);
