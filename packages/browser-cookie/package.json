@@ -20,23 +20,23 @@
     "watch": "nodemon"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.5",
-    "@typescript-eslint/eslint-plugin": "^3.0.0",
-    "@typescript-eslint/parser": "^3.0.0",
-    "eslint": "^7.1.0",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.3",
-    "jest": "^26.0.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.4",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.0.0",
-    "ts-node": "^8.10.1",
-    "typescript": "^3.9.3"
+    "ts-jest": "^26.1.1",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@micra/core": "^0.0.4",
+    "@micra/core": "^0.0.6",
     "tslib": "^2.0.0"
   }
 }
