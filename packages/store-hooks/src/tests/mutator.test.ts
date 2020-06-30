@@ -5,7 +5,7 @@ import { mutator } from '../mutator';
 describe('mutator tests', () => {
   it('should mutate a given state', () => {
     const counter = state(0);
-    const increment = mutator(counter, (count, by: number = 1) => count + by);
+    const increment = mutator(counter, (count, by = 1) => count + by);
 
     expect(counter.value).toBe(0);
 

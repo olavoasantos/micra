@@ -1,7 +1,8 @@
+import { noop } from './helpers';
 import { StoreEvent, StateListener, StateSelector, Compare, Lifecycle } from './types';
 
 const storeEvent = <T = undefined>(state?: T): StoreEvent<T> => {
-  let activeEvent: number = 0;
+  let activeEvent = 0;
   const listeners: Set<StateListener<T>> = new Set();
   const lifecycle: Map<string, Set<(...payload: any[]) => void>> = new Map([
     ['init', new Set()],
@@ -20,7 +21,7 @@ const storeEvent = <T = undefined>(state?: T): StoreEvent<T> => {
       if (activeEvent && activeEvent === id) {
         try {
           listener(payload);
-        } catch(e) {
+        } catch (e) {
           fireLifecycle('error', e, state, payload);
         }
       } else {
@@ -43,7 +44,7 @@ const storeEvent = <T = undefined>(state?: T): StoreEvent<T> => {
       selector,
       shouldSync,
       hasError: false,
-      unsubscribe: () => {},
+      unsubscribe: noop,
       current: selector(state as T),
     };
   };
@@ -71,7 +72,7 @@ const storeEvent = <T = undefined>(state?: T): StoreEvent<T> => {
       return () => lifecycle.get(event)?.delete(listener);
     }
 
-    return () => {};
+    return noop;
   };
 
   const fireLifecycle: StoreEvent<T>['fireLifecycle'] = (event: string, ...payload: any[]) => {

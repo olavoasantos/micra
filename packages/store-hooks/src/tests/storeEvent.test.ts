@@ -30,7 +30,9 @@ describe('storeEvent tests', () => {
     const error = new Error('whoops');
 
     event.onLifecycle('error', errorSpy);
-    event.subscribe(() => { throw error });
+    event.subscribe(() => {
+      throw error;
+    });
 
     event.fire(1);
 

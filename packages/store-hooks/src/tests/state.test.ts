@@ -1,6 +1,5 @@
 import { factory } from 'node-factory';
 import { state } from '../state';
-import { State } from '../../build';
 
 describe('state tests', () => {
   it('should return an initial value', () => {
