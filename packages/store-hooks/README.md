@@ -6,6 +6,114 @@
 yarn add @micra/store-hooks
 ```
 
+## Basic usage
+
+```typescript
+import { state } from "@micra/store-hooks";
+
+const counter = state<number>(10);
+const double = computed(counter, (count) => count * 2);
+const increment = mutator(counter, (count, by: number = 1) => count + by);
+const decrement = mutator(counter, (count, by: number = 1) => count - by);
+
+counter.value; // 10
+double.value;  // 20
+increment(10); // counter.value = 20 / double.value = 40
+decrement(20); // counter.value =  0 / double.value =  0
+```
+
+## Using a framework
+
+### React
+
+See [@micra/react-store-hooks](https://www.npmjs.com/package/@micra/react-store-hooks):
+
+```tsx
+import React from 'react';
+import { state } from '@micra/store-hooks';
+import { useStore } from '@micra/react-store-hooks';
+
+const counter = state(0);
+
+const Counter = () => {
+  const [count, setCount] = useStore(counter);
+
+  return (
+    <div>
+      <h1>Count is {count}</h1>
+      <button onClick={() => setCount(count + 1)}>increment</button>
+      <button onClick={() => setCount(count - 1)}>decrement</button>
+    </div>
+  );
+};
+```
+
+### Alpine
+
+See [@micra/alpine-store-hooks](https://www.npmjs.com/package/@micra/alpine-store-hooks):
+
+```typescript
+import 'alpinejs';
+import { initStores } from '@micra/alpine-store-hooks';
+
+const count = state(0);
+const increment = mutator(counter, (count, by: number = 1) => count + by);
+const decrement = mutator(counter, (count, by: number = 1) => count - by);
+
+window.$stores = initStores({
+  counter: {
+    count,
+    increment,
+    decrement
+  }
+});
+```
+
+```html
+<div
+  x-data="{ increment: $stores.counter.increment, decrement: $stores.counter.decrement }"
+  x-store="counter.count"
+>
+  <h1>Count is <span x-text="$count"></span></h1>
+  <button @click="increment">increment</button>
+  <button @click="decrement">decrement</button>
+</div>
+```
+
+### Svelte
+
+```html
+<script>
+	import { state, mutator } from "@micra/store-hooks";
+
+	const counter = state(0);
+	const increment = mutator(counter, count => count + 1);
+	const decrement = mutator(counter, count => count + 1);
+</script>
+
+<h1>Count is {$counter || counter.value}</h1>
+<button on:click={increment}>increment</button>
+<button on:click={decrement}>decrement</button>
+```
+
+## Devtools
+
+The store hooks can be hooked up to Redux Devtools!
+
+See [@micra/store-hooks-devtools](https://www.npmjs.com/package/@micra/store-hooks-devtools):
+
+```typescript
+import { state } from '@micra/store-hooks';
+import { devtools } from '@micra/store-hooks-devtools';
+
+export const counter = state<number>(0);
+
+devtools({
+  counter,
+  // ... other states
+});
+```
+
 ## Hooks
 
 ### state
