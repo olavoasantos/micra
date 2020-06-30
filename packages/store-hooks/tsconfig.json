@@ -7,6 +7,7 @@
     ],
     "declaration": true,
     "removeComments": true,
+    "importHelpers": true,
     "strict": true,
     "noImplicitAny": true,
     "alwaysStrict": true,

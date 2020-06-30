@@ -3,7 +3,8 @@ import { storeEvent } from './storeEvent';
 
 export const state = <T = any>(
   initialState: T,
-  shouldUpdate: Compare<T, T | Partial<T>> = (current, update) => current !== update,
+  shouldUpdate: Compare<T, T | Partial<T>> = (current: T, update: Partial<T>): boolean =>
+    current !== update,
 ): ValueState<T> => {
   const isObject = (value: T) =>
     typeof value === 'object' && value != null && !Array.isArray(value);
@@ -17,7 +18,7 @@ export const state = <T = any>(
     flush: event.clear.bind(event),
     on: event.onLifecycle.bind(event),
     subscribe: event.subscribe.bind(event),
-    get value() {
+    get value(): T {
       return $state;
     },
     set value(newState: T) {
@@ -26,7 +27,7 @@ export const state = <T = any>(
         event.fire($state);
       }
     },
-    set(partial: Partial<T> | ((state: T) => Partial<T>)) {
+    set(partial: Partial<T> | ((state: T) => Partial<T>)): T {
       const newState = typeof partial === 'function' ? partial($state) : partial;
 
       if (shouldUpdate($state, newState)) {
@@ -41,7 +42,7 @@ export const state = <T = any>(
 
       return $state;
     },
-    reset() {
+    reset(): T {
       $state = isObject($initialState) ? { ...$initialState } : $initialState;
       event.fire($state);
 

@@ -4,7 +4,7 @@ import { storeEvent } from './storeEvent';
 export const computed = <U, T = any>(
   store: State<T>,
   selector: (state: T) => U,
-  shouldUpdate: Compare<U, U> = (state, update) => state !== update,
+  shouldUpdate: Compare<U, U> = (state: U, update: U): boolean => state !== update,
 ): State<U> => {
   let $computed: U = selector(store.value);
   const event = storeEvent<U>($computed);
@@ -20,7 +20,7 @@ export const computed = <U, T = any>(
 
   return {
     subscribe: event.subscribe.bind(event),
-    get value() {
+    get value(): U {
       return $computed;
     },
   };
