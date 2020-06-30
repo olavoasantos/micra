@@ -44,6 +44,7 @@ module.exports = {
       'TSYRINGE-SERVICE-CONTAINER',
       'VALIDATION-RULES',
       'VALIDATOR',
+      'VUE-STORE-HOOKS',
       'WEB-ROUTER',
     ]],
     'type-case': [2, 'always', 'upper-case'],

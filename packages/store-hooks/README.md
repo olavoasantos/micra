@@ -48,6 +48,41 @@ const Counter = () => {
 };
 ```
 
+### Vue
+
+See [@micra/vue-store-hooks](https://www.npmjs.com/package/@micra/vue-store-hooks):
+
+```html
+<template>
+  <div id="app">
+    <h1>Count is {{ count }}</h1>
+    <button @click="increment">increment</button>
+    <button @click="decrement">decrement</button>
+  </div>
+</template>
+
+<script>
+import { useStore } from "@micra/vue-store-hooks";
+import { state } from "@micra/store-hooks";
+
+export const counter = state(0);
+
+export default {
+  setup() {
+    const [count, setCount] = useStore(counter);
+
+    return {
+      count,
+      increment: () => setCount(count => count + 1),
+      decrement: () => setCount(count => count - 1)
+    };
+  }
+};
+</script>
+```
+
+> Note: `@micra/vue-store-hooks` uses [Vue's composition API](https://composition-api.vuejs.org/) which is still in beta.
+
 ### Alpine
 
 See [@micra/alpine-store-hooks](https://www.npmjs.com/package/@micra/alpine-store-hooks):
