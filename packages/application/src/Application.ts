@@ -1,4 +1,5 @@
 import { Config } from '@micra/config';
+import { MultiEnv } from '@micra/multi-env';
 import {
   Application as ApplicationContract,
   Config as ConfigContract,
@@ -11,7 +12,6 @@ import {
   StaticServiceContainer,
   StaticServiceProvider,
 } from '@micra/core';
-import { MultiEnv } from '@micra/multi-env';
 
 export class Application implements ApplicationContract {
   static get global() {
@@ -113,6 +113,22 @@ export class Application implements ApplicationContract {
 
   start() {
     if (this.hasStarted) return;
+
+    if (this.config.has('app')) {
+      const appConfig = this.config.get('app');
+
+      if (appConfig.container) {
+        this.registerContainer(appConfig.container);
+      }
+
+      if (appConfig.kernel) {
+        this.registerKernel(appConfig.kernel);
+      }
+
+      if (appConfig.services && Array.isArray(appConfig.services)) {
+        this.registerProviders(...appConfig.services);
+      }
+    }
 
     if (!this.container) {
       throw new Error(
