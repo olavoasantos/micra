@@ -3352,6 +3352,31 @@
     prop-types "^15.7.2"
     react-is "^16.8.0"
 
+"@micra/application@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@micra/application/-/application-0.0.4.tgz#f2e40d2e3485244d2e8b98cec58436c8893ab3ab"
+  integrity sha512-d+giOJaysASUBttshdPdhlTsiVlry0ds6+QaEC2xM2vsv1xzTNFFIR+ReC0VkJZROLxrelAm669QEONQ9ZNZ0Q==
+  dependencies:
+    "@micra/config" "^0.0.2"
+    "@micra/core" "^0.0.6"
+    "@micra/multi-env" "^0.0.2"
+    tslib "^2.0.0"
+
+"@micra/config@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@micra/config/-/config-0.0.2.tgz#14c502e37782d7e2200cb343022da62a6de83a2d"
+  integrity sha512-9SGUzb3MsuG1GUnqu96C+EpFQrxkyyzGIHV66jdCBc/3zJFCFdqlYC06kHL2YKo8kJQ/bK0UVcpFQV2jcWiQJg==
+  dependencies:
+    "@micra/core" "^0.0.4"
+    tslib "^2.0.0"
+
+"@micra/core@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@micra/core/-/core-0.0.4.tgz#8eddbac71069223b63542a78a3c413e4d42c0727"
+  integrity sha512-txBdTGY1q7ZnSoLKOiVpQVA+8xAl5LHTP48lTs6rWgaehmDo2TxgEIC916JCrbl/RRZOxO+aNj+4/BofzJ7aig==
+  dependencies:
+    tslib "^2.0.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
