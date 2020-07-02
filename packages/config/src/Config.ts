@@ -1,4 +1,5 @@
 import { Config as ConfigContract } from '@micra/core';
+import { deepMerge } from './helpers';
 
 export class Config implements ConfigContract {
   protected definitions = new Map<string, any>();
@@ -12,17 +13,18 @@ export class Config implements ConfigContract {
     const main = parts.pop();
 
     if (main) {
-      this.definitions.set(
-        main,
-        parts.reduce(
-          (partial, subKey) => ({
-            [subKey]: partial,
-          }),
-          { [namespace]: value },
-        ),
+      const curr = this.definitions.get(main);
+      const tree = parts.reduce(
+        (partial, subKey) => ({
+          [subKey]: partial,
+        }),
+        { [namespace]: value },
       );
+
+      this.definitions.set(main, curr ? deepMerge(curr, tree) : tree);
     } else {
-      this.definitions.set(namespace, value);
+      const curr = this.definitions.get(namespace);
+      this.definitions.set(namespace, curr ? deepMerge(curr, value) : value);
     }
   }
 
