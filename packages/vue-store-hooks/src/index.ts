@@ -1,5 +1,5 @@
 import { ValueState, State, Compare } from '@micra/store-hooks';
-import { onMounted, onUnmounted, ref } from "@vue/composition-api";
+import { onMounted, onUnmounted, ref } from '@vue/composition-api';
 
 export const useStore = <T = any, U = T>(
   store: ValueState<T>,

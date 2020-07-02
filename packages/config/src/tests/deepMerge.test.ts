@@ -40,6 +40,6 @@ it('should overwrite deep values', () => {
   expect(deepMerge(target, values)).toMatchObject({
     a: { b: 2 },
     c: 3,
-    d: 4
+    d: 4,
   });
 });
