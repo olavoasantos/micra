@@ -1,7 +1,9 @@
 import { ValueState } from '@micra/store-hooks';
 
 let reduxDevtools: any;
-window.$$STORE_HOOKS$$ = {};
+if (!window.$$STORE_HOOKS$$) {
+  window.$$STORE_HOOKS$$ = {};
+}
 
 export const devtools = (stores: Record<string, ValueState>, options: Record<string, any> = {}) => {
   if (window.__REDUX_DEVTOOLS_EXTENSION__) {
