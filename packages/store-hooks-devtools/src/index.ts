@@ -23,6 +23,9 @@ export const devtools = (stores: Record<string, ValueState>, options: Record<str
       });
     });
 
-    reduxDevtools.send(`[store-hooks] init ${Object.keys(stores).join(', ')}`, window.$$STORE_HOOKS$$);
+    reduxDevtools.send(
+      `[store-hooks] init ${Object.keys(stores).join(', ')}`,
+      window.$$STORE_HOOKS$$,
+    );
   }
 };
