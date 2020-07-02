@@ -52,3 +52,22 @@ it('should return false if a value does not exist', () => {
 
   expect(config.has('some.inexistent.value')).toBeFalsy();
 });
+
+it('should extend existing object', () => {
+  const config = new Config();
+
+  config.set('deep', {
+    nested: 'value',
+  });
+
+  config.set('deep.another', {
+    nested: 'value',
+  });
+
+  expect(config.get('deep')).toMatchObject({
+    nested: 'value',
+    another: {
+      nested: 'value',
+    },
+  });
+});
