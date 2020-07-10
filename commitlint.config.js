@@ -32,6 +32,7 @@ module.exports = {
       'KERNEL',
       'MULTI-ENV',
       'MUSTACHE-TEMPLATE-ENGINE',
+      'PATH-MATCH',
       'REACT-DOM-KERNEL',
       'REACT-MFE-EXAMPLE',
       'REACT-ROUTER-WEB-ROUTER',
