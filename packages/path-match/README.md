@@ -1,7 +1,7 @@
-# @micra/react-store-hooks
+# @micra/path-match
 
 ## Installation
 
 ```sh
-yarn add @micra/react-store-hooks
+yarn add @micra/path-match
 ```
