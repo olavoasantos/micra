@@ -25,7 +25,7 @@ export interface VariablePathElement extends PathElement {
   options: string[];
 }
 
-export type PathElements = (StaticPathElement | VariablePathElement);
+export type PathElements = StaticPathElement | VariablePathElement;
 
 export const DEFAULT_PATH_SEPARATOR = '/';
 export const DEFAULT_VARIABLE_START = ':';
@@ -35,7 +35,18 @@ export const DEFAULT_VARIABLE_ENUM_END = ')';
 export const DEFAULT_VARIABLE_ENUM_SEPARATOR = '|';
 export const DEFAULT_VARIABLE_OPTIONAL_IDENTIFIER = '?';
 
-export const escapeIfExists = (value: string) => value ? `\\${value}` : '';
+export const escapeIfExists = (value: string): string => (value ? `\\${value}` : '');
+
+export type PathParser = (
+  route: string,
+) => {
+  elements: PathElements[];
+  options: PathOptions;
+  path: string;
+  regex: RegExp;
+  variables: VariablePathElement[];
+  couldHaveDoubleSeparator: boolean;
+};
 
 export const path = ({
   PATH_SEPARATOR = DEFAULT_PATH_SEPARATOR,
@@ -45,9 +56,24 @@ export const path = ({
   VARIABLE_ENUM_END = DEFAULT_VARIABLE_ENUM_END,
   VARIABLE_ENUM_SEPARATOR = DEFAULT_VARIABLE_ENUM_SEPARATOR,
   VARIABLE_OPTIONAL_IDENTIFIER = DEFAULT_VARIABLE_OPTIONAL_IDENTIFIER,
-}: Partial<PathOptions> = {}) => {
-  const REGEXP_MATCH = `([^${escapeIfExists(PATH_SEPARATOR)}${escapeIfExists(VARIABLE_START)}${escapeIfExists(VARIABLE_END)}${escapeIfExists(VARIABLE_ENUM_START)}${escapeIfExists(VARIABLE_ENUM_END)}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}]+)`;
-  const REGEXP = new RegExp([`^${escapeIfExists(VARIABLE_START)}${REGEXP_MATCH}${escapeIfExists(VARIABLE_ENUM_START)}${REGEXP_MATCH}${escapeIfExists(VARIABLE_ENUM_END)}${escapeIfExists(VARIABLE_END)}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}?$`, `^${escapeIfExists(VARIABLE_START)}${REGEXP_MATCH}${escapeIfExists(VARIABLE_END)}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}?$`].join('|'));
+}: Partial<PathOptions> = {}): PathParser => {
+  const REGEXP_MATCH = `([^${escapeIfExists(PATH_SEPARATOR)}${escapeIfExists(
+    VARIABLE_START,
+  )}${escapeIfExists(VARIABLE_END)}${escapeIfExists(VARIABLE_ENUM_START)}${escapeIfExists(
+    VARIABLE_ENUM_END,
+  )}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}]+)`;
+  const REGEXP = new RegExp(
+    [
+      `^${escapeIfExists(VARIABLE_START)}${REGEXP_MATCH}${escapeIfExists(
+        VARIABLE_ENUM_START,
+      )}${REGEXP_MATCH}${escapeIfExists(VARIABLE_ENUM_END)}${escapeIfExists(
+        VARIABLE_END,
+      )}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}?$`,
+      `^${escapeIfExists(VARIABLE_START)}${REGEXP_MATCH}${escapeIfExists(
+        VARIABLE_END,
+      )}${escapeIfExists(VARIABLE_OPTIONAL_IDENTIFIER)}?$`,
+    ].join('|'),
+  );
 
   const categorize = (piece: string): VariablePathElement | StaticPathElement => {
     const match = REGEXP.exec(piece);
@@ -83,7 +109,7 @@ export const path = ({
 
       return element.isOptional
         ? `${REGEX}${OPTIONAL_SEPARATOR}([^${PATH_SEPARATOR}]+)?`
-        : `${REGEX}${PATH_SEPARATOR}([^${PATH_SEPARATOR}]+)`
+        : `${REGEX}${PATH_SEPARATOR}([^${PATH_SEPARATOR}]+)`;
     }, '');
 
     if (regexp.startsWith(PATH_SEPARATOR)) {
@@ -95,9 +121,16 @@ export const path = ({
     }
 
     return `^${OPTIONAL_SEPARATOR}${regexp}${OPTIONAL_SEPARATOR}$`;
-  }
+  };
 
-  const parse = (value: string): PathElements[] => value.split(PATH_SEPARATOR).reduce((elements: PathElements[], piece) => Boolean(piece) ? elements.concat([categorize(piece)]) : elements, []);
+  const parse = (value: string): PathElements[] =>
+    value
+      .split(PATH_SEPARATOR)
+      .reduce(
+        (elements: PathElements[], piece) =>
+          Boolean(piece) ? elements.concat([categorize(piece)]) : elements,
+        [],
+      );
 
   const options = {
     PATH_SEPARATOR,
@@ -112,14 +145,14 @@ export const path = ({
   return (route: string) => {
     const elements = parse(route);
     const regex = toRegex(elements);
-    const lastElement = elements[elements.length-1];
+    const lastElement = elements[elements.length - 1];
     return {
       elements,
       options,
       path: route,
       regex: new RegExp(regex),
-      variables: elements.filter(element => element.type === 'VARIABLE'),
+      variables: elements.filter((element) => element.type === 'VARIABLE'),
       couldHaveDoubleSeparator: lastElement.type === 'VARIABLE' && lastElement.isOptional,
-    }
+    };
   };
-}
+};
