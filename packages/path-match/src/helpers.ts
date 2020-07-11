@@ -15,14 +15,14 @@ export const toTest = (definition: PathObject) => (path: string) =>
     path.includes(definition.options.PATH_SEPARATOR + definition.options.PATH_SEPARATOR)
   );
 
-export const toMatch = (definition: PathObject) => <T = Record<string, any>>(path: string) => {
+export const toMatch = (definition: PathObject) => <T = Record<string, any>>(path: string): T => {
   if (definition.variables.length === 0) {
-    return {};
+    return {} as T;
   }
 
   const result = definition.regex.exec(path);
   if (!result) {
-    return {};
+    return {} as T;
   }
 
   return definition.variables.reduce((variables: any, variable, index) => {
