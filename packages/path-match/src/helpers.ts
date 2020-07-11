@@ -54,5 +54,5 @@ export const toPathBuilder = (definition: PathObject) => (
     return partial;
   }, '');
 
-  return path + qs;
+  return (path || '/') + qs;
 };

@@ -1,6 +1,6 @@
 {
-  "name": "@micra/path-match",
-  "version": "0.0.5",
+  "name": "@micra/react-route-registry",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "name": "Olavo Amorim Santos",
@@ -26,7 +26,9 @@
     "@babel/plugin-transform-typescript": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@types/jest": "^26.0.3",
+    "@types/loadable__component": "^5.13.0",
     "@types/node": "^14.0.14",
+    "@types/react": "^16.9.43",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "eslint": "^7.3.1",
@@ -35,6 +37,7 @@
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.4",
+    "react": "^16.13.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.18.2",
     "rollup-plugin-babel": "^4.4.0",
@@ -44,5 +47,9 @@
     "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "@loadable/component": "^5.13.1",
+    "@micra/route-registry": "^0.0.1"
   }
 }
