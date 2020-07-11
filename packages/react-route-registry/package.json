@@ -51,5 +51,8 @@
   "dependencies": {
     "@loadable/component": "^5.13.1",
     "@micra/route-registry": "^0.0.1"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
   }
 }
