@@ -52,6 +52,9 @@ export const path = (CUSTOM_OPTIONS: Partial<PathOptions> = {}): PathParser => {
 
   const toRegex = (elements: PathElements[]) => {
     const OPTIONAL_SEPARATOR = `[${escapeIfExists(options.PATH_SEPARATOR)}]?`;
+    if (elements.length === 0) {
+      return `^${OPTIONAL_SEPARATOR}$`;
+    }
     const regexp = elements.reduce((REGEX: string, element: PathElements) => {
       if (element.type === 'STATIC') {
         return `${REGEX}${OPTIONAL_SEPARATOR}${element.value}`;
@@ -97,7 +100,8 @@ export const path = (CUSTOM_OPTIONS: Partial<PathOptions> = {}): PathParser => {
       options,
       path: route,
       regex: new RegExp(regex),
-      couldHaveDoubleSeparator: lastElement.type === 'VARIABLE' && lastElement.isOptional,
+      couldHaveDoubleSeparator:
+        lastElement && lastElement.type === 'VARIABLE' && lastElement.isOptional,
       variables: elements.filter((element) => element.type === 'VARIABLE') as VariablePathElement[],
     };
   };
