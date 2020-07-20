@@ -15,11 +15,6 @@ app.config.set('react-dom-kernel', {
   component: App,
 
   /**
-   * Global error handler component
-   */
-  errorHandler: null,
-
-  /**
    * React providers component
    */
   providers: Providers,
