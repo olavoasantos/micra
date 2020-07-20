@@ -23,7 +23,7 @@ module.exports = () =>
 
     setOutput({
       path: root('.micra'),
-      filename: `index.[contenthash].js`,
+      filename: `js/index.[contenthash].js`,
     }),
 
     postcss({
@@ -35,7 +35,7 @@ module.exports = () =>
       // new SentryWebpackPlugin({
       //   include: '.',
       //   ignoreFile: '.sentrycliignore',
-      //   ignore: ['node_modules', 'webpack.config.js'],
+      //   ignore: [root('node_modules'), root('.config'), root('.micra')],
       //   configFile: 'sentry.properties'
       // }),
     ]),
