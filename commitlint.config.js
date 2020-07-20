@@ -34,7 +34,7 @@ module.exports = {
       'MUSTACHE-TEMPLATE-ENGINE',
       'PATH-MATCH',
       'REACT-DOM-KERNEL',
-      'REACT-MFE-EXAMPLE',
+      'REACT-EXAMPLE',
       'REACT-ROUTE-REGISTRY',
       'REACT-ROUTER-WEB-ROUTER',
       'REACT-STORE-HOOKS',

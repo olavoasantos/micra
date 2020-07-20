@@ -1,0 +1,6 @@
+{
+  "watch": ["."],
+  "ext": "ts, tsx",
+  "ignore": [".test.ts"],
+  "exec": "yarn build && chmod +x .micra/index.js"
+}
