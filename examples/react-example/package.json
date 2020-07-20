@@ -7,8 +7,8 @@
     "build": "yarn rimraf .micra && cross-env NODE_ENV=production webpack --config .config/webpack/webpack.config.js",
     "format": "prettier --write '**/*.{ts,tsx}' --config .config/code-style/.prettierrc.js",
     "lint": "eslint '**/*.{ts,tsx}' --cache --fix --config .config/code-style/.eslintrc.js --cache-location .config/code-style/.eslintcache",
-    "test": "jest --config .config/test/jest.config.js",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.config.js",
+    "test": "jest --config .config/test/jest.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
