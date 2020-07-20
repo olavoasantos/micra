@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn rimraf .micra && cross-env NODE_ENV=production webpack --config .config/webpack/webpack.base.js",
+    "build": "yarn rimraf .micra && cross-env NODE_ENV=production webpack --config .config/webpack/webpack.config.js",
     "format": "prettier --write '**/*.{ts,tsx}' --config .config/linting/.prettierrc.js",
     "lint": "eslint '**/*.{ts,tsx}' --cache --fix --config .config/linting/.eslintrc.js --cache-location .config/linting/.eslintcache",
     "test": "jest --config .config/test/jest.config.js",
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.base.js"
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -28,6 +28,7 @@
     "babel-jest": "^26.1.0",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
@@ -52,6 +53,7 @@
   "dependencies": {
     "@micra/application": "^0.0.6",
     "@micra/core": "^0.0.7",
+    "@micra/react-dom-kernel": "^0.0.3",
     "@micra/react-route-registry": "^0.0.1",
     "@micra/react-store-hooks": "^0.0.1",
     "@micra/service-provider": "^0.0.2",
