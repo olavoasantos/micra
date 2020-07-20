@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn rimraf .micra && cross-env NODE_ENV=production webpack --config .config/webpack/webpack.config.js",
-    "format": "prettier --write '**/*.{ts,tsx}' --config .config/linting/.prettierrc.js",
-    "lint": "eslint '**/*.{ts,tsx}' --cache --fix --config .config/linting/.eslintrc.js --cache-location .config/linting/.eslintcache",
+    "format": "prettier --write '**/*.{ts,tsx}' --config .config/code-style/.prettierrc.js",
+    "lint": "eslint '**/*.{ts,tsx}' --cache --fix --config .config/code-style/.eslintrc.js --cache-location .config/code-style/.eslintcache",
     "test": "jest --config .config/test/jest.config.js",
     "watch": "cross-env NODE_ENV=development webpack-dev-server --config .config/webpack/webpack.config.js"
   },
@@ -51,7 +51,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "@micra/application": "^0.0.6",
+    "@micra/application": "^0.0.7",
     "@micra/core": "^0.0.7",
     "@micra/react-dom-kernel": "^0.0.3",
     "@micra/react-route-registry": "^0.0.1",
