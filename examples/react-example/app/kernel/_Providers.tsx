@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import RouterProvider from 'app/router/RouterProvider';
-import TranslationProvider from 'app/translation/TranslationProvider';
+import React, { memo } from "react";
+import RouterProvider from "app/router/RouterProvider";
+import TranslationProvider from "app/translation/TranslationProvider";
 
 export interface ProvidersProps {
   children: React.ReactChild;

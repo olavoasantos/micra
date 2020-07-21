@@ -1,25 +1,25 @@
-import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
-import { ReactRouteRegistry } from '@micra/react-route-registry';
-import Routes from 'app/router/Routes';
-import { useTranslation } from 'react-i18next';
-import { changeLanguage } from 'app/translation/helpers/changeLanguage';
-import { Language } from 'app/translation/types';
+import React, { memo } from "react";
+import { Link } from "react-router-dom";
+import { ReactRouteRegistry } from "@micra/react-route-registry";
+import Routes from "app/router/Routes";
+import { useTranslation } from "react-i18next";
+import { changeLanguage } from "app/translation/helpers/changeLanguage";
+import { Language } from "app/translation/types";
 
 const App = () => {
-  const pathTo = use('pathTo');
+  const pathTo = use("pathTo");
   const { t, i18n } = useTranslation();
-  const router = use<ReactRouteRegistry>('router');
+  const router = use<ReactRouteRegistry>("router");
 
   return (
     <div data-testid="app-container">
-      <menu style={{ display: 'flex' }}>
+      <menu style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
-          <Link to={pathTo('home', { lng: i18n.language })}>
-            {t('routes.home.title')}
+          <Link to={pathTo("home", { lng: i18n.language })}>
+            {t("routes.home.title")}
           </Link>
-          <Link to={pathTo('about', { lng: i18n.language })}>
-            {t('routes.about.title')}
+          <Link to={pathTo("about", { lng: i18n.language })}>
+            {t("routes.about.title")}
           </Link>
         </div>
         <div>
@@ -29,7 +29,7 @@ const App = () => {
               changeLanguage(value as Language)
             }
           >
-            {config('translation.languages').map((language: string) => (
+            {config("translation.languages").map((language: string) => (
               <option key={language} value={language}>
                 {t(`languages.${language}.name`)}
               </option>

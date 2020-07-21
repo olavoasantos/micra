@@ -1,12 +1,10 @@
-import app from '@micra/application';
-import { RouterConfig } from 'app/router/types';
+import app from "@micra/application";
+import { RouterConfig } from "app/router/types";
 
-app.config.set<RouterConfig>('router', {
-  fallbackRoute: 'home',
+app.config.set<RouterConfig>("router", {
+  fallbackRoute: "home",
 
-  prefix: '/:lng(fr)?',
+  prefix: "/:lng(fr)?",
 
-  middlewares: [
-
-  ],
+  middlewares: [],
 });

@@ -1,5 +1,5 @@
-import 'app/env';
-import 'app/config';
-import app from '@micra/application';
+import "app/env";
+import "app/config";
+import app from "@micra/application";
 
 export { app };
