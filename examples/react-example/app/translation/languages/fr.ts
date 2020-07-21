@@ -15,6 +15,6 @@ export const fr = {
       about: {
         title: 'À propos de nous',
       },
-    }
+    },
   },
 };

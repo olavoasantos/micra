@@ -12,6 +12,9 @@ export class TranslationServiceProvider extends ServiceProvider {
     const config = this.container.use('config').get('translation');
     const translation = this.container.use<typeof i18n>('translation');
 
-    translation.use(initReactI18next).use(languageDetection).init(config.options);
+    translation
+      .use(initReactI18next)
+      .use(languageDetection)
+      .init(config.options);
   }
 }

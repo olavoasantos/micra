@@ -1,14 +1,13 @@
 import app from '@micra/application';
 import { en } from 'app/translation/languages/en';
 import { fr } from 'app/translation/languages/fr';
-import { DEFAULT_LANGUAGE, LANGUAGES } from './constants';
 
 app.config.set('translation', {
-  default: DEFAULT_LANGUAGE,
-  languages: LANGUAGES,
+  default: 'en',
+  languages: ['en', 'fr'],
   options: {
-    fallbackLng: DEFAULT_LANGUAGE,
-    whitelist: LANGUAGES,
+    fallbackLng: 'en',
+    whitelist: ['en', 'fr'],
     returnObjects: true,
     interpolation: {
       escapeValue: false,
@@ -16,6 +15,7 @@ app.config.set('translation', {
     detection: {
       order: ['path'],
     },
+    // TODO: async loading of the resources
     resources: {
       en,
       fr,

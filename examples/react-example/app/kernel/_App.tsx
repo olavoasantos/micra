@@ -16,13 +16,19 @@ const App = () => {
     <div data-testid="app-container">
       <menu style={{ display: 'flex' }}>
         <div style={{ flex: 1 }}>
-          <Link to={pathTo('home', { lng: i18n.language })}>{t('routes.home.title')}</Link>
-          <Link to={pathTo('about', { lng: i18n.language })}>{t('routes.about.title')}</Link>
+          <Link to={pathTo('home', { lng: i18n.language })}>
+            {t('routes.home.title')}
+          </Link>
+          <Link to={pathTo('about', { lng: i18n.language })}>
+            {t('routes.about.title')}
+          </Link>
         </div>
         <div>
           <select
             value={i18n.language}
-            onChange={({ target: { value } }) => changeLanguage(value as Languages)}
+            onChange={({ target: { value } }) =>
+              changeLanguage(value as Languages)
+            }
           >
             {config('translation.languages').map((language: string) => (
               <option key={language} value={language}>
