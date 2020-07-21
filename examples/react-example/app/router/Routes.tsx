@@ -1,6 +1,6 @@
-import React, { memo } from "react";
-import { Switch, Route } from "react-router-dom";
-import { ReactRoute } from "@micra/react-route-registry";
+import React, { memo } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { ReactRoute } from '@micra/react-route-registry';
 
 export interface RoutesProps {
   routes: ReactRoute[];

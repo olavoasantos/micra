@@ -5,12 +5,12 @@ type EnvVariables = {
   APP_NAME: string;
   APP_TOKEN: string;
   LOG_SERVICE_TOKEN: string;
-  NODE_ENV: "development" | "production";
+  NODE_ENV: 'development' | 'production';
 };
 
 type Config = <T = any>(variable: string, fallback?: T) => T;
 type Env = (variable: keyof EnvVariables, fallback?: string) => string;
-type Use = import("@micra/tsyringe-service-container").TSyringeServiceContainer["use"];
+type Use = import('@micra/tsyringe-service-container').TSyringeServiceContainer['use'];
 
 declare const env: Env;
 declare const use: Use;

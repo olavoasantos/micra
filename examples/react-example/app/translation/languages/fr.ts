@@ -2,18 +2,18 @@ export const fr = {
   translation: {
     languages: {
       en: {
-        name: "English",
+        name: 'English',
       },
       fr: {
-        name: "Française",
+        name: 'Française',
       },
     },
     routes: {
       home: {
-        title: "Accueil",
+        title: 'Accueil',
       },
       about: {
-        title: "À propos de nous",
+        title: 'À propos de nous',
       },
     },
   },

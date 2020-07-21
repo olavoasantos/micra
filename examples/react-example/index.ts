@@ -1,3 +1,3 @@
-import { app } from "app/bootstrap";
+import { app } from 'app/bootstrap';
 
 app.run();

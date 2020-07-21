@@ -1,4 +1,4 @@
-import { Middleware } from "@micra/route-registry";
+import { Middleware } from '@micra/route-registry';
 
 export interface RouterConfig {
   fallbackRoute: string;
