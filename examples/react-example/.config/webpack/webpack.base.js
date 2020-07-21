@@ -37,6 +37,7 @@ module.exports = () =>
 
       new HtmlWebpackPlugin({
         inject: true,
+        base: '/',
         template: root('app/assets/index.html'),
       }),
     ]),
