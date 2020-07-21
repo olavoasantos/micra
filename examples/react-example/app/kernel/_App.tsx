@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactRouteRegistry } from '@micra/react-route-registry';
-import Routes from 'app/router/Routes';
+import Routes from 'app/router/components/Routes';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'app/translation/helpers/changeLanguage';
 import { Language } from 'app/translation/types';
