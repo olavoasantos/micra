@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { ReactRouteRegistry } from '@micra/react-route-registry';
 import Routes from 'app/router/Routes';
 import { useTranslation } from 'react-i18next';
-import { LANGUAGES } from 'app/translation/constants';
 import { changeLanguage } from 'app/translation/helpers/changeLanguage';
-import { Languages } from 'app/translation/types';
+import { Language } from 'app/translation/types';
 
 const App = () => {
   const pathTo = use('pathTo');
@@ -27,7 +26,7 @@ const App = () => {
           <select
             value={i18n.language}
             onChange={({ target: { value } }) =>
-              changeLanguage(value as Languages)
+              changeLanguage(value as Language)
             }
           >
             {config('translation.languages').map((language: string) => (
@@ -38,7 +37,7 @@ const App = () => {
           </select>
         </div>
       </menu>
-      <Routes routes={router.all('page')} />
+      <Routes routes={router.all()} />
     </div>
   );
 };

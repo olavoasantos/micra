@@ -3,7 +3,7 @@ export const pathTo = (
   params: Record<string, any> = {},
   query: Record<string, any> = {},
 ) => {
-  const route = use('router').find(path, 'page');
+  const route = use('router').find(path);
   if (route) {
     return route.toPath(
       {

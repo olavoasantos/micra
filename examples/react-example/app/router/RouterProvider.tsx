@@ -6,7 +6,7 @@ export interface RouterProviderProps {
 }
 
 const RouterProvider = ({ children }: RouterProviderProps) => (
-  <Router history={use('history')}>{children}</Router>
+  <Router history={use('router/history')}>{children}</Router>
 );
 
 export default memo(RouterProvider);
