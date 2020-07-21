@@ -9,6 +9,8 @@ const {
 module.exports = () =>
   group([
     devServer({
+      compress: true,
+      historyApiFallback: true,
       port: process.env.PORT || 3000,
     }),
 

@@ -11,8 +11,8 @@ const Routes = ({ routes }: RoutesProps) => (
     {routes.map((route) => (
       <Route
         path={route.path}
-        key={route.name + route.path}
-        exact={route.options.exact}
+        key={route.name || route.path}
+        exact={route.options.exact ?? true}
         render={(props) => <route.handler {...props} route={route} />}
       />
     ))}
