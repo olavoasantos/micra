@@ -149,6 +149,26 @@ devtools({
 });
 ```
 
+## Persisting state to storage
+
+Every once and a while you might need to persist the state from your stores to `localStorage` or `sessionStorage`. For that, you can make use of micra's `store-hooks-persist` lib.
+
+See [@micra/store-hooks-persist](https://www.npmjs.com/package/@micra/store-hooks-persist):
+
+```typescript
+import { state } from '@micra/store-hooks';
+import { persist } from '@micra/store-hooks-persist';
+
+const counter = state<number>(0);
+
+persist({
+  stores: {
+    counter,
+    // ... other states
+  },
+});
+```
+
 ## Hooks
 
 ### state

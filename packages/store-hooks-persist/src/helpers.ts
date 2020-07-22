@@ -23,7 +23,7 @@ export const hydrate = (storage: Storage, key: string, store: ValueState | Compu
   const persisted = storage.getItem(key);
   if (persisted) {
     const { value, expiration } = JSON.parse(persisted);
-    if (expiration >= getExpiration(0)) {
+    if (!expiration || expiration >= getExpiration(0)) {
       parent.set(value);
       return true;
     }

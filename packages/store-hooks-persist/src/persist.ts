@@ -14,4 +14,6 @@ export const persist = ({ stores, expiration = EXPIRATION, prefix = PREFIX, to =
 
     store.on('update', (_, value) => save(key, value, expiration));
   });
+
+  return (...keys: (keyof PersistOptions['stores'])[]) => keys.forEach(key => to.removeItem(prefix + key));
 };
