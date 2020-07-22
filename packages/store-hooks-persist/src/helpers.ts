@@ -11,16 +11,16 @@ export const getParent = (store: ValueState | ComputedState) => {
 
 export const getExpiration  = (expiration: number) => Date.now() + (expiration * 1000);
 
-export const save = (key: string, value: any, expiration: number) => {
-  localStorage.setItem(key, JSON.stringify({
+export const persistTo = (storage: Storage) => (key: string, value: any, expiration: number) => {
+  storage.setItem(key, JSON.stringify({
     value,
     expiration: getExpiration(expiration),
   }));
 };
 
-export const hydrate = (key: string, store: ValueState | ComputedState) => {
+export const hydrate = (storage: Storage, key: string, store: ValueState | ComputedState) => {
   const parent = getParent(store);
-  const persisted = localStorage.getItem(key);
+  const persisted = storage.getItem(key);
   if (persisted) {
     const { value, expiration } = JSON.parse(persisted);
     if (expiration >= getExpiration(0)) {
