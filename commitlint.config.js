@@ -43,6 +43,7 @@ module.exports = {
       'STORAGE-WRAPPER',
       'STORE-HOOKS',
       'STORE-HOOKS-DEVTOOLS',
+      'STORE-HOOKS-PERSIST',
       'TEST-UTILS',
       'TSYRINGE-SERVICE-CONTAINER',
       'VALIDATION-RULES',

@@ -1,13 +1,20 @@
 export interface State<T = any> {
   value: T;
+  type: 'VALUE' | 'COMPUTED';
+  on: StoreEvent<T>['onLifecycle'];
   subscribe: StoreEvent<T>['subscribe'];
 }
 
 export interface ValueState<T = any> extends State<T> {
-  on: StoreEvent<T>['onLifecycle'];
+  type: 'VALUE';
   set(partial: Partial<T> | ((state: T) => Partial<T>)): T;
   reset(): T;
   flush: StoreEvent<T>['clear'];
+}
+
+export interface ComputedState<U = any, T = U> extends State<U> {
+  type: 'COMPUTED';
+  parent: State<T>;
 }
 
 export type StateSelector<T = undefined, U = T> = (state: T) => U;

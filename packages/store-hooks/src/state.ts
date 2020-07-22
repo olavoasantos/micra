@@ -15,6 +15,7 @@ export const state = <T = any>(
   event.fireLifecycle('init', $initialState);
 
   return {
+    type: 'VALUE',
     flush: event.clear.bind(event),
     on: event.onLifecycle.bind(event),
     subscribe: event.subscribe.bind(event),
