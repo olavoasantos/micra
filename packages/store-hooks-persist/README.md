@@ -58,3 +58,21 @@ persist({
   },
 });
 ```
+
+### Custom storage
+
+> Defaults to localStorage
+
+```ts
+import { state } from '@micra/store-hooks';
+import { persist } from '@micra/store-hooks-persist';
+
+const counter = state<number>(0);
+
+persist({
+  to: sessionStorage,
+  stores: {
+    counter,
+  },
+});
+```
