@@ -2414,6 +2414,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@micra/store-hooks@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@micra/store-hooks/-/store-hooks-0.0.6.tgz#44114c74642dcfd2d9eccb01d8960277ac4bc6ba"
+  integrity sha512-Pt7uu6LOh7Rk3gYJ/AfahOWQ+meePSCn515Nwxq66FRnL9PiNshpwhqWtpwi8+4zJv0IKHRGnW61REj7q2etpQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@micra/tsyringe-service-container@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@micra/tsyringe-service-container/-/tsyringe-service-container-0.0.3.tgz#eccfee2abe77782c84ad61420d4c00f53c81467b"
@@ -3073,6 +3080,14 @@
   integrity sha512-7QfU8EzIYxYqeXpPf8QNv2xi8hrePlgTbRATRo+plRSdVfJu7N6sAXqrFxKJp6bGLvp82GV1gczl93gqiAfXPA==
   dependencies:
     "@types/react" "*"
+
+"@types/react-query@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/react-query/-/react-query-1.1.2.tgz#3d7f3c9457116d05ba4eabb9e7f882b6d496436c"
+  integrity sha512-/IuQs37kmUg7C417Rotu+uf/3LghR3Qv6RGHO2YU1P+wFx167Hy3WJ3r9Si0jOyJVTDtjF2Lt0xSeq+kJwokKw==
+  dependencies:
+    "@types/react" "*"
+    ts-toolbelt "*"
 
 "@types/react-router-dom@^5.1.5":
   version "5.1.5"
@@ -11986,6 +12001,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-query@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-2.5.6.tgz#fce28e9be4d8ab6000c257f69ef74ed49cdf0636"
+  integrity sha512-mN3y2EqRVmM2PAdqqt2wBzMZI0eO1+UMcEWXyOTnKZuoqpLSTdw87C+LdvhMrmmwlOvnV8sZZynuht/tVJv0cA==
+  dependencies:
+    ts-toolbelt "^6.9.4"
+
 react-router-dom@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
@@ -13938,6 +13960,11 @@ ts-node@^8.10.2:
     make-error "^1.1.1"
     source-map-support "^0.5.17"
     yn "3.1.1"
+
+ts-toolbelt@*, ts-toolbelt@^6.9.4:
+  version "6.13.21"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.13.21.tgz#8213a2c5b886d1c087fa5ecfbe8487121e1f2748"
+  integrity sha512-8M7MDW7A9Tg3XpsebBgVdgU01z88tMUzvxLcmf369of3wUyfinQ9cbJpRsbmDGGAak4ssNgXaHXGUaGfD8BpGg==
 
 tsconfig-paths@^3.9.0:
   version "3.9.0"
