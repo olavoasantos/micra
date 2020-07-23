@@ -11,7 +11,7 @@ const Home = (_props: HomeProps) => {
 
   return (
     <div data-testid="home-page">
-      <h1>{t('routes.home.title')}</h1>
+      <h1>{t('pages.home.title')}</h1>
       <TodoForm />
       <hr />
       <TodoList />

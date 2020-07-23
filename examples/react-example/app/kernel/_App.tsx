@@ -16,10 +16,10 @@ const App = () => {
       <menu style={{ display: 'flex' }}>
         <div style={{ flex: 1 }}>
           <Link to={pathTo('home', { lng: i18n.language })}>
-            {t('routes.home.title')}
+            {t('pages.home.title')}
           </Link>
           <Link to={pathTo('about', { lng: i18n.language })}>
-            {t('routes.about.title')}
+            {t('pages.about.title')}
           </Link>
         </div>
         <div>

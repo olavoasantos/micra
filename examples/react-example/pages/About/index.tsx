@@ -10,7 +10,7 @@ const About = (_props: AboutProps) => {
 
   return (
     <div data-testid="about-page">
-      <h1>{t('routes.about.title')}</h1>
+      <h1>{t('pages.about.title')}</h1>
     </div>
   );
 };

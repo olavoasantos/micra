@@ -8,7 +8,7 @@ export const fr = {
         name: 'Française',
       },
     },
-    routes: {
+    pages: {
       home: {
         title: 'Accueil',
       },
