@@ -8,6 +8,7 @@ const {
   setMode,
   babel,
   resolve,
+  optimization,
 } = require('webpack-blocks');
 const { root } = require('./helpers');
 
@@ -23,6 +24,24 @@ module.exports = () =>
 
     resolve({
       modules: ['node_modules', '.'],
+    }),
+
+    optimization({
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/].*js/,
+            name(module) {
+              const packageName = module.context.match(
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+              )[1];
+
+              return `vendor.${packageName.replace('@', '')}`;
+            },
+          },
+        },
+      },
     }),
 
     addPlugins([
