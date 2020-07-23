@@ -1,6 +1,7 @@
 import app, { AppConfig } from '@micra/application';
 import { ReactDomKernel } from '@micra/react-dom-kernel';
 import { TSyringeServiceContainer } from '@micra/tsyringe-service-container';
+import { DomainServiceProvider } from 'app/domain';
 import { RouterServiceProvider } from 'app/router';
 import { TranslationServiceProvider } from 'app/translation';
 
@@ -18,5 +19,9 @@ app.config.set<AppConfig>('app', {
   /**
    * Service providers
    */
-  services: [RouterServiceProvider, TranslationServiceProvider],
+  services: [
+    RouterServiceProvider,
+    TranslationServiceProvider,
+    DomainServiceProvider,
+  ],
 });

@@ -7,6 +7,7 @@ export interface AboutProps {
 
 const About = (_props: AboutProps) => {
   const { t } = useTranslation();
+
   return (
     <div data-testid="about-page">
       <h1>{t('routes.about.title')}</h1>
