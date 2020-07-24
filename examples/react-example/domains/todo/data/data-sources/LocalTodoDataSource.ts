@@ -13,6 +13,7 @@ import {
   UpdateTodoDTO,
 } from 'domains/todo/data/types';
 import { inject, singleton } from '@micra/tsyringe-service-container';
+import { TodoFactory } from 'domains/todo/data/tests/factories';
 
 @singleton()
 export class LocalTodoDataSource implements TodoDataSource {
@@ -36,11 +37,10 @@ export class LocalTodoDataSource implements TodoDataSource {
   }
 
   async create(dto: CreateTodoDTO): Promise<Todo> {
-    const todo = {
-      id: '123',
-      complete: false,
+    const todo = TodoFactory.make({
       name: dto.name,
-    };
+      complete: false,
+    });
 
     addTodo(todo);
 

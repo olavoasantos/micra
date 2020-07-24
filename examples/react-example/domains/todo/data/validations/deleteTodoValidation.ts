@@ -1,10 +1,10 @@
 import { validate, ValidationError } from '@micra/validator';
 import { required, isString } from '@micra/validation-rules';
-import { DeleteTodoInput } from 'domains/todo/data/types';
+import { DeleteTodoInput, DeleteTodoDTO } from 'domains/todo/data/types';
 
 export const deleteTodoValidation = (
   input: DeleteTodoInput,
-): [DeleteTodoInput, ValidationError<DeleteTodoInput>] =>
-  validate<any>(input, {
+): [DeleteTodoDTO, ValidationError<DeleteTodoDTO>] =>
+  validate<DeleteTodoDTO>(input, {
     id: [required(), isString()],
   });

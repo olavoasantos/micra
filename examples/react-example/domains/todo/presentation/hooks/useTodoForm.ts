@@ -1,23 +1,19 @@
 import { useCallback } from 'react';
-import { useQuery, queryCache } from 'react-query';
 import { useStoreValue } from '@micra/react-store-hooks';
-import { TodoService } from 'domains/todo/data/types';
 import { setTodoForm } from 'domains/todo/data';
 import { TodoFormProps } from 'domains/todo/presentation/types';
+import { createTodo } from 'domains/todo/presentation/connectors/createTodo';
+import { fetchAllTodos } from 'domains/todo/presentation/connectors/fetchAllTodos';
 
 export const useTodoForm = (): TodoFormProps => {
   const todo = useStoreValue(use('TodoForm'));
-  const { refetch: createTodo, isLoading, error } = useQuery(
-    'create-todo',
-    () => use<TodoService>('TodoService').create(todo),
-    {
-      enabled: false,
-      onSuccess() {
-        use('TodoForm').reset();
-        queryCache.invalidateQueries('todo-list');
-      },
+  const [create, { isLoading, error }] = createTodo.lazy({
+    payload: todo,
+    onSuccess() {
+      use('TodoForm').reset();
+      fetchAllTodos.invalidate();
     },
-  );
+  });
 
   const onChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +27,7 @@ export const useTodoForm = (): TodoFormProps => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      createTodo();
+      create();
     },
     [createTodo],
   );

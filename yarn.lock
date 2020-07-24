@@ -10327,7 +10327,7 @@ no-case@^3.0.3:
 
 node-factory@^0.4.1:
   version "0.4.1"
-  resolved "https://registry.yarnpkg.com/node-factory/-/node-factory-0.4.1.tgz#00d12b9b7075aaea9cc99103d511f484899afdf7"
+  resolved "https://hub.skipthedishes.com/repository/npm-all/node-factory/-/node-factory-0.4.1.tgz#00d12b9b7075aaea9cc99103d511f484899afdf7"
   integrity sha512-1THEqEfbKFAq2EG01St7faHVdCWKUaJaQjNeZQ1jpBXhes3P9hp9Kqt4ZOSao6IMVmr1eNcJlLVDi8/9VFCiRQ==
   dependencies:
     "@types/faker" "^4.1.11"

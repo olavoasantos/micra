@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import TodoFormUI from 'domains/todo/presentation/components/TodoForm';
 import TodoFormError from 'domains/todo/presentation/components/TodoFormError';
 import TodoFormLoading from 'domains/todo/presentation/components/TodoFormLoading';
-import { useTodoForm } from 'domains/todo/presentation/connectors/useTodoForm';
+import { useTodoForm } from 'domains/todo/presentation/hooks/useTodoForm';
 
 const TodoForm = () => {
   const props = useTodoForm();

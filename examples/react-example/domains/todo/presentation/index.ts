@@ -11,11 +11,18 @@ export { default as TodoListErrorUI } from 'domains/todo/presentation/components
 export { default as TodoListLoadingUI } from 'domains/todo/presentation/components/TodoListLoading';
 
 /** Connectors */
-export * from 'domains/todo/presentation/connectors/useTodoList';
-export * from 'domains/todo/presentation/connectors/useTodoForm';
-export * from 'domains/todo/presentation/connectors/useDeleteTodo';
-export * from 'domains/todo/presentation/connectors/useCompleteTodo';
-export * from 'domains/todo/presentation/connectors/useIncompleteTodo';
+export * from 'domains/todo/presentation/connectors/createTodo';
+export * from 'domains/todo/presentation/connectors/deleteTodo';
+export * from 'domains/todo/presentation/connectors/fetchAllTodos';
+export * from 'domains/todo/presentation/connectors/markAsComplete';
+export * from 'domains/todo/presentation/connectors/markAsIncomplete';
+
+/** Hooks */
+export * from 'domains/todo/presentation/hooks/useTodoList';
+export * from 'domains/todo/presentation/hooks/useTodoForm';
+export * from 'domains/todo/presentation/hooks/useDeleteTodo';
+export * from 'domains/todo/presentation/hooks/useCompleteTodo';
+export * from 'domains/todo/presentation/hooks/useIncompleteTodo';
 
 /** Features */
 export { default as TodoForm } from 'domains/todo/presentation/features/TodoForm';

@@ -1,11 +1,5 @@
 import { inject, singleton } from '@micra/tsyringe-service-container';
 import { Todo } from 'domains/todo/types';
-import { findTodoDTO } from 'domains/todo/data/dtos/findTodoDTO';
-import { createTodoDTO } from 'domains/todo/data/dtos/createTodoDTO';
-import { updateTodoDTO } from 'domains/todo/data/dtos/updateTodoDTO';
-import { deleteTodoDTO } from 'domains/todo/data/dtos/deleteTodoDTO';
-import { completeTodoDTO } from 'domains/todo/data/dtos/completeTodoDTO';
-import { incompleteTodoDTO } from 'domains/todo/data/dtos/incompleteTodoDTO';
 import { findTodoValidation } from 'domains/todo/data/validations/findTodoValidation';
 import { createTodoValidation } from 'domains/todo/data/validations/createTodoValidation';
 import { updateTodoValidation } from 'domains/todo/data/validations/updateTodoValidation';
@@ -20,6 +14,7 @@ import {
   DeleteTodoInput,
   UpdateTodoInput,
 } from 'domains/todo/data/types';
+import { incompleteTodoValidation } from './validations/incompleteTodoValidation';
 
 @singleton()
 export class TodoClientService implements TodoService {
@@ -34,73 +29,65 @@ export class TodoClientService implements TodoService {
   }
 
   async create(input: CreateTodoInput): Promise<Todo> {
-    const [data, errors] = createTodoValidation(input);
+    const [dto, errors] = createTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = createTodoDTO(data);
 
     return await this.repository.create(dto);
   }
 
   async find(input: FindTodoByIdInput): Promise<Todo | undefined> {
-    const [data, errors] = findTodoValidation(input);
+    const [dto, errors] = findTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = findTodoDTO(data);
 
     return await this.repository.find(dto);
   }
 
   async getComplete(): Promise<Todo[]> {
-    const dto = findTodoDTO({ complete: true });
+    const [dto, errors] = findTodoValidation({ complete: true });
+
+    if (errors.hasAny()) throw errors;
 
     return await this.repository.all(dto);
   }
 
   async getIncomplete(): Promise<Todo[]> {
-    const dto = findTodoDTO({ complete: false });
+    const [dto, errors] = findTodoValidation({ complete: false });
+
+    if (errors.hasAny()) throw errors;
 
     return await this.repository.all(dto);
   }
 
   async update(input: UpdateTodoInput): Promise<Todo> {
-    const [data, errors] = updateTodoValidation(input);
+    const [dto, errors] = updateTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = updateTodoDTO(data);
 
     return await this.repository.update(dto);
   }
 
   async markAsComplete(input: CompleteTodoInput): Promise<Todo> {
-    const [data, errors] = completeTodoValidation(input);
+    const [dto, errors] = completeTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = completeTodoDTO(data);
 
     return await this.repository.update(dto);
   }
 
   async markAsIncomplete(input: CompleteTodoInput): Promise<Todo> {
-    const [data, errors] = completeTodoValidation(input);
+    const [dto, errors] = incompleteTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = incompleteTodoDTO(data);
 
     return await this.repository.update(dto);
   }
 
   async delete(input: DeleteTodoInput): Promise<Todo> {
-    const [data, errors] = deleteTodoValidation(input);
+    const [dto, errors] = deleteTodoValidation(input);
 
     if (errors.hasAny()) throw errors;
-
-    const dto = deleteTodoDTO(data);
 
     return await this.repository.delete(dto);
   }

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import CompleteTodoUI from 'domains/todo/presentation/components/CompleteTodo';
 import { TodoProps } from 'domains/todo/presentation/types';
-import { useCompleteTodo } from 'domains/todo/presentation/connectors/useCompleteTodo';
+import { useCompleteTodo } from 'domains/todo/presentation/hooks/useCompleteTodo';
 
 const CompleteTodo = (data: TodoProps) => {
   const props = useCompleteTodo(data);
