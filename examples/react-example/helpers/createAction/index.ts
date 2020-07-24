@@ -5,9 +5,10 @@ import {
   QueryResultBase,
 } from 'react-query';
 
-export type UseQueryOptions<T, P> = { ref?: string; payload?: P } & QueryOptions<
-  T
->;
+export type UseQueryOptions<T, P> = {
+  ref?: string;
+  payload?: P;
+} & QueryOptions<T>;
 export type UseLazyResponse<T> = [
   QueryResultBase<T>['refetch'],
   QueryResultBase<T>,
