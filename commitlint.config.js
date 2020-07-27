@@ -45,6 +45,7 @@ module.exports = {
       'STORE-HOOKS-DEVTOOLS',
       'STORE-HOOKS-PERSIST',
       'TEST-UTILS',
+      'THEME-GENERATOR',
       'TSYRINGE-SERVICE-CONTAINER',
       'VALIDATION-RULES',
       'VALIDATOR',

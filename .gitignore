@@ -11,6 +11,7 @@
 **/build
 **/@build
 **/@types
+**/.micra
 **/output
 **/.eslintcache
 
