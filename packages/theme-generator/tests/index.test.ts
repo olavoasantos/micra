@@ -7,7 +7,7 @@ import { ThemeToken } from '../parser/types';
 
 const theme: ThemeToken = {
   colors: {
-    white: '#fff',    // Shallow
+    white: '#fff', // Shallow
     gray: {
       100: '#f7fafc', // Nested
     },
@@ -19,7 +19,11 @@ const theme: ThemeToken = {
 };
 
 it('should pass', () => {
-  const [tsTypes, cssVars, themeObject] = themeGenerator(theme).to([toThemeType, toCssVariables, toCssVariablesThemeObject]);
+  const [tsTypes, cssVars, themeObject] = themeGenerator(theme).to([
+    toThemeType,
+    toCssVariables,
+    toCssVariablesThemeObject,
+  ]);
 
   writeFileSync(`${__dirname}/types.ts`, tsTypes, 'utf-8');
   writeFileSync(`${__dirname}/light.js`, themeObject, 'utf-8');
