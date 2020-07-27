@@ -1,6 +1,6 @@
 {
   "name": "@micra/theme-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": ".micra/index.cjs.js",
   "module": ".micra/index.js",
@@ -11,7 +11,7 @@
   "scripts": {
     "build": "yarn rimraf .micra && yarn rollup -c .config/build/rollup.config.js",
     "format": "prettier --write '**/*.{ts,tsx}' --config .config/linting/.prettierrc.js",
-    "lint": "eslint '**/*.{ts,tsx}' --cache --fix --config .config/linting/.eslintrc.js --cache-location .config/linting/.eslintcache",
+    "lint": "eslint '**/*.{ts,tsx}' --cache --config .config/linting/.eslintrc.js --cache-location .config/linting/.eslintcache",
     "test": "jest --config .config/test/jest.config.js",
     "watch": "nodemon --config .config/dev/nodemon.json"
   },

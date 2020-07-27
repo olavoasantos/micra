@@ -2,14 +2,16 @@ export interface ThemeTokenContext {
   theme(path: string): ThemeTokenDefinition;
 }
 export type ThemeTokenPrimitive = string | number | string[];
-export type ThemeTokenDynamicPrimitive = (context: ThemeTokenContext) => ThemeTokenDefinition;
-export type ThemeTokenDefinition = ThemeToken | ThemeTokenDynamicPrimitive | ThemeTokenPrimitive;
+export type ThemeTokenDynamicDefinition = (context: ThemeTokenContext) => ThemeTokenDefinition;
+export type ThemeTokenDefinition = ThemeToken | ThemeTokenDynamicDefinition | ThemeTokenPrimitive;
 export interface ThemeToken {
   [key: string]: ThemeTokenDefinition;
   [key: number]: ThemeTokenDefinition;
 }
 export interface ThemeElement {
-  path: string[];
+  main: string;
+  path: string;
+  breadcrumbs: string[];
   value: string;
 }
 

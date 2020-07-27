@@ -3,12 +3,14 @@ import {
   ThemeElement,
   ThemeResolver,
   ThemeTokenDefinition,
-  ThemeTokenDynamicPrimitive,
+  ThemeTokenDynamicDefinition,
   ThemeTokenContext,
 } from './types';
 
 export const createThemeElement = (name: string): ThemeElement => ({
-  path: [name],
+  main: name,
+  path: name,
+  breadcrumbs: [name],
   value: '',
 });
 
@@ -46,7 +48,9 @@ export const themeResolvers: ThemeResolver[] = [
     },
     resolve(element, definition: ThemeToken, context) {
       return parser(definition, [], context).map((el) => {
-        el.path = element.path.concat(el.path);
+        el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
+        el.path = el.breadcrumbs.join('.');
+        el.main = el.breadcrumbs[0];
         return el;
       });
     },
@@ -56,7 +60,7 @@ export const themeResolvers: ThemeResolver[] = [
     check(definition) {
       return typeof definition === 'function';
     },
-    resolve(element, definition: ThemeTokenDynamicPrimitive, context) {
+    resolve(element, definition: ThemeTokenDynamicDefinition, context) {
       const response = definition(context);
 
       if (isPrimitive(response)) {
@@ -65,7 +69,9 @@ export const themeResolvers: ThemeResolver[] = [
       }
 
       return parser(response as ThemeToken, [], context).map((el) => {
-        el.path = element.path.concat(el.path);
+        el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
+        el.path = el.breadcrumbs.join('.');
+        el.main = el.breadcrumbs[0];
         return el;
       });
     },

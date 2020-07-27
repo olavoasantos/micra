@@ -3,14 +3,16 @@ import { ThemeToken } from '../parser/types';
 import { ThemeGenerator } from '../generators/types';
 
 export const themeGenerator = (tokens: ThemeToken) => {
-  const AST = parser(tokens);
+  const elements = parser(tokens);
 
   return {
-    to(generators: ThemeGenerator[], callback?: (content: string) => void) {
+    tokens,
+    elements,
+    to(...generators: ThemeGenerator[]) {
       return generators.map((generator) => {
-        const content = generator.build(AST);
-        if (callback) {
-          callback(content);
+        const content = generator.build(elements);
+        if (generator.options.callback) {
+          generator.options.callback({ content, generator, tokens, elements });
         }
 
         return content;

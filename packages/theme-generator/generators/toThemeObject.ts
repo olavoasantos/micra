@@ -2,23 +2,26 @@ import prettier from 'prettier';
 import { ThemeGenerator, ThemeGeneratorOptions } from './types';
 import { deepMerge } from '../helpers/deepMerge';
 
-export interface ToThemeTypeOptions extends ThemeGeneratorOptions {
+export interface ToThemeObjectOptions extends ThemeGeneratorOptions {
   name?: string;
-  parent?: string;
+  shouldExport?: boolean;
+  type?: string;
+  imports?: string;
 }
 
-export const toThemeType = (
-  options: Partial<ToThemeTypeOptions> = {},
-): ThemeGenerator<ToThemeTypeOptions> => ({
+export const toThemeObject = (
+  options: Partial<ToThemeObjectOptions> = {},
+): ThemeGenerator<ToThemeObjectOptions> => ({
   options: {
     name: 'Theme',
+    shouldExport: true,
     willTransform: (elements) => elements,
     ...options,
   },
-  name: 'toThemeType',
-  extension: ['ts'],
+  name: 'toThemeObject',
+  extension: ['js', 'ts'],
   build(elements) {
-    const { name, parent, willTransform } = this.options;
+    const { name, shouldExport, type, imports, willTransform } = this.options;
     const definitions = willTransform(elements).reduce((variables, element) => {
       const [key, ...rest] = element.breadcrumbs.reverse();
       element.breadcrumbs.reverse();
@@ -31,9 +34,9 @@ export const toThemeType = (
     }, {});
 
     return prettier.format(
-      `export interface ${name}${Boolean(parent) ? ` extends ${parent}` : ''} ${JSON.stringify(
-        definitions,
-      )}`,
+      `${Boolean(imports) ? `${imports}\n\n` : ''}${shouldExport ? 'export ' : ''}const ${name}${
+        Boolean(type) ? `: ${type}` : ''
+      } = ${JSON.stringify(definitions)}`,
       {
         parser: 'babel-ts',
         semi: true,
