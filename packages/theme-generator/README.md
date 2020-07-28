@@ -339,6 +339,8 @@ export interface ToThemeObjectOptions extends ThemeGeneratorOptions {
 
 #### toThemeType
 
+##### Usage
+
 ```typescript
 const [tsType] = themeGenerator(theme).to(toThemeType());
 ```
