@@ -3462,6 +3462,31 @@
     "@micra/multi-env" "^0.0.2"
     tslib "^2.0.0"
 
+"@micra/assistant-core@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@micra/assistant-core/-/assistant-core-0.0.4.tgz#7025614e8a678eb1fc304706bdffa5dd18812d83"
+  integrity sha512-RibzHdBZ4zomgM4JF0w92B5tkbKgHrN2AXLEueMsr1pSM/LniRMpdhVDjgIeR2qMRxGE3Xn/u2269nmWSX1EMQ==
+  dependencies:
+    "@micra/assistant-parser" "^0.0.1"
+    "@micra/cli-router" "^0.0.1"
+    "@micra/core" "^0.0.4"
+    tslib "^2.0.0"
+
+"@micra/assistant-parser@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@micra/assistant-parser/-/assistant-parser-0.0.1.tgz#40890fc26c53e4c098ae20f4abf6307b58a099df"
+  integrity sha512-mbba24u8bJn4LjLV/y1G6/nRqx4FoygDCDaGF8MiyiTS3BET/9rcZxRSJuesQZSbFRxRPIfH7c4z0IKMFTuo8A==
+  dependencies:
+    "@micra/core" "^0.0.4"
+    tslib "^2.0.0"
+
+"@micra/core@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@micra/core/-/core-0.0.4.tgz#8eddbac71069223b63542a78a3c413e4d42c0727"
+  integrity sha512-txBdTGY1q7ZnSoLKOiVpQVA+8xAl5LHTP48lTs6rWgaehmDo2TxgEIC916JCrbl/RRZOxO+aNj+4/BofzJ7aig==
+  dependencies:
+    tslib "^2.0.0"
+
 "@micra/store-hooks@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@micra/store-hooks/-/store-hooks-0.0.6.tgz#44114c74642dcfd2d9eccb01d8960277ac4bc6ba"

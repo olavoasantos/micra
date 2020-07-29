@@ -1,6 +1,6 @@
 {
   "name": "@micra/assistant-core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "author": {
     "name": "Olavo Amorim Santos",
@@ -37,7 +37,7 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "@micra/assistant-parser": "^0.0.1",
+    "@micra/assistant-parser": "^0.0.2",
     "@micra/cli-router": "^0.0.1",
     "@micra/core": "^0.0.7",
     "tslib": "^2.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "@micra/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Olavo Amorim Santos<olavo.a.santos@gmail.com>",
   "license": "MIT",
   "bin": {
@@ -45,10 +45,10 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "@micra/application": "^0.0.6",
-    "@micra/assistant-core": "^0.0.4",
+    "@micra/application": "^0.0.7",
+    "@micra/assistant-core": "^0.0.5",
     "@micra/assistant-help-block": "^0.0.1",
-    "@micra/assistant-parser": "^0.0.1",
+    "@micra/assistant-parser": "^0.0.2",
     "@micra/chalk-logger": "^0.0.1",
     "@micra/cli-router": "^0.0.1",
     "@micra/config": "^0.0.4",
