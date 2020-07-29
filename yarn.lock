@@ -3452,6 +3452,16 @@
     prop-types "^15.7.2"
     react-is "^16.8.0"
 
+"@micra/application@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@micra/application/-/application-0.0.6.tgz#d9a4eefc4eac14dac4edc385f0df04359ebce009"
+  integrity sha512-bL+QhdNKiy2vgyi+I4zBiyyguWPQGsyyUrFPq87019ocq6Yw27Xl4pVrtrMLxNn7Hr9j4/kOL0C9w8lVRijxmg==
+  dependencies:
+    "@micra/config" "^0.0.4"
+    "@micra/core" "^0.0.7"
+    "@micra/multi-env" "^0.0.2"
+    tslib "^2.0.0"
+
 "@micra/store-hooks@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@micra/store-hooks/-/store-hooks-0.0.6.tgz#44114c74642dcfd2d9eccb01d8960277ac4bc6ba"
