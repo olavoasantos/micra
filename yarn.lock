@@ -3480,10 +3480,33 @@
     "@micra/core" "^0.0.4"
     tslib "^2.0.0"
 
+"@micra/cli-router@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@micra/cli-router/-/cli-router-0.0.1.tgz#ef94b5abd851d9a6056352148576eb23c6208264"
+  integrity sha512-FooPke5cYXsUT553US+jsKVjCQIoc6RH9B0GFQyOZOBMxbLxJeHVocGXnaDo94COQq/Ya59YDGANFMgHLgMJ3g==
+  dependencies:
+    "@micra/core" "^0.0.4"
+    tslib "^2.0.0"
+
+"@micra/config@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@micra/config/-/config-0.0.4.tgz#d832322128ec1eaf8a113b6fbb4807e7d77bc733"
+  integrity sha512-VUU9Oq0aM5Z63cObiEVZF7HHqfcoxeM9mIHUmWSYbytdK506XnruwHnMUOWdFTo0+xKnmDcESKYDfEGwVB32gg==
+  dependencies:
+    "@micra/core" "^0.0.6"
+    tslib "^2.0.0"
+
 "@micra/core@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@micra/core/-/core-0.0.4.tgz#8eddbac71069223b63542a78a3c413e4d42c0727"
   integrity sha512-txBdTGY1q7ZnSoLKOiVpQVA+8xAl5LHTP48lTs6rWgaehmDo2TxgEIC916JCrbl/RRZOxO+aNj+4/BofzJ7aig==
+  dependencies:
+    tslib "^2.0.0"
+
+"@micra/core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@micra/core/-/core-0.0.6.tgz#57ca7640fe59399e08a9f149e24de062cf3ae334"
+  integrity sha512-4MpbWpQ2BZOJqO2SBdAonr5xGe3cQmJGBiB724X5P1tn6inZWcIr7DMk/jOn57MNsMNLdptq1Y2yOO7kfFyppA==
   dependencies:
     tslib "^2.0.0"
 

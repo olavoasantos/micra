@@ -13,6 +13,6 @@ export class CLICore extends AssistantCore {
     @inject('CLIHelpBlock') helpBlock: CLIHelpBlock,
     @inject('MakeContext') makeContext: ContextGenerator,
   ) {
-    super(config, logger, router, parser, helpBlock, makeContext);
+    super(config, logger, router as any, parser, helpBlock, makeContext);
   }
 }

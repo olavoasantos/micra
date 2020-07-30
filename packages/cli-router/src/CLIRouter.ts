@@ -83,10 +83,6 @@ export class CLIRouter implements Router {
   }
 
   public define(schema: CLICommand): CLIRoute {
-    if (this.has('command', schema.command)) {
-      throw new Error(`Route "${schema.command}" is already defined`);
-    }
-
     const route = this.registerRoute('command', schema.command, [schema.handler]);
 
     if (schema.description) {
