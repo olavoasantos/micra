@@ -1,6 +1,6 @@
 {
   "name": "@micra/cli",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "author": "Olavo Amorim Santos<olavo.a.santos@gmail.com>",
   "license": "MIT",
   "bin": {
@@ -61,6 +61,7 @@
     "dotenv": "^8.2.0",
     "lodash": "^4.17.19",
     "pluralize": "^8.0.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2"
   }
 }

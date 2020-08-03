@@ -1,5 +1,5 @@
 /// <reference types="node" />
-
+declare module 'rimraf';
 type EnvVariables = {
   NODE_ENV: 'development' | 'production';
 };
