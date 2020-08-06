@@ -37,8 +37,8 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "@micra/application": "^0.0.6",
-    "@micra/config": "^0.0.4",
+    "@micra/application": "^0.0.8",
+    "@micra/config": "^0.0.5",
     "@micra/core": "^0.0.7",
     "@micra/dot-env": "^0.0.2",
     "@micra/kernel": "^0.0.3",

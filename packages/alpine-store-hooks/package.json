@@ -47,7 +47,7 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "@micra/store-hooks": "^0.0.6"
+    "@micra/store-hooks": "^0.0.7"
   },
   "peerDependencies": {
     "alpinejs": "^2.4.1"
