@@ -26,7 +26,7 @@ export class BaseRouteRegistryBuilder<V extends string, H> implements RouteRegis
   public find(path: string, verb: V) {
     return this.routes.registry
       .get(verb)
-      ?.find((route) => route.path === path || route.name === path || route.match(path));
+      ?.find((route) => route.path === path || route.name === path || route.test(path));
   }
 
   public register(verb: V, _path: string, route: BaseRoute<H>) {
