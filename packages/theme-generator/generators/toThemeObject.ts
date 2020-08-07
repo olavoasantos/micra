@@ -34,7 +34,7 @@ export const toThemeObject = (
     }, {});
 
     return prettier.format(
-      `${Boolean(imports) ? `${imports}\n\n` : ''}${shouldExport ? 'export ' : ''}const ${name}${
+      `${Boolean(imports) ? `${imports}\n\n` : ''}${shouldExport ? 'exports.' : ''}${name}${
         Boolean(type) ? `: ${type}` : ''
       } = ${JSON.stringify(definitions)}`,
       {
