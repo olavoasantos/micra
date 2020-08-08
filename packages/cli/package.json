@@ -1,6 +1,6 @@
 {
   "name": "@micra/cli",
-  "version": "0.0.12",
+  "version": "0.0.16",
   "author": "Olavo Amorim Santos<olavo.a.santos@gmail.com>",
   "license": "MIT",
   "bin": {
@@ -39,7 +39,6 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.4",
     "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
@@ -57,10 +56,12 @@
     "@micra/kernel": "^0.0.3",
     "@micra/mustache-template-engine": "^0.0.1",
     "@micra/service-provider": "^0.0.2",
+    "@micra/theme-generator": "^0.0.5",
     "@micra/tsyringe-service-container": "^0.0.2",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.19",
     "pluralize": "^8.0.0",
+    "prettier": "^2.0.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2"
   }
