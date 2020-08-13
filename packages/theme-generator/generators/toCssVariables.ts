@@ -1,5 +1,5 @@
-import { createGenerator } from './createGenerator';
 import { pathToKebab } from '../helpers/pathToKebab';
+import { createGenerator } from '../helpers/createGenerator';
 
 export const toCssVariables = createGenerator(
   ({ elements, parseValue, generator: { options } }) => {

@@ -1,4 +1,4 @@
-import { parser } from '../parser';
+import { themeParser } from '../parser';
 import { parseValue } from '../parseValue';
 import { ThemeElement, ThemeToken } from '../parser/types';
 import {
@@ -15,7 +15,7 @@ export interface ThemeGeneratorInterface {
 }
 
 export const themeGenerator = (tokens: ThemeToken): ThemeGeneratorInterface => {
-  const elements = parser(tokens);
+  const elements = themeParser(tokens);
 
   return {
     tokens,

@@ -11,9 +11,10 @@ const noop: MakeContext<ThemeTokenContext> = (c) => c;
 export const createContext = (
   tokens: ThemeToken,
   makeContext: MakeContext = noop,
-): ThemeTokenContext =>
-  makeContext({
-    tokens,
-    theme: fetchToken(tokens),
-    rgba: rgba(tokens),
-  });
+): ThemeTokenContext => {
+  const context = { tokens } as ThemeTokenContext;
+  context.theme = fetchToken(context);
+  context.rgba = rgba(context);
+
+  return makeContext(context);
+};

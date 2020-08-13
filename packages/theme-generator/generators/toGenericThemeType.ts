@@ -1,7 +1,6 @@
-import { DeepPartial } from '../helpers/types';
 import { deepMerge } from '../helpers/deepMerge';
-import { createGenerator } from './createGenerator';
 import { pathToObject } from '../helpers/pathToObject';
+import { createGenerator } from '../helpers/createGenerator';
 
 export const toGenericThemeType = createGenerator(({ elements, generator: { options } }) => {
   const { willTransform } = options;

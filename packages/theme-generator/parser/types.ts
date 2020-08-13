@@ -1,3 +1,5 @@
+import { MakeContext } from './context';
+
 export interface ThemeTokenContext {
   tokens: ThemeToken;
   theme(path: string): ThemeTokenDefinition;
@@ -27,13 +29,15 @@ export interface ThemeResolver {
   ): ThemeElement[];
 }
 
-export interface ThemeParserOptions {
+export interface ThemeParserOptions<E = ThemeTokenContext> {
   context: ThemeTokenContext;
   elements: ThemeElement[];
   resolvers: ThemeResolver[];
+  makeContext: MakeContext<E>;
 }
 
-export type ThemeParser = (
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export type ThemeParser<E extends ThemeTokenContext = any> = (
   tokens: ThemeToken,
-  options?: Partial<ThemeParserOptions>,
+  options?: Partial<ThemeParserOptions<E>>,
 ) => ThemeElement[];

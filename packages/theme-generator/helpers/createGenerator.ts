@@ -1,4 +1,4 @@
-import { ThemeGenerator, ThemeGeneratorOptions } from './types';
+import { ThemeGenerator, ThemeGeneratorOptions } from '../generators/types';
 
 export const createGenerator = <O extends ThemeGeneratorOptions = ThemeGeneratorOptions>(
   build: ThemeGenerator['build'],

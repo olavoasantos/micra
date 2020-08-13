@@ -1,4 +1,4 @@
-import { parser } from '..';
+import { themeParser } from '..';
 import { ThemeResolver, ThemeToken } from '../types';
 
 export const objectResolver: ThemeResolver = {
@@ -6,7 +6,7 @@ export const objectResolver: ThemeResolver = {
     return typeof definition === 'object' && definition != null && !Array.isArray(definition);
   },
   resolve(element, definition: ThemeToken, context) {
-    return parser(definition, { context }).map((el) => {
+    return themeParser(definition, { context }).map((el) => {
       el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
       el.path = el.breadcrumbs.join('.');
       el.main = el.breadcrumbs[0];

@@ -1,6 +1,6 @@
 import { deepMerge } from '../helpers/deepMerge';
-import { createGenerator } from './createGenerator';
 import { pathToObject } from '../helpers/pathToObject';
+import { createGenerator } from '../helpers/createGenerator';
 
 export const toThemeObject = createGenerator(({ elements, parseValue, generator: { options } }) => {
   const { willTransform } = options;
@@ -10,7 +10,7 @@ export const toThemeObject = createGenerator(({ elements, parseValue, generator:
       element.path.split('.').reverse(),
       parseValue(element.value, {
         from(path: string) {
-          return elements.find((el) => (el.path = path))?.value ?? '';
+          return elements.find((el) => (el.path === path))?.value ?? '';
         },
       }),
     );

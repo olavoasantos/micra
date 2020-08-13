@@ -1,4 +1,4 @@
-import { parser } from '..';
+import { themeParser } from '..';
 import { isPrimitive } from '../helpers';
 import { ThemeResolver, ThemeToken, ThemeTokenDynamicDefinition } from '../types';
 
@@ -14,7 +14,7 @@ export const functionResolver: ThemeResolver = {
       return [element];
     }
 
-    return parser(response as ThemeToken, { context }).map((el) => {
+    return themeParser(response as ThemeToken, { context }).map((el) => {
       el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
       el.path = el.breadcrumbs.join('.');
       el.main = el.breadcrumbs[0];

@@ -1,13 +1,19 @@
-import { createContext } from './context';
 import { ThemeParser } from './types';
+import { createContext } from './context';
 import { defaultResolvers } from './resolvers';
 import { createThemeElement } from './helpers';
 
-export const parser: ThemeParser = (
+export const themeParser: ThemeParser = (
   definition,
-  { context = createContext(definition), elements = [], resolvers = [] } = {},
+  {
+    makeContext,
+    context = createContext(definition, makeContext),
+    elements = [],
+    resolvers = [],
+  } = {},
 ) => {
   const themeResolvers = resolvers.concat(defaultResolvers);
+
   for (const [key, entry] of Object.entries(definition)) {
     const element = createThemeElement(key);
 

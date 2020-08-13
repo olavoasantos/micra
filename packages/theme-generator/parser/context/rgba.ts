@@ -1,9 +1,9 @@
-import { ThemeToken } from '../types';
+import { ThemeTokenContext } from '../types';
 import { isPrimitive } from '../helpers';
 import { fetchToken } from './fetchToken';
 
-export const rgba = (tokens: ThemeToken): ((path: string, opacity: number) => string) => {
-  const theme = fetchToken(tokens);
+export const rgba = (context: ThemeTokenContext): ((path: string, opacity: number) => string) => {
+  const theme = fetchToken(context);
   return (path: string, opacity: number) => {
     const value = theme(path);
 
