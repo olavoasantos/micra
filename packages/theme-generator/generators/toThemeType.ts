@@ -1,8 +1,6 @@
-import { deepMerge } from '../helpers/deepMerge';
-import { pathToObject } from '../helpers/pathToObject';
 import { createGenerator } from '../helpers/createGenerator';
 
-export const toThemeType = createGenerator(({ elements, parseValue, generator: { options } }) => {
+export const toThemeType = createGenerator(({ elements, deepMerge, pathToObject, parseValue, generator: { options } }) => {
   const { willTransform } = options;
 
   const definitions = willTransform(elements).reduce((variables, element) => {

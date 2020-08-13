@@ -1,5 +1,9 @@
 import { themeParser } from '../parser';
 import { parseValue } from '../parseValue';
+import { deepMerge } from '../helpers/deepMerge';
+import { camelToKebab } from '../helpers/camelToKebab';
+import { pathToObject } from '../helpers/pathToObject';
+import { pathToKebab } from '../helpers/pathToKebab';
 import { ThemeElement, ThemeToken } from '../parser/types';
 import {
   BaseGeneratorContext,
@@ -22,7 +26,15 @@ export const themeGenerator = (tokens: ThemeToken): ThemeGeneratorInterface => {
     elements,
     to(...generators: ThemeGenerator[]) {
       return generators.map((generator) => {
-        const baseContext: BaseGeneratorContext = { generator, tokens, elements };
+        const baseContext: BaseGeneratorContext = {
+          generator,
+          tokens,
+          elements,
+          deepMerge,
+          camelToKebab,
+          pathToObject,
+          pathToKebab,
+        };
         const preContext: PreGeneratorContext = {
           ...baseContext,
           parseValue: parseValue(baseContext),

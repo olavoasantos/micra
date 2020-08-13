@@ -1,9 +1,12 @@
-import { deepMerge } from '../helpers/deepMerge';
-import { pathToKebab } from '../helpers/pathToKebab';
-import { pathToObject } from '../helpers/pathToObject';
 import { createGenerator } from '../helpers/createGenerator';
 
-export const toCssVariablesThemeObject = createGenerator(({ elements, generator: { options } }) => {
+export const toCssVariablesThemeObject = createGenerator(({
+  elements,
+  deepMerge,
+  pathToKebab,
+  pathToObject,
+  generator: { options } },
+  ) => {
   const { willTransform } = options;
 
   const definitions = willTransform(elements).reduce((variables, element) => {

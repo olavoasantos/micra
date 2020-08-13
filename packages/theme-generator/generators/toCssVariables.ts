@@ -1,8 +1,7 @@
-import { pathToKebab } from '../helpers/pathToKebab';
 import { createGenerator } from '../helpers/createGenerator';
 
 export const toCssVariables = createGenerator(
-  ({ elements, parseValue, generator: { options } }) => {
+  ({ elements, parseValue, pathToKebab, generator: { options } }) => {
     const { willTransform } = options;
 
     const definitions = willTransform(elements).reduce((variables, element) => {
