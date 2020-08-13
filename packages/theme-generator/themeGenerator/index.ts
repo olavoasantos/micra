@@ -1,8 +1,20 @@
 import { parser } from '../parser';
-import { ThemeToken } from '../parser/types';
-import { ThemeGenerator } from '../generators/types';
+import { parseValue } from '../parseValue';
+import { ThemeElement, ThemeToken } from '../parser/types';
+import {
+  BaseGeneratorContext,
+  PostGeneratorContext,
+  PreGeneratorContext,
+  ThemeGenerator,
+} from '../generators/types';
 
-export const themeGenerator = (tokens: ThemeToken) => {
+export interface ThemeGeneratorInterface {
+  tokens: ThemeToken;
+  elements: ThemeElement[];
+  to(...generators: ThemeGenerator[]): string[];
+}
+
+export const themeGenerator = (tokens: ThemeToken): ThemeGeneratorInterface => {
   const elements = parser(tokens);
 
   return {
@@ -10,12 +22,21 @@ export const themeGenerator = (tokens: ThemeToken) => {
     elements,
     to(...generators: ThemeGenerator[]) {
       return generators.map((generator) => {
-        const content = generator.build(elements);
+        const baseContext: BaseGeneratorContext = { generator, tokens, elements };
+        const preContext: PreGeneratorContext = {
+          ...baseContext,
+          parseValue: parseValue(baseContext),
+        };
+        const postContext: PostGeneratorContext = {
+          ...preContext,
+          content: generator.build(preContext),
+        };
+
         if (generator.options.callback) {
-          generator.options.callback({ content, generator, tokens, elements });
+          generator.options.callback(postContext);
         }
 
-        return content;
+        return postContext.content;
       });
     },
   };

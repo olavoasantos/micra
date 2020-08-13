@@ -1,11 +1,10 @@
-export const deepMerge = <A = Record<string, any>, B = Record<string, any>>(
-  target: A,
-  values: B,
-) => {
+type GenericObject = Record<string | number, unknown>;
+
+export const deepMerge = <A = GenericObject, B = GenericObject>(target: A, values: B): A & B => {
   const targetKeys = Object.keys(target);
   return Object.entries(values).reduce(
     (result: Partial<A & B>, [key, value]) => {
-      if (targetKeys.includes(key) && typeof (target as any)[key] !== typeof value)
+      if (targetKeys.includes(key) && typeof (target as GenericObject)[key] !== typeof value)
         throw new Error(
           `Inconsistent values while merging "${key}"\n- from:\n${JSON.stringify(
             values,

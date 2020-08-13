@@ -1,4 +1,5 @@
 export interface ThemeTokenContext {
+  tokens: ThemeToken;
   theme(path: string): ThemeTokenDefinition;
   rgba(path: string, opacity: number): ThemeTokenDefinition;
 }
@@ -9,9 +10,8 @@ export interface ThemeToken {
   [key: string]: ThemeTokenDefinition;
   [key: number]: ThemeTokenDefinition;
 }
-export type ElementType = 'PRIMARY' | 'DERIVED';
+
 export interface ThemeElement {
-  type: ElementType;
   main: string;
   path: string;
   breadcrumbs: string[];
@@ -26,3 +26,14 @@ export interface ThemeResolver {
     context: ThemeTokenContext,
   ): ThemeElement[];
 }
+
+export interface ThemeParserOptions {
+  context: ThemeTokenContext;
+  elements: ThemeElement[];
+  resolvers: ThemeResolver[];
+}
+
+export type ThemeParser = (
+  tokens: ThemeToken,
+  options?: Partial<ThemeParserOptions>,
+) => ThemeElement[];

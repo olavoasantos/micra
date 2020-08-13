@@ -1,24 +1,40 @@
-const valueParsers: Record<string, (...args: any[]) => string> = {
-  from(value: string) {
-    return value;
+import { ParserArgs, ParseValueGenerator, ValueParser } from './types';
+
+const valueParsers: Record<string, ValueParser> = {
+  from(reference): string {
+    return `${reference}`;
   },
-  rgba(value: string, opacity: string) {
+  rgba(value, opacity): string {
     return `rgba(${value}, ${opacity})`;
   },
-}
+};
 
-export const parseValue = (value: string, callback: (value: string, meta: Record<string, any>) => string = (v) => v): string => {
+export const parseValue: ParseValueGenerator = (context) => (value, visitor = {}): string => {
   if (value.includes('::')) {
-    const [fn, args] = value.split('::');
+    const [fn, ...args] = value.split('::');
     if (valueParsers[fn]) {
-      return callback(valueParsers[fn](...args.split('|').map(a => parseValue(a))), {
-        fn,
-        args,
-      });
+      const fnArgs: ParserArgs = [
+        ...args
+          .join('::')
+          .split('|')
+          .map((a) => parseValue(context)(a, visitor)),
+        context,
+      ];
+
+      const result = valueParsers[fn](...fnArgs);
+      return visitor[fn]
+        ? visitor[fn](result, {
+            fn,
+            value,
+            context,
+            args: fnArgs,
+            parsers: valueParsers,
+          })
+        : result;
     }
 
     throw new SyntaxError(`Parser "${fn}" not defined`);
   }
 
-  return callback(value, {});
+  return visitor.value ? visitor.value(value, {}) : value;
 };

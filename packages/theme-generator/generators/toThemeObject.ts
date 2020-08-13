@@ -1,31 +1,22 @@
-import { ThemeGenerator, ThemeGeneratorOptions } from './types';
 import { deepMerge } from '../helpers/deepMerge';
-import { parseValue } from '../parseValue';
+import { createGenerator } from './createGenerator';
+import { pathToObject } from '../helpers/pathToObject';
 
-export interface ToThemeObjectOptions extends ThemeGeneratorOptions {
-  //
-}
+export const toThemeObject = createGenerator(({ elements, parseValue, generator: { options } }) => {
+  const { willTransform } = options;
 
-export const toThemeObject = (
-  options: Partial<ToThemeObjectOptions> = {},
-): ThemeGenerator<ToThemeObjectOptions> => ({
-  options: {
-    willTransform: (elements) => elements,
-    ...options,
-  },
-  build(elements) {
-    const { willTransform } = this.options;
-    const definitions = willTransform(elements).reduce((variables, element) => {
-      const [key, ...rest] = element.breadcrumbs.reverse();
-      element.breadcrumbs.reverse();
+  const definitions = willTransform(elements).reduce((variables, element) => {
+    const el = pathToObject(
+      element.path.split('.').reverse(),
+      parseValue(element.value, {
+        from(path: string) {
+          return elements.find((el) => (el.path = path))?.value ?? '';
+        },
+      }),
+    );
 
-      const el = rest.reduce((obj, subKey) => ({ [subKey]: obj } as any), {
-        [key]: parseValue(element.value),
-      });
+    return deepMerge(variables, el);
+  }, {});
 
-      return deepMerge(variables, el);
-    }, {});
-
-    return JSON.stringify(definitions);
-  },
+  return JSON.stringify(definitions);
 });
