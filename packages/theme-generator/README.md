@@ -154,8 +154,6 @@ type GeneratorFunction = (
 
 // Where:
 interface ThemeGenerator<T extends ThemeGeneratorOptions> {
-  name: string;
-  extension: string[];
   options: T;
   build(elements: ThemeElement[]): string;
 }
@@ -163,8 +161,6 @@ interface ThemeGenerator<T extends ThemeGeneratorOptions> {
 
 This function accepts `options` for the generator and return a `ThemeGenerator` object. This object is composed of:
 
-- `name`: is the name of the given generator
-- `extension`: proposed extension for the content that's generated (e.g. ['js', 'ts'])
 - `options`: options for you to configure the generator (we'll see more next)
 - `build` function that will generate the content based on the `ThemeElement` that is given
 
@@ -221,24 +217,10 @@ const [cssVariables] = themeGenerator(theme).to(toCssVariables());
 ##### Result
 
 ```css
-:root {
-  --colors-white: #fff;
-  --colors-gray-100: #f7fafc;
-  --font-family-serif: Georgia, serif;
-  --background-color-gray-100: #f7fafc;
-}
-```
-
-##### Options
-
-```typescript
-export interface ToCssVariablesOptions extends ThemeGeneratorOptions {
-  /**
-   * Defines the sector used to define the variables.
-   * Defaults to `:root`.
-   */
-  selector?: string;
-}
+--colors-white: #fff;
+--colors-gray-100: #f7fafc;
+--font-family-serif: Georgia, serif;
+--background-color-gray-100: #f7fafc;
 ```
 
 #### toCssVariablesThemeObject
@@ -254,26 +236,13 @@ const [jsThemeObject] = themeGenerator(theme).to(toCssVariablesThemeObject());
 ##### Result
 
 ```javascript
-module.exports = {
+{
   colors: {
     white: 'var(--colors-white)',
     gray: { '100': 'var(--colors-gray-100)' },
   },
   fontFamily: { serif: 'var(--font-family-serif)' },
   backgroundColor: { gray: { '100': 'var(--background-color-gray-100)' } },
-};
-```
-
-##### Options
-
-```typescript
-export interface ToCssVariablesThemeObjectOptions
-  extends ThemeGeneratorOptions {
-  /**
-   * Defines rather the output should use ES6 export syntax.
-   * Defaults to `false`.
-   */
-  es6?: boolean;
 }
 ```
 
@@ -290,19 +259,10 @@ const [tsType] = themeGenerator(theme).to(toGenericThemeType());
 ##### Result
 
 ```typescript
-export interface Theme {
+{
   colors: { white: string; gray: { '100': string } };
   fontFamily: { serif: string };
   backgroundColor: { '100': string };
-}
-```
-
-##### Options
-
-```typescript
-export interface ToGenericThemeTypeOptions extends ThemeGeneratorOptions {
-  name?: string;
-  parent?: string;
 }
 ```
 
@@ -319,21 +279,10 @@ const [tsType] = themeGenerator(theme).to(toThemeObject());
 ##### Result
 
 ```typescript
-export const Theme = {
+{
   colors: { white: '#fff', gray: { '100': '#f7fafc' } },
   fontFamily: { serif: 'Georgia, serif' },
   backgroundColor: { '100': '#f7fafc' },
-};
-```
-
-##### Options
-
-```typescript
-export interface ToThemeObjectOptions extends ThemeGeneratorOptions {
-  name?: string;
-  shouldExport?: boolean;
-  type?: string;
-  imports?: string;
 }
 ```
 
@@ -348,18 +297,9 @@ const [tsType] = themeGenerator(theme).to(toThemeType());
 ##### Result
 
 ```typescript
-interface Theme {
+{
   colors: { white: '#fff'; gray: { '100': '#f7fafc' } };
   fontFamily: { serif: 'Georgia, serif' };
   backgroundColor: { gray: { '100': '#f7fafc' } };
-}
-```
-
-##### Options
-
-```typescript
-export interface ToThemeTypeOptions extends ThemeGeneratorOptions {
-  name?: string;
-  parent?: string;
 }
 ```

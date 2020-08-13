@@ -5,9 +5,11 @@ import {
   ThemeTokenDefinition,
   ThemeTokenDynamicDefinition,
   ThemeTokenContext,
+  ElementType,
 } from './types';
 
-export const createThemeElement = (name: string): ThemeElement => ({
+export const createThemeElement = (name: string, type: ElementType = 'PRIMARY'): ThemeElement => ({
+  type,
   main: name,
   path: name,
   breadcrumbs: [name],
@@ -47,7 +49,7 @@ export const themeResolvers: ThemeResolver[] = [
       return typeof definition === 'object' && definition != null && !Array.isArray(definition);
     },
     resolve(element, definition: ThemeToken, context) {
-      return parser(definition, [], context).map((el) => {
+      return parser(definition, context).map((el) => {
         el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
         el.path = el.breadcrumbs.join('.');
         el.main = el.breadcrumbs[0];
@@ -64,14 +66,16 @@ export const themeResolvers: ThemeResolver[] = [
       const response = definition(context);
 
       if (isPrimitive(response)) {
+        element.type = 'DERIVED';
         element.value = Array.isArray(response) ? response.join(', ') : String(response);
         return [element];
       }
 
-      return parser(response as ThemeToken, [], context).map((el) => {
+      return parser(response as ThemeToken, context).map((el) => {
         el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
         el.path = el.breadcrumbs.join('.');
         el.main = el.breadcrumbs[0];
+        el.type = 'DERIVED';
         return el;
       });
     },
@@ -79,32 +83,45 @@ export const themeResolvers: ThemeResolver[] = [
 ];
 
 export const fetchToken = (theme: ThemeToken) => (path: string) => {
-  return path.split('.').reduce((token, key) => {
-    if (!(token as any)[key]) {
-      throw new Error(`path "${path}" not found in theme`);
+  return path.split('.').reduce((token: ThemeTokenDefinition, key) => {
+    const value = token[key as keyof ThemeTokenDefinition];
+
+    return value ?? key;
+  }, theme as ThemeTokenDefinition) as ThemeTokenDefinition;
+};
+
+export const rgba = (tokens: ThemeToken) => {
+  const theme = fetchToken(tokens);
+  return (path: string, opacity: number) => {
+    const value = theme(path);
+
+    if (isPrimitive(value)) {
+      const parsed = Array.isArray(value) ? value.join(', ') : String(value);
+      return `rgba::${parsed}|${opacity}`;
     }
 
-    return (token as any)[key];
-  }, theme as ThemeTokenDefinition) as ThemeTokenDefinition;
+    throw new Error(`Invalid value found in rgba "${path}|${opacity}"`);
+  };
 };
 
 export const parser = (
   definition: ThemeToken,
-  ast: ThemeElement[] = [],
   context: ThemeTokenContext = {
     theme: fetchToken(definition),
+    rgba: rgba(definition),
   },
+  elements: ThemeElement[] = [],
 ) => {
   for (const [key, entry] of Object.entries(definition)) {
     const element = createThemeElement(key);
 
     for (const resolver of themeResolvers) {
       if (resolver.check(entry)) {
-        ast = ast.concat(resolver.resolve(element, entry, context));
+        elements = elements.concat(resolver.resolve(element, entry, context));
         break;
       }
     }
   }
 
-  return ast;
+  return elements;
 };

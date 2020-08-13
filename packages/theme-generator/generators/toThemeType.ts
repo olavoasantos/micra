@@ -1,5 +1,6 @@
 import { ThemeGenerator, ThemeGeneratorOptions } from './types';
 import { deepMerge } from '../helpers/deepMerge';
+import { parseValue } from '../parseValue';
 
 export interface ToThemeTypeOptions extends ThemeGeneratorOptions {
   //
@@ -12,8 +13,6 @@ export const toThemeType = (
     willTransform: (elements) => elements,
     ...options,
   },
-  name: 'toThemeType',
-  extension: ['ts'],
   build(elements) {
     const { willTransform } = this.options;
     const definitions = willTransform(elements).reduce((variables, element) => {
@@ -21,7 +20,7 @@ export const toThemeType = (
       element.breadcrumbs.reverse();
 
       const el = rest.reduce((obj, subKey) => ({ [subKey]: obj } as any), {
-        [key]: element.value,
+        [key]: parseValue(element.value),
       });
 
       return deepMerge(variables, el);

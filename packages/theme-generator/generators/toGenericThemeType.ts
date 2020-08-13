@@ -12,8 +12,6 @@ export const toGenericThemeType = (
     willTransform: (elements) => elements,
     ...options,
   },
-  name: 'toGenericThemeType',
-  extension: ['ts'],
   build(elements) {
     const { willTransform } = this.options;
     const stringPlaceholder = '____str____';

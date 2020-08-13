@@ -1,5 +1,6 @@
 export interface ThemeTokenContext {
   theme(path: string): ThemeTokenDefinition;
+  rgba(path: string, opacity: number): ThemeTokenDefinition;
 }
 export type ThemeTokenPrimitive = string | number | string[];
 export type ThemeTokenDynamicDefinition = (context: ThemeTokenContext) => ThemeTokenDefinition;
@@ -8,7 +9,9 @@ export interface ThemeToken {
   [key: string]: ThemeTokenDefinition;
   [key: number]: ThemeTokenDefinition;
 }
+export type ElementType = 'PRIMARY' | 'DERIVED';
 export interface ThemeElement {
+  type: ElementType;
   main: string;
   path: string;
   breadcrumbs: string[];

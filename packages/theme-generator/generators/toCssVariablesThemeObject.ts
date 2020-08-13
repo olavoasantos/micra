@@ -13,8 +13,6 @@ export const toCssVariablesThemeObject = (
     willTransform: (elements) => elements,
     ...options,
   },
-  name: 'toCssVariablesThemeObject',
-  extension: ['js', 'ts'],
   build(elements) {
     const { willTransform } = this.options;
     const definitions = willTransform(elements).reduce((variables, element) => {
@@ -23,7 +21,7 @@ export const toCssVariablesThemeObject = (
       const [key, ...rest] = element.breadcrumbs.reverse();
       element.breadcrumbs.reverse();
 
-      const el = rest.reduce((obj, subKey) => ({ [subKey]: obj } as any), {
+      const el = rest.reduce((obj, subKey) => ({ [subKey]: obj } as Record<string, any>), {
         [key]: value,
       });
 

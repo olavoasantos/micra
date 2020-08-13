@@ -1,14 +1,14 @@
-import { parseValue } from '../parseValue';
-import { camelToKebab } from '../helpers/camelToKebab';
 import { ThemeGenerator, ThemeGeneratorOptions } from './types';
+import { camelToKebab } from '../helpers/camelToKebab';
+import { parseValue } from '../parseValue';
 
-export interface ToCssVariablesOptions extends ThemeGeneratorOptions {
+export interface ToScssVariablesOptions extends ThemeGeneratorOptions {
   //
 }
 
-export const toCssVariables = (
-  options: Partial<ToCssVariablesOptions> = {},
-): ThemeGenerator<ToCssVariablesOptions> => ({
+export const toScssVariables = (
+  options: Partial<ToScssVariablesOptions> = {},
+): ThemeGenerator<ToScssVariablesOptions> => ({
   options: {
     willTransform: (elements) => elements,
     ...options,
@@ -16,7 +16,7 @@ export const toCssVariables = (
   build(elements) {
     const { willTransform } = this.options;
     const definitions = willTransform(elements).reduce((variables, element) => {
-      const name = `--${element.breadcrumbs.map(camelToKebab).join('-')}`;
+      const name = `$${element.breadcrumbs.map(camelToKebab).join('-')}`;
       return `${variables} ${name}: ${parseValue(element.value)};`;
     }, '');
 
