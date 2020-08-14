@@ -18,9 +18,7 @@ export const fetchToken = (context: ThemeTokenContext) => (path: string): ThemeT
 
   return replaceDeep(
     definition,
-    (_: ThemeTokenDefinition, breadcrumbs: string[]) => {
-      return `token::${breadcrumbs.join('.')}`;
-    },
+    (_: ThemeTokenDefinition, breadcrumbs: string[]) => `token::${breadcrumbs.join('.')}`,
     context,
     path.split('.'),
   );

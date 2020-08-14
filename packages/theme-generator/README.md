@@ -29,7 +29,7 @@ export const themeTokens: ThemeTokens = {
   },
   backgroundColor: ({ theme, rgba }) => ({
     gray: theme('colors.gray'),
-    overlay: rgba('colors.white', .5)
+    overlay: rgba('colors.black', 0.5),
   }),
 };
 
@@ -40,12 +40,12 @@ const tokens = themeGenerator(theme);
 const [cssVariables] = tokens.to(toCssVariables());
 
 // 4. Save the content into a file
-writeFileSync(
-  `${__dirname}/variables.css`,
-  `:root { ${content} }`,
-  'utf-8',
-);
+writeFileSync(`${__dirname}/variables.css`, `:root { ${content} }`, 'utf-8');
 ```
+
+- If you want to see the available generators we have go to the [#available-generators](#available-generators) section!
+
+- If you want to get a deeper understanding of what the theme generator provides, keep on reading below!
 
 ### ThemeTokens definition
 
@@ -74,48 +74,68 @@ export const theme: ThemeTokens = {
 };
 ```
 
-Or if you like type definitions:
-
-```typescript
-type ThemeTokenDefinition =
-  | ThemeTokens
-  | ThemeTokenDynamicDefinition
-  | ThemeTokenPrimitive;
-
-type ThemeTokenPrimitive = string | number | string[];
-
-type ThemeTokenDynamicDefinition = (
-  context: ThemeTokenContext,
-) => ThemeTokenDefinition;
-```
-
 ## themeGenerator function
 
 The theme generator accepts a `ThemeTokens` object, which defines your theme. Based on this, it returns an object with the `tokens`, a generic representation of the tokens and a `to` function:
 
 ```typescript
 type ThemeGenerator = (
+  /**
+   * tokens
+   * The `tokens` are simple the definition you passed to it.
+   */
   tokens: ThemeTokens,
+  /**
+   * options
+   * These are options that you can use to customize the
+   * generator (see description below).
+   */
+  options?: Partial<ThemeParserOptions>,
 ) => {
+  /**
+   * tokens
+   * The `tokens` are simple the definition you passed to it.
+   */
   tokens: ThemeTokens;
+  /**
+   * tokens
+   * The `elements` are the a generic representation of the
+   * tokens. Think of this as a set of objects that will
+   * be used to translate your tokens into other
+   * languages.
+   */
   elements: ThemeElement[];
+  /**
+   * to
+   * the `to` function is the one which will transform your
+   * `elements` into something that you need. This function
+   * accepts a sequence of `generators` (which we'll cover
+   * next) and return an array with the generated content.
+   */
   to(...generators: ThemeGenerator[]): string[];
 };
-```
 
-- The `tokens` are simple the definition you passed to it.
-
-- The `elements` are the a generic representation of the tokens. Think of this as a set of objects that will be used to translate your tokens into other languages:
-
-```typescript
-// Example
-const theme = {
-  colors: {
-    gray: {
-      100: '#ccc',
-    },
-  },
-};
+// where
+interface ThemeParserOptions {
+  /**
+   * makeContext
+   * This is a function that can be used to extend the context passed to
+   * the callback token definitions.
+   */
+  makeContext: (context: ThemeTokenContext) => Record<string, any>;
+  /**
+   * valueParsers
+   * generators
+   */
+  valueParsers: Record<string, ValueParser>;
+  /**
+   * elements
+   * This is a list of previously parsed elements. This is useful if
+   * you wish to merge two sets of parsed elements (e.g. parse
+   * design tokens separately from specific definitions).
+   */
+  elements: ThemeElement[];
+}
 
 interface ThemeElement {
   /*
@@ -148,51 +168,94 @@ interface ThemeElement {
 }
 ```
 
-- Finally, the `to` function is the one which will transform your `elements` into something that you need. This function accepts a sequence of `generators` (which we'll cover next) and return an array with the generated content.
-
 ## Generators
 
 After parsing the your `ThemeTokens`, we need to transform them into something useful. Generators are responsible for transforming that generic representation of the tokens into things like CSS variable definitions, TypeScript types or JS/TS objects.
 
-Each generator has the following structure:
-
-```typescript
-type GeneratorFunction = (
-  options?: Partial<GeneratorOptions>,
-) => ThemeGenerator<GeneratorOptions>;
-
-// Where:
-interface ThemeGenerator<T extends ThemeGeneratorOptions> {
-  options: T;
-  build(elements: ThemeElement[]): string;
-}
-```
-
-This function accepts `options` for the generator and return a `ThemeGenerator` object. This object is composed of:
-
-- `options`: options for you to configure the generator (we'll see more next)
-- `build` function that will generate the content based on the `ThemeElement` that is given
-
-While each generator will have it's own particular option object, they all extend a common interface:
+Each generator accepts an object which can contain:
 
 ```typescript
 interface ThemeGeneratorOptions {
-  callback?: (context: CallbackContext) => void;
+  /**
+   * willTransform
+   * This function is called right before the content is generated.
+   * This will receive the elements and should return elements. This is
+   * particularly useful if you need to filter or add elements to the list.
+   */
   willTransform?: (elements: ThemeElement[]) => ThemeElement[];
+  /**
+   * callback
+   * This function that'll be called right after the content has been
+   * generated This function will receive a `CallbackContext` object
+   * containing the generated content, the generator itself, the
+   * tokens and the elements. This is useful for when you
+   * want to create a file with the generated content.
+   */
+  callback?: (context: CallbackContext) => void;
 }
 
 // Where:
 interface CallbackContext {
+  /** Context definitions */
   content: string;
+  elements: ThemeElement[];
   generator: ThemeGenerator;
   tokens: ThemeTokens;
-  elements: ThemeElement[];
+
+  /** Helper functions */
+  /**
+   * parseValue
+   * This function converts special markup from the parser into
+   * actual values. The markup consists of `FnName::arg1|arg2`.
+   * In case you need to modify the value of a specific function,
+   * you can pass a `visitor` function on the object.
+   *
+   * Example:
+   * parseValue('token::color.blue', {
+   *  token(path: string, { pathToKebab }) {
+   *    return `var(--${pathToKebab(path)})`;
+   *  },
+   * }); // "var(--color-blue)"
+   */
+  parseValue(value: string, visitors?: Record<string, ParseValueVisitor>): string;
+  /**
+   * camelToKebab
+   * Transforms a camel-cased string into kebab-case
+   * example: camelCase => camel-case
+   */
+  camelToKebab: (value: string) => string;
+  /**
+   * deepMerge
+   * Deep merges two objects.
+   */
+  deepMerge: <
+    A = Record<string | number, unknown>,
+    B = Record<string | number, unknown>
+  >(
+    target: A,
+    values: B,
+  ) => A & B;
+  /**
+   * pathToKebab
+   * Converts a ThemeElement's `path` to kebab-case.
+   * example: backgroundColor.gray.100 => background-color-gray-100
+   */
+  pathToKebab: (path: string) => string;
+  /**
+   * pathToObject
+   * Converts a ThemeElement's `path` to an object containing a given value.
+   * example: pathToObject('backgroundColor.gray', '#ccc') => { backgroundColor: { gray: '#ccc' } }
+   */
+  pathToObject: <T = string>(
+    path: string | string[],
+    value: T,
+  ) => DeepPartial<T>;
+}
+
+interface DeepPartial<T = string> {
+  [key: string]: T | DeepPartial<T>;
 }
 ```
-
-- The `callback` option is a function that'll be called right after the content has been generated. This function will receive a `CallbackContext` object containing the generated content, the generator itself, the tokens and the elements. This is useful for when you want to create a file with the generated content.
-
-- The `willTransform` function is called right before the content is generated. This will receive the elements and should return elements. This is particularly useful if you need to filter or add elements to the list.
 
 ### Available generators
 
@@ -201,7 +264,7 @@ For the next examples and definition, let's consider the following `ThemeTokens`
 ```typescript
 export const theme: ThemeTokens = {
   colors: {
-    white: '#fff',
+    black: '#000',
     gray: {
       100: '#f7fafc',
     },
@@ -209,7 +272,10 @@ export const theme: ThemeTokens = {
   fontFamily: {
     serif: ['Georgia', 'serif'],
   },
-  backgroundColor: ({ theme }) => ({ gray: theme('colors.gray') }),
+  backgroundColor: ({ theme, rgba }) => ({
+    gray: theme('colors.gray'),
+    overlay: rgba('colors.black', 0.5),
+  }),
 };
 ```
 
@@ -226,10 +292,11 @@ const [cssVariables] = themeGenerator(theme).to(toCssVariables());
 ##### Result
 
 ```css
---colors-white: #fff;
+--colors-black: #000;
 --colors-gray-100: #f7fafc;
 --font-family-serif: Georgia, serif;
---background-color-gray-100: #f7fafc;
+--background-color-gray-100: var(--colors-gray-100);
+--background-color-overlay: rgba(var(--colors-black), 0.5);
 ```
 
 #### toCssVariablesThemeObject
@@ -244,14 +311,17 @@ const [jsThemeObject] = themeGenerator(theme).to(toCssVariablesThemeObject());
 
 ##### Result
 
-```javascript
+```json
 {
-  colors: {
-    white: 'var(--colors-white)',
-    gray: { '100': 'var(--colors-gray-100)' },
+  "colors": {
+    "black": "var(--colors-black)",
+    "gray": { "100": "var(--colors-gray-100)" }
   },
-  fontFamily: { serif: 'var(--font-family-serif)' },
-  backgroundColor: { gray: { '100': 'var(--background-color-gray-100)' } },
+  "fontFamily": { "serif": "var(--font-family-serif)" },
+  "backgroundColor": {
+    "gray": { "100": "var(--background-color-gray-100)" },
+    "overlay": "var(--background-color-overlay)"
+  }
 }
 ```
 
@@ -269,10 +339,35 @@ const [tsType] = themeGenerator(theme).to(toGenericThemeType());
 
 ```typescript
 {
-  colors: { white: string; gray: { '100': string } };
-  fontFamily: { serif: string };
-  backgroundColor: { '100': string };
+  "colors": { "black": string, "gray": { "100": string } },
+  "fontFamily": { "serif": string },
+  "backgroundColor": {
+    "gray": { "100": string },
+    "overlay": string
+  }
 }
+```
+
+> IMPORTANT: The generator returns the interface's shape. It does NOT attempt to name or export the interface to give the developer the flexibility to do so as they see fit.
+
+#### toScssVariables
+
+This generates SCSS variable definitions based on the theme.
+
+##### Usage
+
+```typescript
+const [scssVariables] = themeGenerator(theme).to(toScssVariables());
+```
+
+##### Result
+
+```scss
+$colors-black: #000;
+$colors-gray-100: #f7fafc;
+$font-family-serif: Georgia, serif;
+$background-color-gray-100: $colors-gray-100;
+$background-color-overlay: rgba($colors-black, 0.5);
 ```
 
 #### toThemeObject
@@ -287,11 +382,14 @@ const [tsType] = themeGenerator(theme).to(toThemeObject());
 
 ##### Result
 
-```typescript
+```json
 {
-  colors: { white: '#fff', gray: { '100': '#f7fafc' } },
-  fontFamily: { serif: 'Georgia, serif' },
-  backgroundColor: { '100': '#f7fafc' },
+  "colors": { "black": "#000", "gray": { "100": "#f7fafc" } },
+  "fontFamily": { "serif": "Georgia, serif" },
+  "backgroundColor": {
+    "gray": { "100": "#f7fafc" },
+    "overlay": "rgba(#000, 0.5)"
+  }
 }
 ```
 
@@ -307,8 +405,13 @@ const [tsType] = themeGenerator(theme).to(toThemeType());
 
 ```typescript
 {
-  colors: { white: '#fff'; gray: { '100': '#f7fafc' } };
-  fontFamily: { serif: 'Georgia, serif' };
-  backgroundColor: { gray: { '100': '#f7fafc' } };
+  "colors": { "black": "#000", "gray": { "100": "#f7fafc" } },
+  "fontFamily": { "serif": "Georgia, serif" },
+  "backgroundColor": {
+    "gray": { "100": "#f7fafc" },
+    "overlay": "rgba(#000, 0.5)"
+  }
 }
 ```
+
+> IMPORTANT: The generator returns the interface's shape. It does NOT attempt to name or export the interface to give the developer the flexibility to do so as they see fit.
