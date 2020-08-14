@@ -125,7 +125,10 @@ interface ThemeParserOptions {
   makeContext: (context: ThemeTokenContext) => Record<string, any>;
   /**
    * valueParsers
-   * generators
+   * Generators receive a `parseValue` function in through the context.
+   * This functions are responsible for parsing a special syntax that
+   * the theme generator uses: `{FnName}::arg1|arg2|...`. This
+   * valueParsers object is where you can create you own.
    */
   valueParsers: Record<string, ValueParser>;
   /**
@@ -257,7 +260,35 @@ interface DeepPartial<T = string> {
 }
 ```
 
-### Available generators
+### Value Parsers
+
+The theme generator's parser utilizes a custom syntax while parsing the token definitions. Functions like `theme` and `rgba` that are passed to the callback definition use this syntax to create dynamic definitions. This syntax is composed by:
+
+```typescript
+"{FunctionName}::arg1|arg2|..."
+```
+
+Here are some examples:
+
+```typescript
+theme('colors.black') // -> "token::colors.black"
+rgba('#fff', .5) // -> "rgba::#fff|0.5"
+rgba('colors.black', .5) // -> "rgba::token::colors.black|0.5"
+```
+
+As you can see, arguments can also be function calls. From the third example, you have `rgba` being called with `token::colors.black` and `0.5` as arguments:
+
+```typescript
+"rgba::token::colors.black|0.5"
+```
+
+Custom functions can be defined and passed to the `themeGenerator` through the `valueParsers` option. These should have the following structure:
+
+```typescript
+type customParser = (...args: string[], context: CallbackContext): string;
+```
+
+## Available generators
 
 For the next examples and definition, let's consider the following `ThemeTokens` definition:
 
