@@ -2,6 +2,7 @@ import { rgba } from './rgba';
 import { fetchToken } from './fetchToken';
 import { ThemeTokens, ThemeTokenContext } from '../types';
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type MakeContext = (context: ThemeTokenContext) => Record<string, any>;
 
 export const createContext = (

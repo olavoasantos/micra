@@ -16,7 +16,8 @@ import {
   toCssVariables,
 } from '@micra/theme-generator';
 
-export const theme: ThemeTokens = {
+// 1. Define your theme tokens
+export const themeTokens: ThemeTokens = {
   colors: {
     black: '#000',
     gray: {
@@ -32,12 +33,17 @@ export const theme: ThemeTokens = {
   }),
 };
 
-themeGenerator(theme).to(
-  toCssVariables({
-    callback({ content }) {
-      writeFileSync(`${__dirname}/variables.css`, content, 'utf-8');
-    },
-  }),
+// 2. Parse the tokens
+const tokens = themeGenerator(theme);
+
+// 3. Transpile the tokens into the format you need
+const [cssVariables] = tokens.to(toCssVariables());
+
+// 4. Save the content into a file
+writeFileSync(
+  `${__dirname}/variables.css`,
+  `:root { ${content} }`,
+  'utf-8',
 );
 ```
 

@@ -1,13 +1,11 @@
 import { themeGenerator } from '..';
-import { ThemeTokens, ThemeTokenContext } from '../../parser/types';
+import { ThemeTokens } from '../../parser/types';
 import { toThemeType } from '../../generators/toThemeType';
 import { toThemeObject } from '../../generators/toThemeObject';
 import { toCssVariables } from '../../generators/toCssVariables';
 import { toScssVariables } from '../../generators/toScssVariables';
 import { toGenericThemeType } from '../../generators/toGenericThemeType';
 import { toCssVariablesThemeObject } from '../../generators/toCssVariablesThemeObject';
-import { createGenerator } from '../../helpers/createGenerator';
-import { stringify } from 'querystring';
 
 export const theme: ThemeTokens = {
   root: 'val',

@@ -1,4 +1,4 @@
-import { ThemeElement, ThemeTokenContext, ThemeTokenDefinition } from '../types';
+import { ThemeElement, ThemeTokenContext, ThemeTokenDefinition, ThemeTokens } from '../types';
 
 export const createThemeElement = (name = ''): ThemeElement => ({
   main: name,
@@ -18,7 +18,7 @@ export const replaceDeep = (
   replace: (value: ThemeTokenDefinition, breadcrumbs: string[]) => string | string,
   context: ThemeTokenContext,
   breadcrumbs: string[] = [],
-) => {
+): ThemeTokens => {
   const result: ThemeTokenDefinition = {};
   for (const [key, value] of Object.entries(obj)) {
     if (isPrimitive(value)) {

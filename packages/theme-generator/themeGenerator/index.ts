@@ -18,7 +18,10 @@ export interface ThemeGeneratorInterface {
   to(...generators: ThemeGenerator[]): string[];
 }
 
-export const themeGenerator = (tokens: ThemeTokens, options: Partial<ThemeParserOptions> = {}): ThemeGeneratorInterface => {
+export const themeGenerator = (
+  tokens: ThemeTokens,
+  options: Partial<ThemeParserOptions> = {},
+): ThemeGeneratorInterface => {
   const elements = themeParser(tokens, options);
 
   return {
