@@ -1,5 +1,5 @@
 import { Options as PrettierOptions } from 'prettier';
-import { CallbackContext } from '@micra/theme-generator';
+import { PostGeneratorContext } from '@micra/theme-generator';
 
 export type FileDefinition = {
   type: 'file';
@@ -20,7 +20,7 @@ export type ThemeDefinition =
       };
       format?: PrettierOptions; // prettier format options
       variables?: Record<string, any>; // extra variables to be passed to the template engine
-      transform?(ctx: CallbackContext): CallbackContext & Record<string, any>; // transforms context before build
+      transform?(ctx: PostGeneratorContext): PostGeneratorContext & Record<string, any>; // transforms context before build
     }
   | {
       type: 'toThemeType';
@@ -33,7 +33,7 @@ export type ThemeDefinition =
       };
       variables?: Record<string, any>; // extra variables to be passed to the template engine
       format?: PrettierOptions; // prettier format options
-      transform?(ctx: CallbackContext): CallbackContext & Record<string, any>; // transforms context before build
+      transform?(ctx: PostGeneratorContext): PostGeneratorContext & Record<string, any>; // transforms context before build
     }
   | {
       type: 'toCssVariables';
@@ -45,7 +45,7 @@ export type ThemeDefinition =
       };
       variables?: Record<string, any>; // extra variables to be passed to the template engine
       format?: PrettierOptions; // prettier format options
-      transform?(ctx: CallbackContext): CallbackContext & Record<string, any>; // transforms context before build
+      transform?(ctx: PostGeneratorContext): PostGeneratorContext & Record<string, any>; // transforms context before build
     }
   | {
       type: 'toCssVariablesThemeObject';
@@ -57,7 +57,7 @@ export type ThemeDefinition =
       };
       variables?: Record<string, any>; // extra variables to be passed to the template engine
       format?: PrettierOptions; // prettier format options
-      transform?(ctx: CallbackContext): CallbackContext & Record<string, any>; // transforms context before build
+      transform?(ctx: PostGeneratorContext): PostGeneratorContext & Record<string, any>; // transforms context before build
     }
   | {
       type: 'toThemeObject';
@@ -69,7 +69,7 @@ export type ThemeDefinition =
       };
       variables?: Record<string, any>; // extra variables to be passed to the template engine
       format?: PrettierOptions; // prettier format options
-      transform?(ctx: CallbackContext): CallbackContext & Record<string, any>; // transforms context before build
+      transform?(ctx: PostGeneratorContext): PostGeneratorContext & Record<string, any>; // transforms context before build
     };
 
 export type GeneratorDefinition = FileDefinition | ThemeDefinition;

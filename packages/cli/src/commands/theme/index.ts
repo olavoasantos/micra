@@ -8,7 +8,7 @@ import {
   toGenericThemeType,
   toThemeObject,
   toThemeType,
-  ThemeToken,
+  ThemeTokens,
   ThemeElement,
   ThemeGenerator,
 } from '@micra/theme-generator';
@@ -38,7 +38,7 @@ export const themeBuild: CLICommand = {
     const definitions = config.get('theme.definitions') ?? {};
 
     const themeElements: Record<string, {
-      tokens: ThemeToken;
+      tokens: ThemeTokens;
       elements: ThemeElement[];
       to(...generators: ThemeGenerator<any>[]): string[];
     }> = {};
