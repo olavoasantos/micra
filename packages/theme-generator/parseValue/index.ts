@@ -1,3 +1,5 @@
+import { BaseGeneratorContext } from '../generators/types';
+import { ThemeElement } from '../parser/types';
 import { ParserArgs, ParseValueGenerator, ValueParser } from './types';
 
 const valueParsers: Record<string, ValueParser> = {
@@ -9,32 +11,35 @@ const valueParsers: Record<string, ValueParser> = {
   },
 };
 
-export const parseValue: ParseValueGenerator = (context) => (value, visitor = {}): string => {
-  if (value.includes('::')) {
-    const [fn, ...args] = value.split('::');
-    if (valueParsers[fn]) {
-      const fnArgs: ParserArgs = [
-        ...args
-          .join('::')
-          .split('|')
-          .map((a) => parseValue(context)(a, visitor)),
-        context,
-      ];
+export const parseValue: ParseValueGenerator = (context, customParsers = {}) => {
+  const parsers = { ...valueParsers, ...customParsers };
+  return (value, visitors = {}): string => {
+    if (value.includes('::')) {
+      const [fn, ...args] = value.split('::');
+      if (parsers[fn]) {
+        const fnArgs: ParserArgs = [
+          ...args
+            .join('::')
+            .split('|')
+            .map((a) => parseValue(context)(a, visitors)),
+          context,
+        ];
 
-      const result = valueParsers[fn](...fnArgs);
-      return visitor[fn]
-        ? visitor[fn](result, {
+        const result = parsers[fn](...fnArgs);
+        return visitors[fn]
+          ? visitors[fn](result, {
             fn,
             value,
             context,
             args: fnArgs,
-            parsers: valueParsers,
+            parsers,
           })
-        : result;
+          : result;
+      }
+
+      throw new SyntaxError(`Parser "${fn}" not defined`);
     }
 
-    throw new SyntaxError(`Parser "${fn}" not defined`);
-  }
-
-  return visitor.value ? visitor.value(value, {}) : value;
+    return visitors.value ? visitors.value(value, {}) : value;
+  };
 };

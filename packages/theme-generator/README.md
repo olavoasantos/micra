@@ -18,7 +18,7 @@ import {
 
 export const theme: ThemeToken = {
   colors: {
-    white: '#fff',
+    black: '#000',
     gray: {
       100: '#f7fafc',
     },
@@ -26,7 +26,10 @@ export const theme: ThemeToken = {
   fontFamily: {
     serif: ['Georgia', 'serif'],
   },
-  backgroundColor: ({ theme }) => ({ gray: theme('colors.gray') }),
+  backgroundColor: ({ theme, rgba }) => ({
+    gray: theme('colors.gray'),
+    overlay: rgba('colors.white', .5)
+  }),
 };
 
 themeGenerator(theme).to(

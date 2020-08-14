@@ -4,7 +4,7 @@ import { deepMerge } from '../helpers/deepMerge';
 import { camelToKebab } from '../helpers/camelToKebab';
 import { pathToObject } from '../helpers/pathToObject';
 import { pathToKebab } from '../helpers/pathToKebab';
-import { ThemeElement, ThemeToken } from '../parser/types';
+import { ThemeElement, ThemeParserOptions, ThemeToken } from '../parser/types';
 import {
   BaseGeneratorContext,
   PostGeneratorContext,
@@ -18,8 +18,8 @@ export interface ThemeGeneratorInterface {
   to(...generators: ThemeGenerator[]): string[];
 }
 
-export const themeGenerator = (tokens: ThemeToken): ThemeGeneratorInterface => {
-  const elements = themeParser(tokens);
+export const themeGenerator = (tokens: ThemeToken, options: Partial<ThemeParserOptions> = {}): ThemeGeneratorInterface => {
+  const elements = themeParser(tokens, options);
 
   return {
     tokens,
@@ -37,7 +37,7 @@ export const themeGenerator = (tokens: ThemeToken): ThemeGeneratorInterface => {
         };
         const preContext: PreGeneratorContext = {
           ...baseContext,
-          parseValue: parseValue(baseContext),
+          parseValue: parseValue(baseContext, options.valueParsers),
         };
         const postContext: PostGeneratorContext = {
           ...preContext,

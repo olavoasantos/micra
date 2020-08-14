@@ -1,3 +1,4 @@
+import { ValueParser } from '../parseValue/types';
 import { MakeContext } from './context';
 
 export interface ThemeTokenContext {
@@ -29,15 +30,16 @@ export interface ThemeResolver {
   ): ThemeElement[];
 }
 
-export interface ThemeParserOptions<E = ThemeTokenContext> {
+export interface ThemeParserOptions {
   context: ThemeTokenContext;
   elements: ThemeElement[];
   resolvers: ThemeResolver[];
-  makeContext: MakeContext<E>;
+  makeContext: MakeContext;
+  valueParsers: Record<string, ValueParser>;
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export type ThemeParser<E extends ThemeTokenContext = any> = (
+export type ThemeParser = (
   tokens: ThemeToken,
-  options?: Partial<ThemeParserOptions<E>>,
+  options?: Partial<ThemeParserOptions>,
 ) => ThemeElement[];

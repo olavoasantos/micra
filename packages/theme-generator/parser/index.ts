@@ -7,9 +7,9 @@ export const themeParser: ThemeParser = (
   definition,
   {
     makeContext,
-    context = createContext(definition, makeContext),
     elements = [],
     resolvers = [],
+    context = createContext(definition, makeContext),
   } = {},
 ) => {
   const themeResolvers = resolvers.concat(defaultResolvers);
