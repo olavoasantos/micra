@@ -7,7 +7,7 @@ export const toCssVariables = createGenerator(
     const definitions = willTransform(elements).reduce((variables, element) => {
       const name = `--${pathToKebab(element.path)}`;
       const value = parseValue(element.value, {
-        from(path: string) {
+        token(path: string) {
           return `var(--${pathToKebab(path)})`;
         },
       });

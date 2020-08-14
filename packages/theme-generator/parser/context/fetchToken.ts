@@ -13,13 +13,13 @@ export const fetchToken = (context: ThemeTokenContext) => (path: string): ThemeT
   }
 
   if (isPrimitive(definition)) {
-    return `from::${path}`;
+    return `token::${path}`;
   }
 
   return replaceDeep(
     definition,
     (_: ThemeTokenDefinition, breadcrumbs: string[]) => {
-      return `from::${breadcrumbs.join('.')}`;
+      return `token::${breadcrumbs.join('.')}`;
     },
     context,
     path.split('.'),

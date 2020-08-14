@@ -8,7 +8,7 @@ export const toThemeObject = createGenerator(
       const el = pathToObject(
         element.path.split('.').reverse(),
         parseValue(element.value, {
-          from(path: string) {
+          token(path: string) {
             return elements.find((el) => el.path === path)?.value ?? '';
           },
         }),

@@ -47,7 +47,7 @@ describe('theme parser tests', () => {
 
       expect(elements).toMatchObject([
         { main: 'another', path: 'another', breadcrumbs: ['another'], value: 'value' },
-        { main: 'derived', path: 'derived', breadcrumbs: ['derived'], value: 'from::another' },
+        { main: 'derived', path: 'derived', breadcrumbs: ['derived'], value: 'token::another' },
       ]);
     });
 
@@ -59,7 +59,7 @@ describe('theme parser tests', () => {
 
       expect(elements).toMatchObject([
         { main: 'another', path: 'another.key', breadcrumbs: ['another', 'key'], value: 'value' },
-        { main: 'derived', path: 'derived', breadcrumbs: ['derived'], value: 'from::another.key' },
+        { main: 'derived', path: 'derived', breadcrumbs: ['derived'], value: 'token::another.key' },
       ]);
     });
 
@@ -79,13 +79,13 @@ describe('theme parser tests', () => {
           main: 'backgroundColor',
           path: 'backgroundColor.black',
           breadcrumbs: ['backgroundColor', 'black'],
-          value: 'from::colors.black',
+          value: 'token::colors.black',
         },
         {
           main: 'backgroundColor',
           path: 'backgroundColor.red',
           breadcrumbs: ['backgroundColor', 'red'],
-          value: 'from::colors.red',
+          value: 'token::colors.red',
         },
       ]);
     });
@@ -110,7 +110,7 @@ describe('theme parser tests', () => {
 
       expect(elements).toMatchObject([
         { main: 'colors', path: 'colors.black', breadcrumbs: ['colors', 'black'], value: '#000' },
-        { main: 'key', path: 'key', breadcrumbs: ['key'], value: 'rgba::from::colors.black|0.5' },
+        { main: 'key', path: 'key', breadcrumbs: ['key'], value: 'rgba::token::colors.black|0.5' },
       ]);
     });
   });
