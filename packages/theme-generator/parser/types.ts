@@ -2,14 +2,14 @@ import { ValueParser } from '../parseValue/types';
 import { MakeContext } from './context';
 
 export interface ThemeTokenContext {
-  tokens: ThemeToken;
+  tokens: ThemeTokens;
   theme(path: string): ThemeTokenDefinition;
   rgba(path: string, opacity: number): ThemeTokenDefinition;
 }
 export type ThemeTokenPrimitive = string | number | string[];
 export type ThemeTokenDynamicDefinition = (context: ThemeTokenContext) => ThemeTokenDefinition;
-export type ThemeTokenDefinition = ThemeToken | ThemeTokenDynamicDefinition | ThemeTokenPrimitive;
-export interface ThemeToken {
+export type ThemeTokenDefinition = ThemeTokens | ThemeTokenDynamicDefinition | ThemeTokenPrimitive;
+export interface ThemeTokens {
   [key: string]: ThemeTokenDefinition;
   [key: number]: ThemeTokenDefinition;
 }
@@ -40,6 +40,6 @@ export interface ThemeParserOptions {
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export type ThemeParser = (
-  tokens: ThemeToken,
+  tokens: ThemeTokens,
   options?: Partial<ThemeParserOptions>,
 ) => ThemeElement[];

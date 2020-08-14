@@ -1,6 +1,6 @@
 import { themeParser } from '..';
 import { isPrimitive } from '../helpers';
-import { ThemeResolver, ThemeToken, ThemeTokenDynamicDefinition } from '../types';
+import { ThemeResolver, ThemeTokens, ThemeTokenDynamicDefinition } from '../types';
 
 export const functionResolver: ThemeResolver = {
   check(definition) {
@@ -14,7 +14,7 @@ export const functionResolver: ThemeResolver = {
       return [element];
     }
 
-    return themeParser(response as ThemeToken, { context }).map((el) => {
+    return themeParser(response as ThemeTokens, { context }).map((el) => {
       el.breadcrumbs = element.breadcrumbs.concat(el.breadcrumbs);
       el.path = el.breadcrumbs.join('.');
       el.main = el.breadcrumbs[0];

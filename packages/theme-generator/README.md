@@ -11,12 +11,12 @@ yarn add @micra/theme-generator
 ```typescript
 import { writeFileSync } from 'fs';
 import {
-  ThemeToken,
+  ThemeTokens,
   themeGenerator,
   toCssVariables,
 } from '@micra/theme-generator';
 
-export const theme: ThemeToken = {
+export const theme: ThemeTokens = {
   colors: {
     black: '#000',
     gray: {
@@ -41,20 +41,20 @@ themeGenerator(theme).to(
 );
 ```
 
-### ThemeToken definition
+### ThemeTokens definition
 
-The `ThemeToken` object is an object that accepts strings or number as keys and `ThemeTokenDefinition` as value.
+The `ThemeTokens` object is an object that accepts strings or number as keys and `ThemeTokenDefinition` as value.
 
 ```typescript
-interface ThemeToken {
+interface ThemeTokens {
   [key: string | number]: ThemeTokenDefinition;
 }
 ```
 
-`ThemeTokenDefinition`, on the other hand, can be a `string`, a `number`, an array of strings, a function that returns another `ThemeTokenDefinition` or another `ThemeToken`. In other words:
+`ThemeTokenDefinition`, on the other hand, can be a `string`, a `number`, an array of strings, a function that returns another `ThemeTokenDefinition` or another `ThemeTokens`. In other words:
 
 ```typescript
-export const theme: ThemeToken = {
+export const theme: ThemeTokens = {
   colors: { // <~~ another ThemeToken
     white: '#fff', // <~~ string
   },
@@ -72,7 +72,7 @@ Or if you like type definitions:
 
 ```typescript
 type ThemeTokenDefinition =
-  | ThemeToken
+  | ThemeTokens
   | ThemeTokenDynamicDefinition
   | ThemeTokenPrimitive;
 
@@ -85,13 +85,13 @@ type ThemeTokenDynamicDefinition = (
 
 ## themeGenerator function
 
-The theme generator accepts a `ThemeToken` object, which defines your theme. Based on this, it returns an object with the `tokens`, a generic representation of the tokens and a `to` function:
+The theme generator accepts a `ThemeTokens` object, which defines your theme. Based on this, it returns an object with the `tokens`, a generic representation of the tokens and a `to` function:
 
 ```typescript
 type ThemeGenerator = (
-  tokens: ThemeToken,
+  tokens: ThemeTokens,
 ) => {
-  tokens: ThemeToken;
+  tokens: ThemeTokens;
   elements: ThemeElement[];
   to(...generators: ThemeGenerator[]): string[];
 };
@@ -114,7 +114,7 @@ const theme = {
 interface ThemeElement {
   /*
    * The main key of the element. This is the first key in
-   * this element's ThemeToken definition. Based on the
+   * this element's ThemeTokens definition. Based on the
    * `theme` above, "colors" would be main key.
    */
   main: string;
@@ -135,7 +135,7 @@ interface ThemeElement {
 
   /*
    * The value of the element. This is a string representation
-   * of the value for this element's ThemeToken definition.
+   * of the value for this element's ThemeTokens definition.
    * In our case, we'd get "#ccc".
    */
   value: string;
@@ -146,7 +146,7 @@ interface ThemeElement {
 
 ## Generators
 
-After parsing the your `ThemeToken`, we need to transform them into something useful. Generators are responsible for transforming that generic representation of the tokens into things like CSS variable definitions, TypeScript types or JS/TS objects.
+After parsing the your `ThemeTokens`, we need to transform them into something useful. Generators are responsible for transforming that generic representation of the tokens into things like CSS variable definitions, TypeScript types or JS/TS objects.
 
 Each generator has the following structure:
 
@@ -179,7 +179,7 @@ interface ThemeGeneratorOptions {
 interface CallbackContext {
   content: string;
   generator: ThemeGenerator;
-  tokens: ThemeToken;
+  tokens: ThemeTokens;
   elements: ThemeElement[];
 }
 ```
@@ -190,10 +190,10 @@ interface CallbackContext {
 
 ### Available generators
 
-For the next examples and definition, let's consider the following `ThemeToken` definition:
+For the next examples and definition, let's consider the following `ThemeTokens` definition:
 
 ```typescript
-export const theme: ThemeToken = {
+export const theme: ThemeTokens = {
   colors: {
     white: '#fff',
     gray: {

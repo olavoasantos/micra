@@ -1,5 +1,5 @@
 import { themeGenerator } from '..';
-import { ThemeToken, ThemeTokenContext } from '../../parser/types';
+import { ThemeTokens, ThemeTokenContext } from '../../parser/types';
 import { toThemeType } from '../../generators/toThemeType';
 import { toThemeObject } from '../../generators/toThemeObject';
 import { toCssVariables } from '../../generators/toCssVariables';
@@ -9,7 +9,7 @@ import { toCssVariablesThemeObject } from '../../generators/toCssVariablesThemeO
 import { createGenerator } from '../../helpers/createGenerator';
 import { stringify } from 'querystring';
 
-export const theme: ThemeToken = {
+export const theme: ThemeTokens = {
   root: 'val',
   colors: {
     black: '#000',

@@ -1,11 +1,11 @@
 import { rgba } from './rgba';
 import { fetchToken } from './fetchToken';
-import { ThemeToken, ThemeTokenContext } from '../types';
+import { ThemeTokens, ThemeTokenContext } from '../types';
 
 export type MakeContext = (context: ThemeTokenContext) => Record<string, any>;
 
 export const createContext = (
-  tokens: ThemeToken,
+  tokens: ThemeTokens,
   makeContext?: MakeContext,
 ): ThemeTokenContext => {
   const context = { tokens } as ThemeTokenContext;

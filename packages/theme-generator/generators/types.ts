@@ -1,12 +1,12 @@
 import { ParseValue } from '../parseValue/types';
-import { ThemeElement, ThemeToken } from '../parser/types';
+import { ThemeElement, ThemeTokens } from '../parser/types';
 import { deepMerge } from '../helpers/deepMerge';
 import { camelToKebab } from '../helpers/camelToKebab';
 import { pathToObject } from '../helpers/pathToObject';
 import { pathToKebab } from '../helpers/pathToKebab';
 
 export interface BaseGeneratorContext {
-  tokens: ThemeToken;
+  tokens: ThemeTokens;
   elements: ThemeElement[];
   generator: ThemeGenerator;
   deepMerge: typeof deepMerge;
