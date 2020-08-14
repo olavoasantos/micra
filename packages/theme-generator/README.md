@@ -310,17 +310,17 @@ export const theme: ThemeTokens = {
 };
 ```
 
-#### toCssVariables
+### toCssVariables
 
 This generates CSS variable definitions based on the theme.
 
-##### Usage
+#### Usage
 
 ```typescript
 const [cssVariables] = themeGenerator(theme).to(toCssVariables());
 ```
 
-##### Result
+#### Result
 
 ```css
 --colors-black: #000;
@@ -330,17 +330,17 @@ const [cssVariables] = themeGenerator(theme).to(toCssVariables());
 --background-color-overlay: rgba(var(--colors-black), 0.5);
 ```
 
-#### toCssVariablesThemeObject
+### toCssVariablesThemeObject
 
 This generator is used if you want to use CSS variables with CSS-in-JS tools.
 
-##### Usage
+#### Usage
 
 ```typescript
 const [jsThemeObject] = themeGenerator(theme).to(toCssVariablesThemeObject());
 ```
 
-##### Result
+#### Result
 
 ```json
 {
@@ -356,17 +356,17 @@ const [jsThemeObject] = themeGenerator(theme).to(toCssVariablesThemeObject());
 }
 ```
 
-#### toGenericThemeType
+### toGenericThemeType
 
 This generates a generic Theme object based on the tokens. This is useful if you wish to create a generic interface to serve as base for multiple themes.
 
-##### Usage
+#### Usage
 
 ```typescript
 const [tsType] = themeGenerator(theme).to(toGenericThemeType());
 ```
 
-##### Result
+#### Result
 
 ```typescript
 {
@@ -381,17 +381,17 @@ const [tsType] = themeGenerator(theme).to(toGenericThemeType());
 
 > IMPORTANT: The generator returns the interface's shape. It does NOT attempt to name or export the interface to give the developer the flexibility to do so as they see fit.
 
-#### toScssVariables
+### toScssVariables
 
 This generates SCSS variable definitions based on the theme.
 
-##### Usage
+#### Usage
 
 ```typescript
 const [scssVariables] = themeGenerator(theme).to(toScssVariables());
 ```
 
-##### Result
+#### Result
 
 ```scss
 $colors-black: #000;
@@ -401,17 +401,17 @@ $background-color-gray-100: $colors-gray-100;
 $background-color-overlay: rgba($colors-black, 0.5);
 ```
 
-#### toThemeObject
+### toThemeObject
 
 This generates a theme object. Useful if you are not using CSS variables and want a global theme object.
 
-##### Usage
+#### Usage
 
 ```typescript
 const [tsType] = themeGenerator(theme).to(toThemeObject());
 ```
 
-##### Result
+#### Result
 
 ```json
 {
@@ -424,15 +424,15 @@ const [tsType] = themeGenerator(theme).to(toThemeObject());
 }
 ```
 
-#### toThemeType
+### toThemeType
 
-##### Usage
+#### Usage
 
 ```typescript
 const [tsType] = themeGenerator(theme).to(toThemeType());
 ```
 
-##### Result
+#### Result
 
 ```typescript
 {
