@@ -43,7 +43,7 @@ describe('themeGenerator tests', () => {
     const [content] = themeGenerator(theme).to(cssVariablesThemeObject());
 
     expect(content).toBe(
-      '{"root":"var(--root)";"colors":{"black":"var(--colors-black)";"red":"var(--colors-red)";"green":"var(--colors-green)";"blue":"var(--colors-blue)";};"opacity":{"10":"var(--opacity-10)";};"fontFamily":{"serif":"var(--font-family-serif)";};"textColors":{"black":"var(--text-colors-black)";"red":"var(--text-colors-red)";"green":"var(--text-colors-green)";"blue":"var(--text-colors-blue)";};"backgroundColors":{"root":"var(--background-colors-root)";"black":"var(--background-colors-black)";"whiteOverlay":"var(--background-colors-white-overlay)";"overlay":"var(--background-colors-overlay)";};}',
+      '{"root":"var(--root)","colors":{"black":"var(--colors-black)","red":"var(--colors-red)","green":"var(--colors-green)","blue":"var(--colors-blue)",},"opacity":{"10":"var(--opacity-10)",},"fontFamily":{"serif":"var(--font-family-serif)",},"textColors":{"black":"var(--text-colors-black)","red":"var(--text-colors-red)","green":"var(--text-colors-green)","blue":"var(--text-colors-blue)",},"backgroundColors":{"root":"var(--background-colors-root)","black":"var(--background-colors-black)","whiteOverlay":"var(--background-colors-white-overlay)","overlay":"var(--background-colors-overlay)",},}',
     );
   });
 

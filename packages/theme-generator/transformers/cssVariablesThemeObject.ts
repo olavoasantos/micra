@@ -21,7 +21,7 @@ export const cssVariablesThemeObject = (
       { append, transform },
     ) {
       if (element.path) {
-        append(`"${element.path}":{${transform((element as JSOSParserNodeElement).value)}};`);
+        append(`"${element.path}":{${transform((element as JSOSParserNodeElement).value)}},`);
       } else {
         append(`{${transform((element as JSOSParserNodeElement).value)}}`);
       }
@@ -30,19 +30,19 @@ export const cssVariablesThemeObject = (
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value};`);
+      append(`"${name}":${value},`);
     },
     [NUMERIC_TYPE](element, { append, pathToKebab }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value};`);
+      append(`"${name}":${value},`);
     },
     [STRING_TYPE](element, { append, pathToKebab }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value};`);
+      append(`"${name}":${value},`);
     },
   },
 });
