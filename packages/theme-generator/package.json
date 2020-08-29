@@ -1,6 +1,6 @@
 {
   "name": "@micra/theme-generator",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "main": ".micra/index.cjs.js",
   "module": ".micra/index.js",
