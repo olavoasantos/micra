@@ -1,57 +1,81 @@
-import { themeParser } from '../parser';
-import { parseValue } from '../parseValue';
-import { deepMerge } from '../helpers/deepMerge';
+import { jsosParser, jsosTransformer } from '@micra/jsos';
 import { camelToKebab } from '../helpers/camelToKebab';
-import { pathToObject } from '../helpers/pathToObject';
+import { deepMerge } from '../helpers/deepMerge';
 import { pathToKebab } from '../helpers/pathToKebab';
-import { ThemeElement, ThemeParserOptions, ThemeTokens } from '../parser/types';
+import { pathToObject } from '../helpers/pathToObject';
+import { rgbaParser } from '../customParsers/rgba/parser';
 import {
-  BaseGeneratorContext,
-  PostGeneratorContext,
-  PreGeneratorContext,
+  ThemeGeneratorOptions,
   ThemeGenerator,
-} from '../generators/types';
-
-export interface ThemeGeneratorInterface {
-  tokens: ThemeTokens;
-  elements: ThemeElement[];
-  to(...generators: ThemeGenerator[]): string[];
-}
+  ThemeDefinition,
+} from './types';
+import { valueParsers } from '../customParsers';
 
 export const themeGenerator = (
-  tokens: ThemeTokens,
-  options: Partial<ThemeParserOptions> = {},
-): ThemeGeneratorInterface => {
-  const elements = themeParser(tokens, options);
+  tokens: ThemeDefinition,
+  options: Partial<ThemeGeneratorOptions> = {},
+): ThemeGenerator => {
+  const baseContext = {
+    tokens,
+    deepMerge,
+    camelToKebab,
+    pathToObject,
+    pathToKebab,
+  };
+
+  const elements = jsosParser(tokens, {
+    elements: options.elements,
+    makeContext(context) {
+      return Object.assign(
+        options.parserContext ? options.parserContext(context) : {},
+        {
+          rgba: rgbaParser(context),
+          ...baseContext,
+        },
+      );
+    },
+  });
 
   return {
     tokens,
     elements,
-    to(...generators: ThemeGenerator[]) {
-      return generators.map((generator) => {
-        const baseContext: BaseGeneratorContext = {
-          generator,
-          tokens,
-          elements,
-          deepMerge,
-          camelToKebab,
-          pathToObject,
-          pathToKebab,
-        };
-        const preContext: PreGeneratorContext = {
-          ...baseContext,
-          parseValue: parseValue(baseContext, options.valueParsers),
-        };
-        const postContext: PostGeneratorContext = {
-          ...preContext,
-          content: generator.build(preContext),
-        };
+    to(...transformers) {
+      return transformers.map((transformer) => {
+        const content = jsosTransformer(
+          transformer.options?.willTransform
+            ? transformer.options.willTransform(elements)
+            : elements,
+          {
+            valueParsers: {
+              ...(options.valueParsers ?? {}),
+              ...valueParsers,
+            },
+            transformers: transformer.visitors,
+            makeContext(context) {
+              return Object.assign(
+                options.transformerContext
+                  ? options.transformerContext(context)
+                  : {},
+                {
+                  transformer,
+                  elements,
+                  ...baseContext,
+                },
+              );
+            },
+          },
+        ).trim();
 
-        if (generator.options.callback) {
-          generator.options.callback(postContext);
+        if (transformer.options.callback) {
+          transformer.options.callback({
+            content,
+            transformer,
+            elements,
+            ...baseContext,
+          });
         }
 
-        return postContext.content;
+        return content;
       });
     },
   };
