@@ -8,7 +8,6 @@
 
 # production
 **/dist
-**/build
 **/@build
 **/@types
 **/.micra
