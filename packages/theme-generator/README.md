@@ -11,13 +11,13 @@ yarn add @micra/theme-generator
 ```typescript
 import { writeFileSync } from 'fs';
 import {
-  ThemeTokens,
+  ThemeDefinition,
   themeGenerator,
   cssVariables,
 } from '@micra/theme-generator';
 
 // 1. Define your theme tokens
-export const themeTokens: ThemeTokens = {
+export const themeTokens: ThemeDefinition = {
   colors: {
     black: '#000',
     gray: {
