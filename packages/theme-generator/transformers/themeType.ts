@@ -30,7 +30,11 @@ export const themeType = (
         }
 
         if (element.path) {
-          append(`"${element.path}":{${transform((element as JSOSParserNodeElement).value)}};`);
+          append(
+            `"${element.path.split('.').pop()}":{${transform(
+              (element as JSOSParserNodeElement).value,
+            )}};`,
+          );
         } else {
           append(`{${transform((element as JSOSParserNodeElement).value)}}`);
         }
@@ -45,28 +49,29 @@ export const themeType = (
           .map((definition) =>
             parseValue(definition.value, {
               get(path: string) {
-                return findByPath(path, baseElements).value as string;
+                const getValue = findByPath(path, baseElements).value;
+                return Array.isArray(getValue)
+                  ? getValue
+                      .map(({ value }: JSOSParserListElement) => value)
+                      .join(', ')
+                  : getValue;
               },
             }),
           )
           .filter(Boolean)
           .join(', ');
 
-        append(`"${name}":"${value}";`);
+        append(`"${name}":${JSON.stringify(value)};`);
       },
-      [NUMERIC_TYPE](element, { append, parseValue, findByPath, elements }) {
+      [NUMERIC_TYPE](element, { append, elements }) {
         if (!baseElements) {
           baseElements = elements;
         }
 
         const name = element.path.split('.').pop();
-        const value = parseValue(element.value, {
-          get(path: string) {
-            return findByPath(path, baseElements).value as string;
-          },
-        });
+        const value = element.value;
 
-        append(`"${name}":"${value}";`);
+        append(`"${name}":${JSON.stringify(value)};`);
       },
       [STRING_TYPE](element, { append, parseValue, findByPath, elements }) {
         if (!baseElements) {
@@ -76,11 +81,16 @@ export const themeType = (
         const name = element.path.split('.').pop();
         const value = parseValue(element.value, {
           get(path: string) {
-            return findByPath(path, baseElements).value as string;
+            const getValue = findByPath(path, baseElements).value;
+            return Array.isArray(getValue)
+              ? getValue
+                  .map(({ value }: JSOSParserListElement) => value)
+                  .join(', ')
+              : getValue;
           },
         });
 
-        append(`"${name}":"${value}";`);
+        append(`"${name}":${JSON.stringify(value)};`);
       },
     },
   };

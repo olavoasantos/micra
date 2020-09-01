@@ -16,12 +16,13 @@ export const cssVariablesThemeObject = (
 ): ThemeTransformer => ({
   options,
   visitors: {
-    [NODE_TYPE](
-      element,
-      { append, transform },
-    ) {
+    [NODE_TYPE](element, { append, transform }) {
       if (element.path) {
-        append(`"${element.path}":{${transform((element as JSOSParserNodeElement).value)}},`);
+        append(
+          `"${element.path.split('.').pop()}":{${transform(
+            (element as JSOSParserNodeElement).value,
+          )}},`,
+        );
       } else {
         append(`{${transform((element as JSOSParserNodeElement).value)}}`);
       }

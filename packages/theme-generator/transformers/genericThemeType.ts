@@ -16,12 +16,13 @@ export const genericThemeType = (
 ): ThemeTransformer => ({
   options,
   visitors: {
-    [NODE_TYPE](
-      element,
-      { append, transform }: TransformerContext,
-    ) {
+    [NODE_TYPE](element, { append, transform }: TransformerContext) {
       if (element.path) {
-        append(`"${element.path}":{${transform((element as JSOSParserNodeElement).value)}};`);
+        append(
+          `"${element.path.split('.').pop()}":{${transform(
+            (element as JSOSParserNodeElement).value,
+          )}};`,
+        );
       } else {
         append(`{${transform((element as JSOSParserNodeElement).value)}}`);
       }

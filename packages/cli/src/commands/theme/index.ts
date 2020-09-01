@@ -3,13 +3,12 @@ import prettier from 'prettier';
 import { CLICommand } from '@micra/cli-router';
 import {
   themeGenerator,
-  toCssVariables,
-  toCssVariablesThemeObject,
-  toGenericThemeType,
-  toThemeObject,
-  toThemeType,
-  ThemeTokens,
-  ThemeElement,
+  cssVariables,
+  cssVariablesThemeObject,
+  genericThemeType,
+  themeObject,
+  themeType,
+  scssVariables,
   ThemeGenerator,
 } from '@micra/theme-generator';
 import { Context } from '../../app/context/types';
@@ -37,11 +36,7 @@ export const themeBuild: CLICommand = {
     const THEMES = parser.getOption('only')?.value;
     const definitions = config.get('theme.definitions') ?? {};
 
-    const themeElements: Record<string, {
-      tokens: ThemeTokens;
-      elements: ThemeElement[];
-      to(...generators: ThemeGenerator<any>[]): string[];
-    }> = {};
+    const themeElements: Record<string, ThemeGenerator> = {};
     const names = THEMES === '*' ? Object.keys(definitions) : THEMES.split(',');
 
     names.forEach((key: string) =>
@@ -66,11 +61,11 @@ export const themeBuild: CLICommand = {
             definition.options || {},
           );
           theme.to(
-            toGenericThemeType({
+            genericThemeType({
               ...options,
               callback(ctx) {
                 if (definition.transform) {
-                  ctx = definition.transform(ctx);
+                  ctx = definition.transform(ctx) as any;
                 }
 
                 let TEMPLATE = ctx.content;
@@ -107,11 +102,11 @@ export const themeBuild: CLICommand = {
             definition.options || {},
           );
           theme.to(
-            toThemeType({
+            themeType({
               ...options,
               callback(ctx) {
                 if (definition.transform) {
-                  ctx = definition.transform(ctx);
+                  ctx = definition.transform(ctx) as any;
                 }
 
                 let TEMPLATE = ctx.content;
@@ -148,11 +143,52 @@ export const themeBuild: CLICommand = {
             definition.options || {},
           );
           theme.to(
-            toCssVariables({
+            cssVariables({
               ...options,
               callback(ctx) {
                 if (definition.transform) {
-                  ctx = definition.transform(ctx);
+                  ctx = definition.transform(ctx) as any;
+                }
+
+                let TEMPLATE = ctx.content;
+                if (definition.template) {
+                  TEMPLATE = template(definition.template);
+                }
+
+                const FILE_PATH = join(BUILD_PATH, definition.path || '');
+                const CONTENT = use('TemplateEngine').render(TEMPLATE, {
+                  ...(definition.variables || {}),
+                  CONTENT: ctx.content,
+                  BUILD_PATH,
+                  FILE_PATH,
+                  CTX: ctx,
+                });
+
+                createFile(cwd(FILE_PATH), prettier.format(CONTENT, format), true);
+              },
+            }),
+          );
+        }
+
+        if (definition.type === 'toScssVariables') {
+          const format = definition.format ?? {
+            parser: 'css',
+            semi: true,
+            trailingComma: 'all',
+            singleQuote: true,
+            printWidth: 100,
+            tabWidth: 2,
+          };
+          const options = Object.assign(
+            {},
+            definition.options || {},
+          );
+          theme.to(
+            scssVariables({
+              ...options,
+              callback(ctx) {
+                if (definition.transform) {
+                  ctx = definition.transform(ctx) as any;
                 }
 
                 let TEMPLATE = ctx.content;
@@ -189,11 +225,11 @@ export const themeBuild: CLICommand = {
             definition.options || {},
           );
           theme.to(
-            toCssVariablesThemeObject({
+            cssVariablesThemeObject({
               ...options,
               callback(ctx) {
                 if (definition.transform) {
-                  ctx = definition.transform(ctx);
+                  ctx = definition.transform(ctx) as any;
                 }
 
                 let TEMPLATE = ctx.content;
@@ -230,11 +266,11 @@ export const themeBuild: CLICommand = {
             definition.options || {},
           );
           theme.to(
-            toThemeObject({
+            themeObject({
               ...options,
               callback(ctx) {
                 if (definition.transform) {
-                  ctx = definition.transform(ctx);
+                  ctx = definition.transform(ctx) as any;
                 }
 
                 let TEMPLATE = ctx.content;
