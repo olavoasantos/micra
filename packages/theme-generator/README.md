@@ -46,9 +46,9 @@ writeFileSync(`${__dirname}/variables.css`, `:root { ${content} }`, 'utf-8');
 - If you want to see the available transformers we have go to the [#available-transformers](#available-transformers) section!
 - If you want to get a deeper understanding of what the theme generator provides, keep on reading below!
 
-### ThemeTokens definition
+### ThemeDefinition definition
 
-The `ThemeTokens` object is an object that accepts strings or number as keys and `ThemeTokenDefinition` as value.
+The `ThemeDefinition` object is an object that accepts strings or number as keys and `ThemeTokenDefinition` as value.
 
 ```typescript
 interface ThemeDefinition {
@@ -56,7 +56,7 @@ interface ThemeDefinition {
 }
 ```
 
-`ThemeTokenDefinition`, on the other hand, can be a `string`, a `number`, an array of strings, a function that returns another `ThemeTokenDefinition` or another `ThemeTokens`. In other words:
+`ThemeDefinition`, on the other hand, can be a `string`, a `number`, an array of strings, a function that returns another `ThemeDefinition` or another `ThemeDefinition`. In other words:
 
 ```typescript
 export const theme: ThemeDefinition = {
@@ -102,10 +102,10 @@ interface DeepPartial<T = string> {
 
 ## Available transformers
 
-For the next examples and definition, let's consider the following `ThemeTokens` definition:
+For the next examples and definition, let's consider the following `ThemeDefinition` definition:
 
 ```typescript
-export const theme: ThemeTokens = {
+export const theme: ThemeDefinition = {
   colors: {
     black: '#000',
     gray: {
