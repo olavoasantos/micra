@@ -69,7 +69,7 @@ export const theme: ThemeDefinition = {
   fontFamily: {
     serif: ['Georgia', 'serif'], // <~~ array
   },
-  backgroundColor: ({ get }) => ({ gray: get('colors.gray') }), // <~~ function
+  backgroundColor: ({ get }) => ({ white: get('colors.white') }), // <~~ function
 };
 ```
 
