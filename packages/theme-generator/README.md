@@ -60,7 +60,7 @@ interface ThemeDefinition {
 
 ```typescript
 export const theme: ThemeDefinition = {
-  colors: { // <~~ another ThemeToken
+  colors: { // <~~ another ThemeDefinition
     white: '#fff', // <~~ string
   },
   opacity: {
