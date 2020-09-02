@@ -49,26 +49,21 @@ export const create: CLICommand = {
     const TEMPLATE = parser.getArgument(0)?.value;
     const RELATIVE_PATH = parser.getArgument(1)?.value;
     const PATH = cwd(RELATIVE_PATH);
-    const REPO = parser.getOption('repo')?.value
+    const REPO = parser.getOption('repo')?.value;
     const ORGANIZATION = parser.getOption('organization')?.value
       ? `@${parser.getOption('organization')?.value}/`
       : '';
 
-    const NAME = variationsOf(
-      parser.getOption('name')?.value || nameFromPath(PATH + '.'),
-    );
+    const NAME = variationsOf(parser.getOption('name')?.value || nameFromPath(PATH + '.'));
     const PKG = `${ORGANIZATION}${NAME.LOWERCASE}`;
 
     log.log(`Creating project based on ${TEMPLATE} template...\n`);
 
     makeSurePathExists(PATH);
-    execSync(
-      `git clone git@github.com:micrajs/${TEMPLATE}-template.git .`,
-      {
-        stdio: [0, 1, 2],
-        cwd: PATH,
-      },
-    );
+    execSync(`git clone git@github.com:micrajs/${TEMPLATE}-template.git .`, {
+      stdio: [0, 1, 2],
+      cwd: PATH,
+    });
     rimraf.sync(cwd(RELATIVE_PATH, '.git'));
 
     log.log(`\nUpdating references...`);
@@ -126,20 +121,14 @@ export const create: CLICommand = {
 
     log.log(`\nInstalling dependencies...`);
 
-    execSync(
-      `yarn`,
-      {
-        stdio: [0, 1, 2],
-        cwd: PATH,
-      },
-    );
+    execSync(`yarn`, {
+      stdio: [0, 1, 2],
+      cwd: PATH,
+    });
 
-    execSync(
-      `git init`,
-      {
-        cwd: PATH,
-      },
-    );
+    execSync(`git init`, {
+      cwd: PATH,
+    });
 
     log.log(`\nProject created in: ${PATH}`);
   },

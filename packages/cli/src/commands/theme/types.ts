@@ -1,87 +1,92 @@
 import { Options as PrettierOptions } from 'prettier';
-import { TransformerCustomContext } from '@micra/theme-generator';
+import { TransformerCustomContext, ThemeGeneratorOptions } from '@micra/theme-generator';
 
 export type FileDefinition = {
   type: 'file';
-  path: string; // relative path to build path
-  template: string; // absolute path to template
-  format?: PrettierOptions; // prettier format options
-  variables?: Record<string, any>; // extra variables to be passed to the template engine
+  path: string;
+  template: string;
+  format?: PrettierOptions;
+  variables?: Record<string, any>;
 };
 
 export type ThemeDefinition =
   | {
       type: 'toGenericThemeType';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toGenericThemeType partial options
-        name?: string;
-      };
-      format?: PrettierOptions; // prettier format options
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      format?: PrettierOptions;
+      variables?: Record<string, any>;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     }
   | {
       type: 'toThemeType';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toThemeType partial options
-        name?: string;
-        parent?: string;
-      };
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      format?: PrettierOptions; // prettier format options
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      variables?: Record<string, any>;
+      format?: PrettierOptions;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     }
   | {
       type: 'toCssVariables';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toCssVariables partial options
-        selector?: string;
-      };
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      format?: PrettierOptions; // prettier format options
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      variables?: Record<string, any>;
+      format?: PrettierOptions;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     }
   | {
       type: 'toScssVariables';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toCssVariables partial options
-        selector?: string;
-      };
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      format?: PrettierOptions; // prettier format options
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      variables?: Record<string, any>;
+      format?: PrettierOptions;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     }
   | {
       type: 'toCssVariablesThemeObject';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toCssVariablesThemeObject partial options
-        es6?: boolean;
-      };
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      format?: PrettierOptions; // prettier format options
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      variables?: Record<string, any>;
+      format?: PrettierOptions;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     }
   | {
       type: 'toThemeObject';
-      path: string; // relative path to build path
-      source: string; // relative path to CWD
-      template?: string; // absolute path to template
-      options?: { // toThemeObject partial options
-        name?: string;
-      };
-      variables?: Record<string, any>; // extra variables to be passed to the template engine
-      format?: PrettierOptions; // prettier format options
-      transform?(ctx: TransformerCustomContext<{ content: string }>): TransformerCustomContext & Record<string, any>; // transforms context before build
+      path: string;
+      source: string;
+      template?: string;
+      transformerOptions?: Record<string, any>;
+      parserOptions?: Partial<ThemeGeneratorOptions>;
+      variables?: Record<string, any>;
+      format?: PrettierOptions;
+      makeContext?(
+        ctx: TransformerCustomContext<{ content: string }>,
+      ): TransformerCustomContext & Record<string, any>;
     };
 
 export type GeneratorDefinition = FileDefinition | ThemeDefinition;
