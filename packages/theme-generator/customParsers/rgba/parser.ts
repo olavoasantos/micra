@@ -13,10 +13,10 @@ import {
 
 const valueParserFunction = `rgba`;
 
-const breadcrumbsToValueParserFunction: ReplaceDeepTransformer = (
+const breadcrumbsToValueParserFunction: (opacity: number) => ReplaceDeepTransformer = (opacity: number) => (
   _,
   { breadcrumbs },
-) => `${valueParserFunction}::${breadcrumbs}`;
+) => `${valueParserFunction}::${breadcrumbs}|${opacity}`;
 
 export const rgbaParser = (context: JSOSParserContext) => (
   path: string,
@@ -28,15 +28,17 @@ export const rgbaParser = (context: JSOSParserContext) => (
     return `${valueParserFunction}::${value}|${opacity}`;
   }
 
+  const visitor = breadcrumbsToValueParserFunction(opacity);
+
   return replaceDeep(value, {
     context,
     breadcrumbs: path,
     transformers: {
-      [STRING_TYPE]: breadcrumbsToValueParserFunction,
-      [NUMERIC_TYPE]: breadcrumbsToValueParserFunction,
-      [LIST_TYPE]: breadcrumbsToValueParserFunction,
-      [BOOLEAN_TYPE]: breadcrumbsToValueParserFunction,
-      [NULLISH_TYPE]: breadcrumbsToValueParserFunction,
+      [STRING_TYPE]: visitor,
+      [NUMERIC_TYPE]: visitor,
+      [LIST_TYPE]: visitor,
+      [BOOLEAN_TYPE]: visitor,
+      [NULLISH_TYPE]: visitor,
     },
   });
 };

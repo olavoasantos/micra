@@ -4,6 +4,7 @@ import { deepMerge } from '../helpers/deepMerge';
 import { pathToKebab } from '../helpers/pathToKebab';
 import { pathToObject } from '../helpers/pathToObject';
 import { rgbaParser } from '../customParsers/rgba/parser';
+import { valueParser } from '../customParsers/value/parser';
 import {
   ThemeGeneratorOptions,
   ThemeGenerator,
@@ -30,6 +31,7 @@ export const themeGenerator = (
         options.parserContext ? options.parserContext(context) : {},
         {
           rgba: rgbaParser(context),
+          value: valueParser(context),
           ...baseContext,
         },
       );

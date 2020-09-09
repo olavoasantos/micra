@@ -3,6 +3,7 @@ import {
   LIST_TYPE,
   JSOSParserListElement,
   NUMERIC_TYPE,
+  NODE_TYPE,
 } from '@micra/jsos';
 import {
   ThemeTransformer,
@@ -15,9 +16,12 @@ export const scssVariables = (
 ): ThemeTransformer => ({
   options,
   visitors: {
+    [NODE_TYPE](element, { content, transform }) {
+      content.append(transform(element.value));
+    },
     [LIST_TYPE](
       element,
-      { append, parseValue, pathToKebab }: TransformerContext,
+      { content, parseValue, pathToKebab }: TransformerContext,
     ) {
       const name = `$${pathToKebab(element.path)}`;
       const value = (element as JSOSParserListElement).value
@@ -31,11 +35,11 @@ export const scssVariables = (
         .filter(Boolean)
         .join(', ');
 
-      append(` ${name}: ${value};`.trimRight());
+      content.append(` ${name}: ${value};`.trimRight());
     },
     [NUMERIC_TYPE](
       element,
-      { append, parseValue, pathToKebab }: TransformerContext,
+      { content, parseValue, pathToKebab }: TransformerContext,
     ) {
       const name = `$${pathToKebab(element.path)}`;
       const value = parseValue(element.value, {
@@ -44,11 +48,11 @@ export const scssVariables = (
         },
       });
 
-      append(` ${name}: ${value};`.trimRight());
+      content.append(` ${name}: ${value};`.trimRight());
     },
     [STRING_TYPE](
       element,
-      { append, parseValue, pathToKebab }: TransformerContext,
+      { content, parseValue, pathToKebab }: TransformerContext,
     ) {
       const name = `$${pathToKebab(element.path)}`;
       const value = parseValue(element.value, {
@@ -57,7 +61,7 @@ export const scssVariables = (
         },
       });
 
-      append(` ${name}: ${value};`.trimRight());
+      content.append(` ${name}: ${value};`.trimRight());
     },
   },
 });

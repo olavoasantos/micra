@@ -16,34 +16,34 @@ export const genericThemeType = (
 ): ThemeTransformer => ({
   options,
   visitors: {
-    [NODE_TYPE](element, { append, transform }: TransformerContext) {
+    [NODE_TYPE](element, { content, transform }: TransformerContext) {
       if (element.path) {
-        append(
+        content.append(
           `"${element.path.split('.').pop()}":{${transform(
             (element as JSOSParserNodeElement).value,
           )}};`,
         );
       } else {
-        append(`{${transform((element as JSOSParserNodeElement).value)}}`);
+        content.append(`{${transform((element as JSOSParserNodeElement).value)}}`);
       }
     },
-    [LIST_TYPE](element, { append }: TransformerContext) {
+    [LIST_TYPE](element, { content }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `string`;
 
-      append(`"${name}":${value};`);
+      content.append(`"${name}":${value};`);
     },
-    [NUMERIC_TYPE](element, { append }: TransformerContext) {
+    [NUMERIC_TYPE](element, { content }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `string`;
 
-      append(`"${name}":${value};`);
+      content.append(`"${name}":${value};`);
     },
-    [STRING_TYPE](element, { append }: TransformerContext) {
+    [STRING_TYPE](element, { content }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `string`;
 
-      append(`"${name}":${value};`);
+      content.append(`"${name}":${value};`);
     },
   },
 });

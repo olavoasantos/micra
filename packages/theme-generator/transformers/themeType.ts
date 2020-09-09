@@ -23,23 +23,23 @@ export const themeType = (
     visitors: {
       [NODE_TYPE](
         element,
-        { append, transform, elements }: TransformerContext,
+        { content, transform, elements }: TransformerContext,
       ) {
         if (!baseElements) {
           baseElements = elements;
         }
 
         if (element.path) {
-          append(
+          content.append(
             `"${element.path.split('.').pop()}":{${transform(
               (element as JSOSParserNodeElement).value,
             )}};`,
           );
         } else {
-          append(`{${transform((element as JSOSParserNodeElement).value)}}`);
+          content.append(`{${transform((element as JSOSParserNodeElement).value)}}`);
         }
       },
-      [LIST_TYPE](element, { append, parseValue, findByPath, elements }) {
+      [LIST_TYPE](element, { content, parseValue, findByPath, elements }) {
         if (!baseElements) {
           baseElements = elements;
         }
@@ -61,9 +61,9 @@ export const themeType = (
           .filter(Boolean)
           .join(', ');
 
-        append(`"${name}":${JSON.stringify(value)};`);
+        content.append(`"${name}":${JSON.stringify(value)};`);
       },
-      [NUMERIC_TYPE](element, { append, elements }) {
+      [NUMERIC_TYPE](element, { content, elements }) {
         if (!baseElements) {
           baseElements = elements;
         }
@@ -71,9 +71,9 @@ export const themeType = (
         const name = element.path.split('.').pop();
         const value = element.value;
 
-        append(`"${name}":${JSON.stringify(value)};`);
+        content.append(`"${name}":"${JSON.stringify(value)}";`);
       },
-      [STRING_TYPE](element, { append, parseValue, findByPath, elements }) {
+      [STRING_TYPE](element, { content, parseValue, findByPath, elements }) {
         if (!baseElements) {
           baseElements = elements;
         }
@@ -90,7 +90,7 @@ export const themeType = (
           },
         });
 
-        append(`"${name}":${JSON.stringify(value)};`);
+        content.append(`"${name}":${JSON.stringify(value)};`);
       },
     },
   };

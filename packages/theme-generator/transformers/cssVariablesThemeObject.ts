@@ -16,34 +16,34 @@ export const cssVariablesThemeObject = (
 ): ThemeTransformer => ({
   options,
   visitors: {
-    [NODE_TYPE](element, { append, transform }) {
+    [NODE_TYPE](element, { content, transform }) {
       if (element.path) {
-        append(
+        content.append(
           `"${element.path.split('.').pop()}":{${transform(
             (element as JSOSParserNodeElement).value,
           )}},`,
         );
       } else {
-        append(`{${transform((element as JSOSParserNodeElement).value)}}`);
+        content.append(`{${transform((element as JSOSParserNodeElement).value)}}`);
       }
     },
-    [LIST_TYPE](element, { append, pathToKebab }: TransformerContext) {
+    [LIST_TYPE](element, { content, pathToKebab }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value},`);
+      content.append(`"${name}":${value},`);
     },
-    [NUMERIC_TYPE](element, { append, pathToKebab }: TransformerContext) {
+    [NUMERIC_TYPE](element, { content, pathToKebab }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value},`);
+      content.append(`"${name}":${value},`);
     },
-    [STRING_TYPE](element, { append, pathToKebab }: TransformerContext) {
+    [STRING_TYPE](element, { content, pathToKebab }: TransformerContext) {
       const name = element.path.split('.').pop();
       const value = `"var(--${pathToKebab(element.path)})"`;
 
-      append(`"${name}":${value},`);
+      content.append(`"${name}":${value},`);
     },
   },
 });
