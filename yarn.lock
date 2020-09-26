@@ -2833,10 +2833,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@micra/jsos@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@micra/jsos/-/jsos-0.0.4.tgz#9c8346dc6111dec1a76137628e78fb5646bd629b"
-  integrity sha512-nS04mA7NhjkiP1eoIg+zE1Emc+eFz/95LsJvF6s/3TQcN91P22HT6zepS/SS13/nVPTx2+lahZXyErDL9ED3Vw==
+"@micra/jsos@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@micra/jsos/-/jsos-0.0.6.tgz#5acdf1d31d0e9a147162dbd1b0700f636ca68402"
+  integrity sha512-REiANmxqg3z2MqWws8dLD7Gkn352obl3gNbk1CNEcI1Zq0OQTa9SuLG8hvZsumh72IkYpl35Al4ibMagVtIyIA==
   dependencies:
     tslib "^2.0.1"
 
