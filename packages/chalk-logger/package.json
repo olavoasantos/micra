@@ -39,6 +39,6 @@
   "dependencies": {
     "@micra/core": "^0.0.7",
     "chalk": "^4.1.0",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   }
 }

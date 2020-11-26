@@ -41,6 +41,6 @@
     "@micra/config": "^0.0.5",
     "@micra/core": "^0.0.7",
     "@micra/multi-env": "^0.0.2",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   }
 }

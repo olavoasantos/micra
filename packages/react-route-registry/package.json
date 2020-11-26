@@ -49,7 +49,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@loadable/component": "^5.13.1",
+    "@loadable/component": "^5.14.1",
     "@micra/route-registry": "^0.0.2"
   },
   "peerDependencies": {

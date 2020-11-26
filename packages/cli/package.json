@@ -61,7 +61,7 @@
     "dotenv": "^8.2.0",
     "lodash": "^4.17.20",
     "pluralize": "^8.0.0",
-    "prettier": "^2.0.4",
+    "prettier": "^2.1.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2"
   }

@@ -39,6 +39,6 @@
   "dependencies": {
     "@micra/core": "^0.0.7",
     "@micra/events": "^0.0.2",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   }
 }

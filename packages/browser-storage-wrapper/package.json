@@ -40,6 +40,6 @@
     "@micra/core": "^0.0.7",
     "@micra/in-memory-storage": "^0.0.2",
     "@micra/storage-wrapper": "^0.0.2",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   }
 }

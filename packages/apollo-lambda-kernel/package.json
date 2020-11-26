@@ -39,11 +39,11 @@
   "dependencies": {
     "@micra/core": "^0.0.7",
     "@micra/kernel": "^0.0.3",
-    "apollo-server-core": "^2.15.1",
-    "apollo-server-lambda": "^2.15.1",
+    "apollo-server-core": "^2.19.0",
+    "apollo-server-lambda": "^2.19.0",
     "aws-lambda": "^1.0.6",
     "deepmerge": "^4.2.2",
-    "graphql": "^15.3.0",
-    "tslib": "^2.0.1"
+    "graphql": "^15.4.0",
+    "tslib": "^2.0.3"
   }
 }
