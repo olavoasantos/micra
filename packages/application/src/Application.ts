@@ -61,8 +61,6 @@ export class Application implements ApplicationContract {
     this.container.value('env', this.env);
     this.container.value('config', this.config);
 
-    Application.global.use = this.container.use.bind(this.container);
-
     return this;
   }
 

@@ -8,7 +8,7 @@ export class Config implements ConfigContract {
     return this.get(key) !== undefined;
   }
 
-  set(key: string, value: any) {
+  set<T = any>(key: string, value: T) {
     const [namespace, ...parts] = key.split('.').reverse();
     const main = parts.pop();
 
@@ -17,7 +17,7 @@ export class Config implements ConfigContract {
       const tree = parts.reduce(
         (partial, subKey) => ({
           [subKey]: partial,
-        }),
+        }) as any,
         { [namespace]: value },
       );
 
@@ -28,7 +28,7 @@ export class Config implements ConfigContract {
     }
   }
 
-  get(key: string) {
+  get<T = any>(key: string): T | undefined {
     const [basename, ...pieces] = key.split('.');
     let definition = this.definitions.get(basename);
     for (const subKey of pieces) {

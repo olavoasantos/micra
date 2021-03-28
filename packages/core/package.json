@@ -1,19 +1,20 @@
 {
   "name": "@micra/core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "author": {
     "name": "Olavo Amorim Santos",
     "email": "olavo.a.santos@gmail.com"
   },
   "main": "build/index.js",
-  "types": "@types/index.d.ts",
+  "types": "contracts/index.d.ts",
   "files": [
     "build/**/*",
-    "@types/**/*"
+    "contracts/**/*",
+    "globals/**/*"
   ],
   "scripts": {
-    "build": "yarn rimraf ./build && yarn rimraf ./@types && tsc",
+    "build": "yarn rimraf ./contracts && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --cache --fix",
     "watch": "nodemon"

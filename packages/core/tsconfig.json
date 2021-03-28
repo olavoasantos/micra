@@ -17,10 +17,10 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "build",
-    "declarationDir": "@types",
+    "emitDeclarationOnly": true,
+    "declarationDir": "contracts",
     "rootDir": "src"
   },
-  "include": ["src"],
+  "include": ["src", "application-environments"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }

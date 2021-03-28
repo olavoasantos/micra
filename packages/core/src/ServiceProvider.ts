@@ -3,8 +3,8 @@ import { Static } from './types';
 
 export interface ServiceProvider {
   container: ServiceContainer;
-  register?: () => void;
-  boot?: () => void;
+  register?(): void | Promise<void>;
+  boot?(): void | Promise<void>;
 }
 
 export type StaticServiceProvider = Static<ServiceProvider, [ServiceContainer]>;
